@@ -21,6 +21,10 @@ export default defineConfig({
         find: "@crema",
         replacement: fileURLToPath(new URL("./src/@crema", import.meta.url)),
       },
+      {
+        find: "@engine9",
+        replacement: fileURLToPath(new URL("./src/@engine9", import.meta.url)),
+      },
     ],
   },
 });

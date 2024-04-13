@@ -4,6 +4,7 @@ import { Navigate } from 'react-router-dom';
 import { authRouteConfig } from './AuthRoutes';
 import Error403 from '../../../modules/errorPages/Error403';
 import { errorPagesConfigs } from './ErrorPagesRoutes';
+import { engine9Routes } from '@engine9/ui/dynamic';
 import { dashboardConfig } from './DashboardsRoutes';
 import { extraPagesConfigs } from './ExtraPagesRoutes';
 import { ecommerceConfig } from './EcommerceRoutes';
@@ -20,6 +21,7 @@ export const authorizedStructure = (loginUrl) => {
     fallbackPath: loginUrl,
     unAuthorizedComponent: <Error403 />,
     routes: [
+      ...engine9Routes,
       ...dashboardConfig,
       ...accountPagesConfigs,
       ...appsConfig,
