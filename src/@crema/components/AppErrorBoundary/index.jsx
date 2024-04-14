@@ -42,7 +42,7 @@ class AppErrorBoundary extends React.Component {
           </StyledTextWrapper>
 
           <StyledErrorBtn
-            type='primary'
+            type="primary"
             onClick={() => {
               window.location.reload();
             }}
@@ -51,9 +51,8 @@ class AppErrorBoundary extends React.Component {
           </StyledErrorBtn>
         </StyledAppBoundary>
       );
-    } else {
-      return this.props.children;
     }
+    return this.props.children;
   }
 }
 

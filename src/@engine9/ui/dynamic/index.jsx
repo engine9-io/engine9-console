@@ -1,15 +1,12 @@
 import React from 'react';
-import Test from '@engine9/data/test'
 import { RoutePermittedRole } from '@crema/constants/AppEnums';
-
-
-const TestData = React.lazy(() => import('../../data/test'));
+const DynamicLayout = React.lazy(() => import('@engine9/ui/dynamic/DynamicLayout'));
 
 export const engine9Routes = [
   {
     permittedRole: RoutePermittedRole.User,
-    path: '/testdata',
-    element: <TestData />,
+    path: '/dynamic',
+    element: <DynamicLayout />,
   },
  
 ];
