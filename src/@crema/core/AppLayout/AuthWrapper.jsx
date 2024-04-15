@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AppLogo from '@crema/components/AppLayout/components/AppLogo';
+import AppAnimateGroup from '@crema/components/AppAnimateGroup';
+import AppInfoView from '@crema/components/AppInfoView';
 import {
   StyledAuth,
   StyledAuthCard,
@@ -10,23 +13,20 @@ import {
   StyledAuthWrap,
   StyledMainAuthScrollbar,
 } from './AuthWrapper.styled';
-import AppLogo from '@crema/components/AppLayout/components/AppLogo';
-import AppAnimateGroup from '@crema/components/AppAnimateGroup';
-import AppInfoView from '@crema/components/AppInfoView';
 
-const AuthWrapper = ({ children }) => {
+function AuthWrapper({ children }) {
   return (
     <StyledAuth>
       <StyledMainAuthScrollbar>
         <AppAnimateGroup
-          type='scale'
+          type="scale"
           animateStyle={{ flex: 1 }}
           delay={0}
           style={{ height: '100%' }}
           interval={10}
           duration={200}
         >
-          <StyledAuthWrap key={'wrap'}>
+          <StyledAuthWrap key="wrap">
             <StyledAuthCard>
               <StyledAuthMainContent>
                 <StyledAuthCardHeader>
@@ -49,7 +49,7 @@ const AuthWrapper = ({ children }) => {
       </StyledMainAuthScrollbar>
     </StyledAuth>
   );
-};
+}
 
 export default AuthWrapper;
 

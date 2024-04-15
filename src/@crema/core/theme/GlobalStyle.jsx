@@ -23,8 +23,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.font.family};
     font-weight: ${({ theme }) => theme.font.weight.regular};
 
-    @media screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.sm + 320}px ) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.sm + 320}px ) {
       font-size: ${({ theme }) => theme.font.size.lg};
     }
   }
@@ -111,10 +110,8 @@ export const GlobalStyles = createGlobalStyle`
 
     &:hover,
     &:focus {
-      background: ${({ theme }) =>
-        darken(0.08, theme.palette.primary.main)} !important;
-      border-color: ${({ theme }) =>
-        darken(0.08, theme.palette.primary.main)} !important;
+      background: ${({ theme }) => darken(0.08, theme.palette.primary.main)} !important;
+      border-color: ${({ theme }) => darken(0.08, theme.palette.primary.main)} !important;
     }
   }
 
@@ -125,11 +122,9 @@ export const GlobalStyles = createGlobalStyle`
 
     &:hover,
     &:focus {
-      color: ${({ theme }) =>
-        darken(0.08, theme.palette.primary.main)} !important;
+      color: ${({ theme }) => darken(0.08, theme.palette.primary.main)} !important;
       background: transparent;
-      border-color: ${({ theme }) =>
-        darken(0.08, theme.palette.primary.main)} !important;
+      border-color: ${({ theme }) => darken(0.08, theme.palette.primary.main)} !important;
     }
   }
 
@@ -208,8 +203,8 @@ export const GlobalStyles = createGlobalStyle`
     box-shadow: none;
 
     &:hover, &:focus {
-      background-color: ${({ theme }) => theme.palette.tooltipBg + '04'};
-      border-color: ${({ theme }) => theme.palette.tooltipBg + '04'};
+      background-color: ${({ theme }) => `${theme.palette.tooltipBg}04`};
+      border-color: ${({ theme }) => `${theme.palette.tooltipBg}04`};
       color: ${({ theme }) => theme.palette.text.primary};
     }
 
@@ -224,10 +219,8 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.palette.white};
 
     &:hover, &:focus {
-      background-color: ${({ theme }) =>
-        darken(0.25, theme.palette.secondary.main)} !important;
-      border-color: ${({ theme }) =>
-        darken(0.25, theme.palette.secondary.main)} !important;
+      background-color: ${({ theme }) => darken(0.25, theme.palette.secondary.main)} !important;
+      border-color: ${({ theme }) => darken(0.25, theme.palette.secondary.main)} !important;
       color: ${({ theme }) => theme.palette.white} !important;
     }
   }
@@ -252,8 +245,7 @@ export const GlobalStyles = createGlobalStyle`
 
     &:hover, &:focus {
       background-color: transparent;
-      border-color: darken(0.15, ${({ theme }) =>
-        theme.palette.secondary.main});
+      border-color: darken(0.15, ${({ theme }) => theme.palette.secondary.main});
       color: darken(0.15, ${({ theme }) => theme.palette.secondary.main});
     }
   }
@@ -419,8 +411,7 @@ export const GlobalStyles = createGlobalStyle`
     &:hover {
       background-color: ${({ theme }) => rgba(theme.palette.primary.main, 0.1)};
       transform: translateY(-2px);
-      box-shadow: 0 3px 10px 0 ${({ theme }) =>
-        rgba(theme.palette.primary.main, 0.1)};
+      box-shadow: 0 3px 10px 0 ${({ theme }) => rgba(theme.palette.primary.main, 0.1)};
     }
   }
 
@@ -585,8 +576,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .boxedLayout {
-    @media screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.xl + 80}px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl + 80}px) {
       max-width: 1260px;
       margin-left: auto;
       margin-right: auto;
@@ -656,8 +646,7 @@ export const GlobalStyles = createGlobalStyle`
 
   //Framed Layout
   .framedLayout {
-    @media screen and (min-width: ${({ theme }) =>
-      theme.breakpoints.xl + 80}px) {
+    @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl + 80}px) {
       padding: ${({ theme }) => theme.sizes.framed.base};
       background-color: ${({ theme }) => theme.palette.secondary.main};
 
@@ -687,21 +676,18 @@ export const GlobalStyles = createGlobalStyle`
       & .main-userMiniHeader-scrollbar,
       & .drawerLayout-main-scrollbar,
       & .app-BitBucket-sidebar-scrollbar {
-        max-height: calc(100vh - (71px + 2 * ${({ theme }) =>
-          theme.sizes.framed.base}));
+        max-height: calc(100vh - (71px + 2 * ${({ theme }) => theme.sizes.framed.base}));
       }
 
       & .app-standard-sidebar-scrollbar {
-        max-height: calc(100vh - (140px + 2 * ${({ theme }) =>
-          theme.sizes.framed.base}));
+        max-height: calc(100vh - (140px + 2 * ${({ theme }) => theme.sizes.framed.base}));
       }
 
       & .app-userHeader-sidebar-scrollbar,
       & .app-sidebar-userMiniHeader-scrollbar,
       & .bitBucket-main-scrollbar,
       & .bucket-minibar {
-        max-height: calc(100vh - (2 * ${({ theme }) =>
-          theme.sizes.framed.base}));
+        max-height: calc(100vh - (2 * ${({ theme }) => theme.sizes.framed.base}));
       }
 
       & .app-layout {
@@ -719,8 +705,7 @@ export const GlobalStyles = createGlobalStyle`
       }
 
       & .apps-container {
-        height: calc(100vh - (153px + 2 * ${({ theme }) =>
-          theme.sizes.framed.base}));
+        height: calc(100vh - (153px + 2 * ${({ theme }) => theme.sizes.framed.base}));
       }
 
       & .app-layout-mini-sidebar,

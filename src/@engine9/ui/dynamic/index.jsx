@@ -1,15 +1,23 @@
 import React from 'react';
-import { RoutePermittedRole } from '@crema/constants/AppEnums';
-const DynamicLayout = React.lazy(() => import('@engine9/ui/dynamic/DynamicLayout'));
+import { useAuthUser } from '@crema/hooks/AuthHooks';
+import AuthWrapper from '@crema/core/AppLayout/AuthWrapper';
+import Authenticated from './Authenticated';
 
-export const engine9Routes = [
-  {
-    permittedRole: RoutePermittedRole.User,
-    path: '/dynamic',
-    element: <DynamicLayout />,
-  },
- 
-];
+function DynamicHome() {
+  const { isAuthenticated } = useAuthUser();
 
+  const loginUrl = `/signin?redirect=${window.location.pathname}`;
 
-export default engine9Routes;
+  return (
+    isAuthenticated ? (
+      <Authenticated />
+    ) : (
+      <AuthWrapper>
+        Not Authenticated
+        <a href={loginUrl}>Sign in now</a>
+      </AuthWrapper>
+    )
+  );
+}
+
+export default DynamicHome;

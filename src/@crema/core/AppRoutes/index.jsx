@@ -4,7 +4,6 @@ import { Navigate } from 'react-router-dom';
 import { authRouteConfig } from './AuthRoutes';
 import Error403 from '../../../modules/errorPages/Error403';
 import { errorPagesConfigs } from './ErrorPagesRoutes';
-import { engine9Routes } from '@engine9/ui/dynamic';
 import { dashboardConfig } from './DashboardsRoutes';
 import { extraPagesConfigs } from './ExtraPagesRoutes';
 import { ecommerceConfig } from './EcommerceRoutes';
@@ -16,44 +15,37 @@ import { accountPagesConfigs } from './AccountRoutes';
 import { invoiceConfig } from './InvoiceRoutes';
 import { componentsConfigs } from './Components';
 
-export const authorizedStructure = (loginUrl) => {
-  return {
-    fallbackPath: loginUrl,
-    unAuthorizedComponent: <Error403 />,
-    routes: [
-      ...engine9Routes,
-      ...dashboardConfig,
-      ...accountPagesConfigs,
-      ...appsConfig,
-      ...thirdPartyConfigs,
-      ...extraPagesConfigs,
-      ...ecommerceConfig,
-      ...componentsConfigs,
-      ...userPagesConfig,
-      ...userListConfig,
-      ...invoiceConfig,
-    ],
-  };
-};
+export const authorizedStructure = (loginUrl) => ({
+  fallbackPath: loginUrl,
+  unAuthorizedComponent: <Error403 />,
+  routes: [
+    ...dashboardConfig,
+    ...accountPagesConfigs,
+    ...appsConfig,
+    ...thirdPartyConfigs,
+    ...extraPagesConfigs,
+    ...ecommerceConfig,
+    ...componentsConfigs,
+    ...userPagesConfig,
+    ...userListConfig,
+    ...invoiceConfig,
+  ],
+});
 
-export const publicStructure = (initialUrl) => {
-  return {
-    fallbackPath: initialUrl,
-    routes: authRouteConfig,
-  };
-};
+export const publicStructure = (initialUrl) => ({
+  fallbackPath: initialUrl,
+  routes: authRouteConfig,
+});
 
-export const anonymousStructure = (initialUrl) => {
-  return {
-    routes: errorPagesConfigs.concat([
-      {
-        path: '/',
-        element: <Navigate to={initialUrl} />,
-      },
-      {
-        path: '*',
-        element: <Navigate to='/error-pages/error-404' />,
-      },
-    ]),
-  };
-};
+export const anonymousStructure = (initialUrl) => ({
+  routes: errorPagesConfigs.concat([
+    {
+      path: '/',
+      element: <Navigate to={initialUrl} />,
+    },
+    {
+      path: '*',
+      element: <Navigate to="/error-pages/error-404" />,
+    },
+  ]),
+});

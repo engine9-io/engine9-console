@@ -24,7 +24,7 @@ export const appsConfig = [
   {
     permittedRole: RoutePermittedRole.User,
     path: '/apps/mail',
-    element: <Navigate to='/apps/mail/folder/inbox' />,
+    element: <Navigate to="/apps/mail/folder/inbox" />,
   },
   {
     permittedRole: RoutePermittedRole.User,
@@ -38,7 +38,7 @@ export const appsConfig = [
   {
     permittedRole: RoutePermittedRole.User,
     path: '/apps/todo',
-    element: <Navigate to='/apps/todo/folder/all' />,
+    element: <Navigate to="/apps/todo/folder/all" />,
   },
   {
     permittedRole: RoutePermittedRole.User,
@@ -53,7 +53,7 @@ export const appsConfig = [
   {
     permittedRole: RoutePermittedRole.User,
     path: '/apps/calender',
-    element: <Navigate to='/apps/calender/all' />,
+    element: <Navigate to="/apps/calender/all" />,
   },
   {
     permittedRole: RoutePermittedRole.User,
@@ -63,7 +63,7 @@ export const appsConfig = [
   {
     permittedRole: RoutePermittedRole.User,
     path: '/apps/contact',
-    element: <Navigate to='/apps/contact/folder/all' />,
+    element: <Navigate to="/apps/contact/folder/all" />,
   },
   {
     permittedRole: RoutePermittedRole.User,

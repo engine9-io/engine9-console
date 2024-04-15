@@ -4,8 +4,9 @@ import { useIntl } from 'react-intl';
 import { allowMultiLanguage } from '@crema/constants/AppConst';
 
 const MenuItemChildren = (item) => {
-  const { icon, messageId, url } = item;
+  const { icon, url } = item;
   const { messages } = useIntl();
+  let messageId=item.messageId || item.title.toLowerCase().replace(/[^a-z0-9_-]/g,"-");
 
   if (url && url.includes('/'))
     return {

@@ -23,8 +23,9 @@ function getStyles(item, sidebarColorSet, index) {
 }
 
 const renderMenuItemChildren = (item) => {
-  const { icon, messageId, url } = item;
+  const { icon, url } = item;
   const { messages } = useIntl();
+  let messageId=item.messageId || item.title.toLowerCase().replace(/[^a-z0-9_-]/g,"-");
 
   if (url && url.includes('/'))
     return (

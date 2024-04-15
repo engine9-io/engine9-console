@@ -8,18 +8,18 @@ import {
   useLayoutActionsContext,
   useLayoutContext,
 } from '@crema/context/AppContextProvider/LayoutContextProvider';
+import { useRoutes } from 'react-router-dom';
+import { initialUrl } from '@crema/constants/AppConst';
+import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 import {
   anonymousStructure,
   authorizedStructure,
   publicStructure,
 } from '../AppRoutes';
-import { useRoutes } from 'react-router-dom';
 import routesConfig from '../AppRoutes/routeConfig';
 import AuthWrapper from './AuthWrapper';
-import { initialUrl } from '@crema/constants/AppConst';
-import { useSidebarActionsContext } from '@crema/context/AppContextProvider/SidebarContextProvider';
 
-const AppLayout = () => {
+function AppLayout() {
   const { navStyle } = useLayoutContext();
 
   const { user, isAuthenticated } = useAuthUser();
@@ -32,7 +32,7 @@ const AppLayout = () => {
   const loginUrl = `/signin?redirect=${window.location.pathname}`;
 
   const generatedRoutes = generateRoutes({
-    isAuthenticated: isAuthenticated,
+    isAuthenticated,
     userRole: user?.role,
     anonymousStructure: anonymousStructure(initURL),
     authorizedStructure: authorizedStructure(loginUrl),
@@ -67,6 +67,6 @@ const AppLayout = () => {
       )}
     </>
   );
-};
+}
 
 export default AppLayout;

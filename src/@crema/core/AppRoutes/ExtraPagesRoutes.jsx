@@ -2,40 +2,20 @@ import React from 'react';
 import { RoutePermittedRole } from '@crema/constants/AppEnums';
 
 const AboutUs = React.lazy(() => import('../../../modules/extraPages/AboutUs'));
-const ContactUs = React.lazy(() =>
-  import('../../../modules/extraPages/ContactUs'),
-);
-const KnowledgeBase = React.lazy(() =>
-  import('../../../modules/extraPages/KnowledgeBase'),
-);
-const UserProfile = React.lazy(() =>
-  import('../../../modules/account/MyProfile'),
-);
-const Portfolio = React.lazy(() =>
-  import('../../../modules/extraPages/Portfolio'),
-);
+const ContactUs = React.lazy(() => import('../../../modules/extraPages/ContactUs'));
+const KnowledgeBase = React.lazy(() => import('../../../modules/extraPages/KnowledgeBase'));
+const UserProfile = React.lazy(() => import('../../../modules/account/MyProfile'));
+const Portfolio = React.lazy(() => import('../../../modules/extraPages/Portfolio'));
 const FAQ = React.lazy(() => import('../../../modules/extraPages/FAQ'));
 
-const PortfolioDetail = React.lazy(() =>
-  import('../../../modules/extraPages/Portfolio/PortFolioPage'),
-);
-const PricingListing = React.lazy(() =>
-  import('../../../modules/extraPages/Pricing'),
-);
-const PricingDetail = React.lazy(() =>
-  import('../../../modules/extraPages/Pricing/Detail'),
-);
+const PortfolioDetail = React.lazy(() => import('../../../modules/extraPages/Portfolio/PortFolioPage'));
+const PricingListing = React.lazy(() => import('../../../modules/extraPages/Pricing'));
+const PricingDetail = React.lazy(() => import('../../../modules/extraPages/Pricing/Detail'));
 const Blog = React.lazy(() => import('../../../modules/extraPages/Blog'));
-const BlogDetail = React.lazy(() =>
-  import('../../../modules/extraPages/Blog/DetailPage'),
-);
-const BlogCreate = React.lazy(() =>
-  import('../../../modules/extraPages/Blog/CreateBlog'),
-);
+const BlogDetail = React.lazy(() => import('../../../modules/extraPages/Blog/DetailPage'));
+const BlogCreate = React.lazy(() => import('../../../modules/extraPages/Blog/CreateBlog'));
 
-const BlogEditPage = React.lazy(() =>
-  import('../../../modules/extraPages/Blog/EditBlog'),
-);
+const BlogEditPage = React.lazy(() => import('../../../modules/extraPages/Blog/EditBlog'));
 
 export const extraPagesConfigs = [
   {
