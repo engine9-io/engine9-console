@@ -44,10 +44,6 @@ const UserInfo = ({ hasColor }) => {
       key: 2,
       label: <div onClick={() => logout()}>Logout</div>,
     },
-    {
-      key: 3,
-      label: <div>Token:{token}</div>,
-    },
   ];
 
   return (
