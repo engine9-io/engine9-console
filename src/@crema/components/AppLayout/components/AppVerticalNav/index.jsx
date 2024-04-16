@@ -33,6 +33,7 @@ const AppVerticalNav = ({ routesConfig }) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   };
+  const items=getRouteMenus(routesConfig);
   return (
     <StyledVerticalNav
       theme={sidebarColorSet.mode}
@@ -55,7 +56,7 @@ const AppVerticalNav = ({ routesConfig }) => {
       defaultOpenKeys={[defaultOpenKeys]} /*
       selectedKeys={[selectedKeys[selectedKeys.length - 1]]}
       defaultSelectedKeys={[selectedKeys[selectedKeys.length - 1]]}*/
-      items={getRouteMenus(routesConfig)}
+      items={items}
     />
   );
 };

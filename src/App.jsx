@@ -24,6 +24,7 @@ function App() {
                 <Normalize />
                 <Routes>
                   <Route path="/dynamic" element={<Engine9UI />} />
+                  <Route path="/dynamic/*" element={<Engine9UI />} />
                   <Route path="*" element={<AppLayout />} />
                 </Routes>
               </AuthRoutes>

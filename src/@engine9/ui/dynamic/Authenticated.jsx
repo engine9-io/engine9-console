@@ -5,22 +5,17 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import axios from 'axios';
 import LayoutHome from './layouts';
-
-const queryClient = new QueryClient();
-const endpoint = import.meta.env.VITE_ENGINE9_UI_ENDPOINT;
-
-// Load up the routes and refer to the correct layout,
-// passing the configuration of the elements to that layout
+import { useAuthenticatedAxios } from '../AuthenticatedEndpoint';
 
 function DynamicLayout() {
+  const axios = useAuthenticatedAxios();
   const {
     isPending, error, data, isFetching,
   } = useQuery({
     queryKey: ['dynamic_config'],
     queryFn: () => axios
-      .get(`${endpoint}/demo`)
+      .get('/ui/demo')
       .then((res) => res.data),
   });
 
@@ -34,6 +29,10 @@ function DynamicLayout() {
     </div>
   );
 }
+
+const queryClient = new QueryClient();
+// Load up the routes and refer to the correct layout,
+// passing the configuration of the elements to that layout
 
 export default function App() {
   return (

@@ -26,6 +26,7 @@ const renderMenuItemChildren = (item) => {
   const { icon, url } = item;
   const { messages } = useIntl();
   let messageId=item.messageId || item.title.toLowerCase().replace(/[^a-z0-9_-]/g,"-");
+  let title=(allowMultiLanguage ? messages[messageId] : item.title) || item.title;
 
   if (url && url.includes('/'))
     return (
@@ -37,7 +38,7 @@ const renderMenuItemChildren = (item) => {
             <icon className='ant-menu-item-icon' />
           ))}
         <span data-testid={messageId.toLowerCase + '-nav'}>
-          {allowMultiLanguage ? messages[messageId] : item.title}
+          {title}
         </span>
       </Link>
     );
@@ -51,7 +52,7 @@ const renderMenuItemChildren = (item) => {
             <icon className='ant-menu-item-icon' />
           ))}
         <span data-testid={messageId.toLowerCase + '-nav'}>
-          {allowMultiLanguage ? messages[messageId] : item.title}
+          {title}
         </span>
       </>
     );

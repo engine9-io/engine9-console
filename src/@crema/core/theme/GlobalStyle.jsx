@@ -347,7 +347,6 @@ export const GlobalStyles = createGlobalStyle`
     & li {
       margin-bottom: 4px;
       margin-top: 4px;
-      overflow: hidden;
     }
 
     &.mini {

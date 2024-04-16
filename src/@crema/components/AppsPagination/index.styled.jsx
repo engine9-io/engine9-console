@@ -7,4 +7,8 @@ export const StyledPagination = styled(Pagination)`
     background-color: ${({ theme }) => theme.palette.background.paper};
     color: ${({ theme }) => theme.palette.text.primary};
   }
+  & li {
+    overflow: hidden;
+  }
+  
 `;
