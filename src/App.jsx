@@ -4,11 +4,10 @@ import AppContextProvider from '@crema/context/AppContextProvider';
 import AppThemeProvider from '@crema/context/AppThemeProvider';
 import AppLocaleProvider from '@crema/context/AppLocaleProvider';
 import AppAuthProvider from '@crema/core/AppAuthProvider';
+import { GlobalStyles } from '@crema/core/theme/GlobalStyle';
 import AuthRoutes from '@crema/components/AuthRoutes';
-import AppLayout from '@crema/core/AppLayout';
 import Engine9UI from '@engine9/ui';
 import '@crema/mockapi';
-import { GlobalStyles } from '@crema/core/theme/GlobalStyle';
 import { Normalize } from 'styled-normalize';
 import './styles/index.css';
 
@@ -23,9 +22,7 @@ function App() {
                 <GlobalStyles />
                 <Normalize />
                 <Routes>
-                  <Route path="/dynamic" element={<Engine9UI />} />
-                  <Route path="/dynamic/*" element={<Engine9UI />} />
-                  <Route path="*" element={<AppLayout />} />
+                  <Route path="*" element={<Engine9UI />} />
                 </Routes>
               </AuthRoutes>
             </AppAuthProvider>

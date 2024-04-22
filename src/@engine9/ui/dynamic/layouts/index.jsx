@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { FooterType } from '@crema/constants/AppEnums';
-import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
+// import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import { useIcons } from '@engine9/ui/Icons';
 import { Routes, Route, useParams } from 'react-router-dom';
 import AppSidebar from '@crema/components/AppLayout/MiniSidebarToggle/AppSidebar';
@@ -15,22 +15,26 @@ import {
 } from '@crema/components/AppLayout/MiniSidebarToggle/index.styled';
 
 import FullWidth from './FullWidth';
+import Sidebar from './Sidebar';
 
 function LayoutPicker({ layout, components }) {
   const parameters = useParams();
   switch (layout) {
+    case 'sidebar': return <Sidebar components={components} parameters={parameters} />;
     default: return <FullWidth components={components} parameters={parameters} />;
   }
 }
 
 function LayoutHome({ menuConfig, routeConfig }) {
   const [isCollapsed, setCollapsed] = useState(false);
-  const { footer, footerType } = useLayoutContext();
+  // const { footer, footerType } = useLayoutContext();
+  const footer = false; const footerType = false;// not sure whats up with the layout context
   const menuConfigWithIcons = useIcons(menuConfig);
 
   const onToggleSidebar = () => {
     setCollapsed(!isCollapsed);
   };
+
   return (
     <StyledAppLayoutMiniSidebar
       className={clsx({

@@ -3,11 +3,11 @@ import { StyledMainContentView } from '@crema/components/AppContentView/index.st
 import { ComponentWrapper } from '../../components/ComponentWrapper';
 
 function FullWidth({ components, parameters }) {
-  const { body } = components;
+  const { main } = components;
   return (
     <StyledMainContentView>
       <div className="e9-layout-full-width">
-        <div className="e9-body"><ComponentWrapper configuration={body} parameters={parameters} /></div>
+        <div className="e9-main"><ComponentWrapper configuration={main} parameters={parameters} /></div>
       </div>
     </StyledMainContentView>
   );
