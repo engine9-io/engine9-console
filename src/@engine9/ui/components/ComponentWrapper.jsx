@@ -1,11 +1,14 @@
 import React from 'react';
 import DataTable from './DataTable';
+import DataForm from './DataForm';
 
 const componentMap = {
   DataTable,
+  DataForm,
 };
 
 export function ComponentWrapper({ configuration: _config, parameters }) {
+  console.log(new Date().toISOString(), 'refreshing');
   const configuration = JSON.parse(JSON.stringify(_config));
   if (Array.isArray(configuration)) {
     return configuration.map((c) => (
@@ -46,7 +49,11 @@ export function ComponentWrapper({ configuration: _config, parameters }) {
     return `Error with ${configuration.component}`;
   }
 
-  return <div className="dynamic-component">{element}</div>;
+  return (
+    <div className="dynamic-component">
+      {element}
+    </div>
+  );
 }
 
 export default ComponentWrapper;

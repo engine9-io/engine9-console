@@ -7,7 +7,6 @@ function FullWidth({ components, parameters }) {
   return (
     <StyledMainContentView>
       <div className="e9-layout-full-width">
-        <h1>Full width</h1>
         <div className="e9-body"><ComponentWrapper configuration={body} parameters={parameters} /></div>
       </div>
     </StyledMainContentView>

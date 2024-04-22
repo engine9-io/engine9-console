@@ -3,9 +3,13 @@ import AppCard from '@crema/components/AppCard';
 import { Table } from 'antd';
 // import qs from 'qs';
 import { useQuery } from '@tanstack/react-query';
+import Handlebars from 'handlebars';
+
+import { useActionFunction } from '../Actions';
+
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
-const columns = [
+/* const columns = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -33,15 +37,14 @@ const columns = [
     title: 'Email',
     dataIndex: 'email',
   },
-  */
+
 ];
+*/
 
-function App(props) {
+function DataTable(props) {
   const { title, properties, parameters } = props;
-
   const table = parameters.table || properties.table;
   const axios = useAuthenticatedAxios();
-  const [data, setData] = useState();
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -51,13 +54,12 @@ function App(props) {
   const offset = (tableParams.pagination.current - 1) * 5;
 
   const {
-    isPending, error, isFetching,
+    isPending, error, isFetching, data,
   } = useQuery({
     queryKey: [`${table}_list?${offset}`],
     queryFn: () => axios
       .get(`/data/tables/${table}?limit=5&offset=${offset}`)
       .then((results) => {
-        setData(results.data?.data);
         setTableParams({
           ...tableParams,
           pagination: {
@@ -71,18 +73,38 @@ function App(props) {
       }),
   });
 
+  if (!Array.isArray(properties.columns)) return 'No column array specified';
+  const columns = properties.columns.map((c) => {
+    const o = { ...c };
+    if (c.render) o.render = Handlebars.compile(c.render);
+    return o;
+  });
+
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
       pagination,
       filters,
       ...sorter,
     });
-
-    // `dataSource` is useless since `pageSize` changed
-    if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-      setData([]);
-    }
   };
+
+  let onClickAction = () => {};
+  if (properties?.onRow?.onClick) {
+    onClickAction = useActionFunction(properties?.onRow?.onClick);
+  }
+
+  const onRow = (record, rowIndex) => ({
+    onClick: (event) => {
+      onClickAction({
+        table, record, rowIndex, event,
+      });
+
+      // onDoubleClick: (event) => {}, // double click row
+      // onContextMenu: (event) => {}, // right button click row
+      // onMouseEnter: (event) => {}, // mouse enter row
+      // onMouseLeave: (event) => {}, // mouse leave row
+    },
+  });
   return (
     <AppCard
       heightFull
@@ -93,7 +115,8 @@ function App(props) {
       <Table
         columns={columns}
         rowKey={(record) => record.id}
-        dataSource={data}
+        onRow={onRow}
+        dataSource={data.data}
         pagination={tableParams.pagination}
         loading={isPending || isFetching}
         onChange={handleTableChange}
@@ -101,4 +124,4 @@ function App(props) {
     </AppCard>
   );
 }
-export default App;
+export default DataTable;

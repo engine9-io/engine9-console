@@ -15,7 +15,7 @@ function DynamicLayout() {
   } = useQuery({
     queryKey: ['dynamic_config'],
     queryFn: () => axios
-      .get('/ui/demo')
+      .get('/ui-config/demo')
       .then((res) => res.data),
   });
 
@@ -30,9 +30,19 @@ function DynamicLayout() {
   );
 }
 
-const queryClient = new QueryClient();
-// Load up the routes and refer to the correct layout,
-// passing the configuration of the elements to that layout
+const queryClient = new QueryClient(
+  {
+    defaultOptions: {
+      queries: {
+        // Normal defaults cause sometimes odd behavior
+        // like data refreshing when it doesn't need to
+        refetchOnWindowFocus: false, // default: true
+        staleTime: 5 * 60 * 10000, // default 0
+      },
+    },
+  },
+
+);
 
 export default function App() {
   return (
