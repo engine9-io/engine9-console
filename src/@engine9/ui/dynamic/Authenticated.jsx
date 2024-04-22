@@ -13,7 +13,7 @@ function DynamicLayout() {
   const {
     isPending, error, data, isFetching,
   } = useQuery({
-    queryKey: ['dynamic_config'],
+    queryKey: ['dynamic-config'],
     queryFn: () => axios
       .get('/ui-config/demo')
       .then((res) => res.data),

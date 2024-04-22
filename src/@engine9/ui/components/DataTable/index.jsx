@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AppCard from '@crema/components/AppCard';
 import { Table } from 'antd';
 // import qs from 'qs';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import Handlebars from 'handlebars';
 
 import { useActionFunction } from '../Actions';
@@ -43,12 +43,25 @@ import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
 function DataTable(props) {
   const { title, properties, parameters } = props;
+
   const table = parameters.table || properties.table;
   const axios = useAuthenticatedAxios();
   const [tableParams, setTableParams] = useState({
     pagination: {
+      onChange: (_page, _pageSize) => {
+        setTableParams({
+          ...tableParams,
+          pagination: {
+            ...tableParams.pagination,
+            page: _page,
+            pageSize: _pageSize,
+          },
+        });
+      },
+      placeholderData: keepPreviousData,
+      hideOnSinglePage: true,
       current: 1,
-      pageSize: 10,
+      pageSize: 25,
     },
   });
   const offset = (tableParams.pagination.current - 1) * 5;
@@ -56,9 +69,9 @@ function DataTable(props) {
   const {
     isPending, error, isFetching, data,
   } = useQuery({
-    queryKey: [`${table}_list?${offset}`],
+    queryKey: [`${table}-list`, tableParams.pagination.current],
     queryFn: () => axios
-      .get(`/data/tables/${table}?limit=5&offset=${offset}`)
+      .get(`/data/tables/${table}?limit=${tableParams.pagination.pageSize}&offset=${offset}`)
       .then((results) => {
         setTableParams({
           ...tableParams,
@@ -76,7 +89,11 @@ function DataTable(props) {
   if (!Array.isArray(properties.columns)) return 'No column array specified';
   const columns = properties.columns.map((c) => {
     const o = { ...c };
-    if (c.render) o.render = Handlebars.compile(c.render);
+    if (c.render) {
+      if (typeof c.render !== 'string') throw new Error('column.render should be a string, not anything else');
+      const renderTemplate = Handlebars.compile(c.render);
+      o.render = (text, context) => renderTemplate(context);
+    }
     return o;
   });
 
@@ -116,7 +133,7 @@ function DataTable(props) {
         columns={columns}
         rowKey={(record) => record.id}
         onRow={onRow}
-        dataSource={data.data}
+        dataSource={data?.data}
         pagination={tableParams.pagination}
         loading={isPending || isFetching}
         onChange={handleTableChange}
