@@ -2,7 +2,7 @@ import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
-import Error404 from '../../../../modules/errorPages/Error404';
+import Error404 from '@engine9/ui/errorPages/Error404';
 import DynamicForm from '../DynamicForm';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';

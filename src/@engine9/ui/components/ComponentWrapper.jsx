@@ -1,14 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import DataTable from './DataTable';
 import DataForm from './DataForm';
+
+function LinkComponent({ to, label }) {
+  return <Link to={to}>{label}</Link>;
+}
 
 const componentMap = {
   DataTable,
   DataForm,
+  Link: LinkComponent,
 };
 
 export function ComponentWrapper({ configuration: _config, parameters }) {
-  console.log(new Date().toISOString(), 'refreshing');
+  if (!_config) return 'No configuration specified';
   const configuration = JSON.parse(JSON.stringify(_config));
   if (Array.isArray(configuration)) {
     return configuration.map((c) => (

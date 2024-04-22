@@ -4,12 +4,13 @@ import AppContextProvider from '@crema/context/AppContextProvider';
 import AppThemeProvider from '@crema/context/AppThemeProvider';
 import AppLocaleProvider from '@crema/context/AppLocaleProvider';
 import AppAuthProvider from '@crema/core/AppAuthProvider';
-import AuthRoutes from '@crema/components/AuthRoutes';
-import AppLayout from '@crema/core/AppLayout';
-import Engine9UI from '@engine9/ui';
-import '@crema/mockapi';
 import { GlobalStyles } from '@crema/core/theme/GlobalStyle';
+import AuthRoutes from '@crema/components/AuthRoutes';
+import Engine9UI from '@engine9/ui';
 import { Normalize } from 'styled-normalize';
+import AppSuspense from '@crema/components/AppSuspense';// Suspense and error boundary go hand in hand
+import AppErrorBoundary from '@crema/components/AppErrorBoundary';
+
 import './styles/index.css';
 
 function App() {
@@ -22,11 +23,13 @@ function App() {
               <AuthRoutes>
                 <GlobalStyles />
                 <Normalize />
-                <Routes>
-                  <Route path="/dynamic" element={<Engine9UI />} />
-                  <Route path="/dynamic/*" element={<Engine9UI />} />
-                  <Route path="*" element={<AppLayout />} />
-                </Routes>
+                <AppSuspense>
+                  <AppErrorBoundary>
+                    <Routes>
+                      <Route path="*" element={<Engine9UI />} />
+                    </Routes>
+                  </AppErrorBoundary>
+                </AppSuspense>
               </AuthRoutes>
             </AppAuthProvider>
           </BrowserRouter>

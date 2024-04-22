@@ -24,19 +24,19 @@ function getIcon(name) {
   }
 }
 
-export function useIcons(_config) {
+export function appendIcons(_config) {
   if (typeof _config !== 'object') return _config;
   const config = JSON.parse(JSON.stringify(_config));
   if (Array.isArray(config)) {
-    return config.map((d) => useIcons(d));
+    return config.map((d) => appendIcons(d));
   }
   if (typeof config.icon === 'string') {
     config.icon = getIcon(config.icon);
   }
   if (Array.isArray(config.children)) {
-    config.children = useIcons(config.children);
+    config.children = appendIcons(config.children);
   }
   return config;
 }
 
-export default useIcons;
+export default appendIcons;
