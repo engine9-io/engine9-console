@@ -27,9 +27,8 @@ function LayoutPicker({ layout, components }) {
 
 function LayoutHome({ menuConfig, routeConfig }) {
   const [isCollapsed, setCollapsed] = useState(false);
-  // const { footer, footerType } = useLayoutContext();
-  const footer = false; const footerType = false;// not sure whats up with the layout context
-  const menuConfigWithIcons = appendIcons(menuConfig);
+  const { footer, footerType } = useLayoutContext();
+  const menuConfigWithIcons = useIcons(menuConfig);
 
   const onToggleSidebar = () => {
     setCollapsed(!isCollapsed);

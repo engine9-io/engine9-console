@@ -7,6 +7,7 @@ import AppAuthProvider from '@crema/core/AppAuthProvider';
 import { GlobalStyles } from '@crema/core/theme/GlobalStyle';
 import AuthRoutes from '@crema/components/AuthRoutes';
 import Engine9UI from '@engine9/ui';
+import '@crema/mockapi';
 import { Normalize } from 'styled-normalize';
 import AppSuspense from '@crema/components/AppSuspense';// Suspense and error boundary go hand in hand
 import AppErrorBoundary from '@crema/components/AppErrorBoundary';
