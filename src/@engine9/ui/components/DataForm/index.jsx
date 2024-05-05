@@ -9,12 +9,12 @@ import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
 function DataForm(props) {
   const {
-    title, properties, parameters = {},
+    properties, parameters = {},
   } = props;
 
   const table = parameters.table || properties.table;
   const id = parameters.id || properties.id;
-  const { form } = properties;// form configuration
+  const { form, title } = properties;
   const axios = useAuthenticatedAxios();
 
   const {

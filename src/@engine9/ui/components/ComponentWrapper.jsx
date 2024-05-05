@@ -16,47 +16,48 @@ const componentMap = {
   Link: LinkComponent,
 };
 
-export function ComponentWrapper({ configuration: _config, parameters }) {
-  if (!_config) return 'No configuration specified';
-  const configuration = JSON.parse(JSON.stringify(_config));
-  if (Array.isArray(configuration)) {
-    return configuration.map((c) => (
+export function ComponentWrapper({ component, properties: _props, parameters }) {
+  if (!_props) return 'No configuration specified';
+  const properties = JSON.parse(JSON.stringify(_props));
+  if (Array.isArray(properties)) {
+    return properties.map((p) => (
       <ComponentWrapper
-        key={JSON.stringify(_config)}
-        configuration={c}
+        key={JSON.stringify(_props)}
+        component={p.component}
+        properties={p.properties}
         parameters={parameters}
       />
     ));
   }
-  if (!configuration.component) {
+  if (!component) {
     return (
       <div>
         No component specified in
-        {JSON.stringify({ configuration: _config, parameters })}
+        {JSON.stringify({ properties, parameters })}
       </div>
     );
   }
-  const c = componentMap[configuration.component];
+  const c = componentMap[component];
   if (!c) {
     return (
       <span>
         Component
         {' \''}
-        {configuration.component || '(not specified)'}
+        {component || '(not specified)'}
         {'\' '}
         not available
       </span>
     );
   }
-  configuration.parameters = parameters;
+
   let element = null;
 
   try {
-    element = React.createElement(c, { parameters, ...configuration });
+    element = React.createElement(c, { parameters, properties });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);
-    return `Error with ${configuration.component}`;
+    return `Error with ${component}`;
   }
 
   return (

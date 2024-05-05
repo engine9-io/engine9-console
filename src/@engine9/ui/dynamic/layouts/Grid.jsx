@@ -15,7 +15,14 @@ function Grid({ components }) {
     <StyledMainContentView>
       <div className="e9-layout-grid">
         <div className="e9-main">
-          <ComponentWrapper configuration={main} parameters={parameters} />
+          {main.map((item) => (
+            <ComponentWrapper
+              key={JSON.stringify(item)}
+              component={item.component}
+              properties={item.properties}
+              parameters={parameters}
+            />
+          ))}
         </div>
       </div>
     </StyledMainContentView>

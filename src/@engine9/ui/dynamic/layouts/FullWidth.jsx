@@ -12,7 +12,16 @@ function FullWidth({ components }) {
   return (
     <StyledMainContentView>
       <div className="e9-layout-full-width">
-        <div className="e9-main"><ComponentWrapper configuration={main} parameters={parameters} /></div>
+        <div className="e9-main">
+          {main.map((item) => (
+            <ComponentWrapper
+              key={JSON.stringify(item)}
+              component={item.component}
+              properties={item.properties}
+              parameters={parameters}
+            />
+          ))}
+        </div>
       </div>
     </StyledMainContentView>
   );

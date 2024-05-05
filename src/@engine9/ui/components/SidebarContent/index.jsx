@@ -61,8 +61,8 @@ const itemList = [
   },
 ];
 
-function SidebarContent({ configuration, parameters }) {
-  const { title = 'SidebarHeader', items } = configuration;
+function SidebarContent({ properties, parameters }) {
+  const { title = 'SidebarHeader', items } = properties;
   return (
     <>
       <StyledSidebarHeader>
@@ -91,7 +91,8 @@ function SidebarContent({ configuration, parameters }) {
                   return (
                     <StyledSidebarItem>
                       <ComponentWrapper
-                        configuration={item}
+                        component={item.component}
+                        properties={item.properties}
                         parameters={parameters}
                       />
                     </StyledSidebarItem>

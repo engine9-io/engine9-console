@@ -27,7 +27,7 @@ function SidebarLayout({ components }) {
         // sidebarContent={<ComponentWrapper properties={sidebar} />}
         sidebarContent={(
           <SidebarContent
-            configuration={sidebar}
+            properties={sidebar}
             parameters={parameters}
           />
 )}
@@ -38,7 +38,7 @@ function SidebarLayout({ components }) {
           <div className="e9-layout-person-tabs">
             <Routes>
               {main.map((config) => {
-                const { path } = config;
+                const { path, component, properties } = config;
                 const index = !path;// index routes are the default, if no path matches include it
 
                 return (
@@ -46,7 +46,13 @@ function SidebarLayout({ components }) {
                     key={JSON.stringify(config)}
                     path={path}
                     index={index}
-                    element={<ComponentWrapper configuration={config} parameters={parameters} />}
+                    element={(
+                      <ComponentWrapper
+                        component={component}
+                        properties={properties}
+                        parameters={parameters}
+                      />
+)}
                   />
                 );
               })}
