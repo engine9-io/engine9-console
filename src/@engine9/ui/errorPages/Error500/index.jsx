@@ -1,18 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppAnimate from "@crema/components/AppAnimate";
-import AppPageMeta from "@crema/components/AppPageMeta";
-import Logo from "../../../assets/icon/500.svg";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppAnimate from '@crema/components/AppAnimate';
+import AppPageMeta from '@crema/components/AppPageMeta';
+import Logo from '../../../../assets/icon/500.svg';
 import {
   StyledErrorButton,
   StyledErrorContainer,
   StyledErrorContent,
   StyledErrorImage,
   StyledErrorPara,
-} from "../index.styled";
+} from '../index.styled';
 
-const Error500 = () => {
+function Error500() {
   const navigate = useNavigate();
 
   const onGoBackToHome = () => {
@@ -29,7 +29,8 @@ const Error500 = () => {
           </StyledErrorImage>
           <StyledErrorContent>
             <h3>
-              <IntlMessages id="error.500Error" />.
+              <IntlMessages id="error.500Error" />
+              .
             </h3>
             <StyledErrorPara>
               <p className="mb-0">
@@ -47,6 +48,6 @@ const Error500 = () => {
       </AppAnimate>
     </>
   );
-};
+}
 
 export default Error500;

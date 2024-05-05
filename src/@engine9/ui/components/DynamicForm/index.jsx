@@ -3,15 +3,19 @@ import {
   Button, Checkbox, Form, Input,
 } from 'antd';
 
-const onFinish = (values) => {
-  console.log('Success:', values);
-};
+function DynamicForm({
+  form, data, onFinish, onFinishFailed,
+}) {
+  const localOnFinish = (values) => {
+    console.log('Success:', values);
+    if (typeof onFinish === 'function') onFinish(values);
+  };
 
-const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
+  const localOnFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+    if (typeof onFinishFailed === 'function') onFinishFailed(errorInfo);
+  };
 
-function DynamicForm({ form, data }) {
   return (
     <Form
       name="basic"
@@ -19,8 +23,8 @@ function DynamicForm({ form, data }) {
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
       initialValues={{ ...data, remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
+      onFinish={localOnFinish}
+      onFinishFailed={localOnFinishFailed}
       autoComplete="off"
     >
       {form.inputs.map((d) => (

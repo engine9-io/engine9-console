@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AppInfoView from '../AppInfoView';
 import PropTypes from 'prop-types';
-import AppSidebar from './AppSidebar';
+import InnerSidebar from './InnerSidebar';
 import clsx from 'clsx';
 import { MenuOutlined } from '@ant-design/icons';
 import QueueAnim from 'rc-queue-anim';
@@ -40,23 +40,22 @@ const AppsContainer = (props) => {
       </StyledAppWrapHeader>
 
       <StyledAppContainer>
-        {sidebarContent ? (
-          <QueueAnim
+        {/*<QueueAnim
             style={{ zIndex: 3 }}
             type={props.type ? props.type : 'left'}
-          >
-            <AppSidebar
-              isAppDrawerOpen={isAppDrawerOpen}
-              setAppDrawerOpen={setAppDrawerOpen}
-              footer={footer}
-              fullView={fullView}
-              navStyle={navStyle}
-              title={title}
-              sidebarContent={sidebarContent}
-              key='sidebar'
-            />
-          </QueueAnim>
-        ) : null}
+            //this causes a forward ref error
+        ></QueueAnim>*/''}
+        {sidebarContent ? (
+          <InnerSidebar
+          isAppDrawerOpen={isAppDrawerOpen}
+          setAppDrawerOpen={setAppDrawerOpen}
+          footer={footer}
+          fullView={fullView}
+          navStyle={navStyle}
+          title={title}
+          sidebarContent={sidebarContent}
+          key='sidebar'
+        />) : null}
         <StyledMainContent
           className={clsx({
             appsMainContentFull: fullView,

@@ -2,14 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from './DataTable';
 import DataForm from './DataForm';
+import DataDisplay from './DataDisplay';
 
-function LinkComponent({ to, label }) {
-  return <Link to={to}>{label}</Link>;
+function LinkComponent({ properties }) {
+  const { to, label } = properties;
+  return <Link to={to}>{label || JSON.stringify(properties)}</Link>;
 }
 
 const componentMap = {
   DataTable,
   DataForm,
+  DataDisplay,
   Link: LinkComponent,
 };
 
@@ -29,7 +32,7 @@ export function ComponentWrapper({ configuration: _config, parameters }) {
     return (
       <div>
         No component specified in
-        {JSON.stringify({ configuration, parameters })}
+        {JSON.stringify({ configuration: _config, parameters })}
       </div>
     );
   }
@@ -38,8 +41,9 @@ export function ComponentWrapper({ configuration: _config, parameters }) {
     return (
       <span>
         Component
+        {' \''}
         {configuration.component || '(not specified)'}
-        {' '}
+        {'\' '}
         not available
       </span>
     );
@@ -48,7 +52,7 @@ export function ComponentWrapper({ configuration: _config, parameters }) {
   let element = null;
 
   try {
-    element = React.createElement(c, configuration);
+    element = React.createElement(c, { parameters, ...configuration });
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error(e);

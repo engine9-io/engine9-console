@@ -45,6 +45,8 @@ function DataTable(props) {
   const { title, properties, parameters } = props;
 
   const table = parameters.table || properties.table;
+  const { extensions } = properties;
+
   const axios = useAuthenticatedAxios();
   const [tableParams, setTableParams] = useState({
     pagination: {
@@ -71,7 +73,7 @@ function DataTable(props) {
   } = useQuery({
     queryKey: [`${table}-list`, tableParams.pagination.current],
     queryFn: () => axios
-      .get(`/data/tables/${table}?limit=${tableParams.pagination.pageSize}&offset=${offset}`)
+      .get(`/data/tables/${table}?${extensions ? `extensions=${escape(JSON.stringify(extensions))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
       .then((results) => {
         setTableParams({
           ...tableParams,

@@ -100,7 +100,7 @@ export const StyledAppsHeader = styled.div`
   }
 `;
 
-export const StyledAppSidebar = styled.div`
+export const StyledInnerSidebar = styled.div`
   height: 100%;
   display: none;
   flex-direction: column;
@@ -115,7 +115,7 @@ export const StyledAppSidebar = styled.div`
   }
 `;
 
-export const StyledAppSidebarDrawer = styled(Drawer)`
+export const StyledInnerSidebarDrawer = styled(Drawer)`
   & .ant-drawer-content-wrapper {
     width: 13.5rem !important;
   }
@@ -125,7 +125,7 @@ export const StyledAppSidebarDrawer = styled(Drawer)`
   }
 `;
 
-export const StyledAppSidebarCard = styled(Card)`
+export const StyledInnerSidebarCard = styled(Card)`
   display: none;
   height: 100%;
   border: 0;

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FooterType } from '@crema/constants/AppEnums';
 // import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import { appendIcons } from '@engine9/ui/Icons';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import AppSidebar from '@crema/components/AppLayout/MiniSidebarToggle/AppSidebar';
 import AppHeader from '@crema/components/AppLayout/MiniSidebarToggle/AppHeader';
 import AppThemeSetting from '@crema/components/AppThemeSetting';
@@ -16,19 +16,21 @@ import {
 
 import FullWidth from './FullWidth';
 import Sidebar from './Sidebar';
+import GridLayout from './Grid';
 
 function LayoutPicker({ layout, components }) {
-  const parameters = useParams();
   switch (layout) {
-    case 'sidebar': return <Sidebar components={components} parameters={parameters} />;
-    default: return <FullWidth components={components} parameters={parameters} />;
+    case 'grid': return <GridLayout components={components} />;
+    case 'sidebar': return <Sidebar components={components} />;
+    default: return <FullWidth components={components} />;
   }
 }
 
 function LayoutHome({ menuConfig, routeConfig }) {
   const [isCollapsed, setCollapsed] = useState(false);
-  const { footer, footerType } = useLayoutContext();
-  const menuConfigWithIcons = useIcons(menuConfig);
+  // const { footer, footerType } = useLayoutContext();
+  const footer = false; const footerType = false;
+  const menuConfigWithIcons = appendIcons(menuConfig);
 
   const onToggleSidebar = () => {
     setCollapsed(!isCollapsed);

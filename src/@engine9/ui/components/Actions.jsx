@@ -12,6 +12,7 @@ export function useActionFunction({ action, ...props }) {
     case 'navigate': {
       const urlTemplate = Handlebars.compile(props.url);
       return function doAction(context) {
+        console.log(`Executing action ${action}`, context);
         const url = urlTemplate(context);
         navigate(url);
       };

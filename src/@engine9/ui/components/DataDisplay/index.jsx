@@ -1,20 +1,22 @@
 import React from 'react';
-import AppCard from '@crema/components/AppCard';
 import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
-import DynamicForm from '../DynamicForm';
+import Error500 from '@engine9/ui/errorPages/Error500';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
-function DataForm(props) {
+function DataDisplay(props) {
   const {
-    title, properties, parameters = {},
+    properties, parameters = {},
+
   } = props;
 
+  if (!properties) {
+    return 'No properties specified';
+  }
   const table = parameters.table || properties.table;
   const id = parameters.id || properties.id;
-  const { form } = properties;// form configuration
   const axios = useAuthenticatedAxios();
 
   const {
@@ -29,17 +31,8 @@ function DataForm(props) {
   if (isPending || isFetching) return <AppLoader />;
   if (!data.data) return <AppLoader />;
   if (!data.data?.[0]) return <Error404 />;
+  if (error) return <Error500 />;
 
-  return (
-    <AppCard
-      heightFull
-      title={title}
-      className="no-card-space-ltr-rtl"
-    >
-      {error && <div>Error retrieving data</div>}
-      {!error && <DynamicForm data={data.data?.[0]} form={form} />}
-
-    </AppCard>
-  );
+  return JSON.stringify(data.data?.[0]);
 }
-export default DataForm;
+export default DataDisplay;
