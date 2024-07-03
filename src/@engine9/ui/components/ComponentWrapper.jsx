@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import DataTable from './DataTable';
-import DataForm from './DataForm';
-import DataDisplay from './DataDisplay';
+import RecordList from './RecordList';
+import RecordForm from './RecordForm';
+import RecordDisplay from './RecordDisplay';
+import StatCard from './StatCard';
 
 function LinkComponent({ properties }) {
   const { to, label } = properties;
@@ -10,14 +11,14 @@ function LinkComponent({ properties }) {
 }
 
 const componentMap = {
-  DataTable,
-  DataForm,
-  DataDisplay,
+  RecordList,
+  RecordForm,
+  RecordDisplay,
+  StatCard,
   Link: LinkComponent,
 };
 
-export function ComponentWrapper({ component, properties: _props, parameters }) {
-  if (!_props) return 'No configuration specified';
+export function ComponentWrapper({ component, properties: _props = {}, parameters }) {
   const properties = JSON.parse(JSON.stringify(_props));
   if (Array.isArray(properties)) {
     return properties.map((p) => (

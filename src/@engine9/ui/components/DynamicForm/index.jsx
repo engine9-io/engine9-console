@@ -7,12 +7,10 @@ function DynamicForm({
   form, data, onFinish, onFinishFailed,
 }) {
   const localOnFinish = (values) => {
-    console.log('Success:', values);
     if (typeof onFinish === 'function') onFinish(values);
   };
 
   const localOnFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
     if (typeof onFinishFailed === 'function') onFinishFailed(errorInfo);
   };
 

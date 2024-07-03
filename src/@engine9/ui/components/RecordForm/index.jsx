@@ -7,7 +7,7 @@ import DynamicForm from '../DynamicForm';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
-function DataForm(props) {
+function RecordForm(props) {
   const {
     properties, parameters = {},
   } = props;
@@ -42,4 +42,4 @@ function DataForm(props) {
     </AppCard>
   );
 }
-export default DataForm;
+export default RecordForm;

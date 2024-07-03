@@ -33,7 +33,6 @@ function SidebarLayout({ components }) {
 )}
       >
         <AppPageMeta title="Edit Person" />
-        foo
         <AppsContent>
           <div className="e9-layout-person-tabs">
             <Routes>

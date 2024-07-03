@@ -41,7 +41,7 @@ import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 ];
 */
 
-function DataTable(props) {
+function RecordList(props) {
   const { title, properties, parameters } = props;
 
   const table = parameters.table || properties.table;
@@ -143,4 +143,4 @@ function DataTable(props) {
     </AppCard>
   );
 }
-export default DataTable;
+export default RecordList;
