@@ -6,7 +6,7 @@ import validator from '@rjsf/validator-ajv8';
 const log = (type) => console.log.bind(console, type);
 
 function DynamicForm({
-  form, data, onSubmit, onError,
+  form, uiSchema, data, onSubmit, onError,
 }) {
   const fieldNames = Object.keys(form.properties || {});
   if (fieldNames.length === 0) return 'This form has no fields to edit';
@@ -24,8 +24,10 @@ function DynamicForm({
   };
   return (
     <StyleProvider>
+      {JSON.stringify(uiSchema)}
       <Form
         schema={form}
+        uiSchema={uiSchema}
         formData={localData}
         validator={validator}
         onChange={log('changed')}

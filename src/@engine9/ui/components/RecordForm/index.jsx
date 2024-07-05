@@ -17,7 +17,7 @@ function RecordForm(props) {
 
   const table = parameters.table || properties.table;
   const id = parameters.id || properties.id;
-  const { form, title } = properties;
+  const { form, title, uiSchema = { no_ui_schema: true } } = properties;
   const axios = useAuthenticatedAxios();
   let onSaveAction = () => {};
   if (properties.onSave) {
@@ -58,6 +58,7 @@ function RecordForm(props) {
       <DynamicForm
         data={record}
         form={form}
+        uiSchema={uiSchema}
         onSubmit={(formValues) => {
           axios({
             method: 'POST',
