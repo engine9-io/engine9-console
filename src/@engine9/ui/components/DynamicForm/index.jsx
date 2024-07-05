@@ -1,19 +1,41 @@
 import React from 'react';
-import {
-  Button, Checkbox, Form, Input,
-} from 'antd';
+import Form from '@rjsf/antd';
+import { StyleProvider } from '@ant-design/cssinjs';
+import validator from '@rjsf/validator-ajv8';
+
+const log = (type) => console.log.bind(console, type);
 
 function DynamicForm({
-  form, data, onFinish, onFinishFailed,
+  form, data, onSubmit, onError,
 }) {
-  const localOnFinish = (values) => {
-    if (typeof onFinish === 'function') onFinish(values);
+  const fieldNames = Object.keys(form.properties || {});
+  if (fieldNames.length === 0) return 'This form has no fields to edit';
+
+  // Only deal with fields we've explicitly requested, even if there's others in the form
+  const localData = {};
+  fieldNames.forEach((f) => { localData[f] = data[f]; });
+
+  const localOnSubmit = (formData) => {
+    if (typeof onSubmit === 'function') onSubmit(formData);
   };
 
-  const localOnFinishFailed = (errorInfo) => {
-    if (typeof onFinishFailed === 'function') onFinishFailed(errorInfo);
+  const localOnError = (errorInfo) => {
+    if (typeof onError === 'function') onError(errorInfo);
   };
+  return (
+    <StyleProvider>
+      <Form
+        schema={form}
+        formData={localData}
+        validator={validator}
+        onChange={log('changed')}
+        onSubmit={({ formData }) => localOnSubmit(formData)}
+        onError={localOnError}
+      />
+    </StyleProvider>
+  );
 
+  /*
   return (
     <Form
       name="basic"
@@ -42,30 +64,6 @@ function DynamicForm({
         </Form.Item>
       ))}
 
-      <Form.Item
-        label="Username"
-        name="username"
-        // rules={[{ required: true, message: 'Please input your username!' }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        // rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{ offset: 8, span: 16 }}
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
-
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button type="primary" htmlType="submit">
           Submit
@@ -73,6 +71,7 @@ function DynamicForm({
       </Form.Item>
     </Form>
   );
+  */
 }
 
 export default DynamicForm;

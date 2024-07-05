@@ -3,7 +3,7 @@ import AppCard from '@crema/components/AppCard';
 import { Table } from 'antd';
 // import qs from 'qs';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
-import Handlebars from 'handlebars';
+import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
 import { useActionFunction } from '../Actions';
 
@@ -45,7 +45,12 @@ function RecordList(props) {
   const { title, properties, parameters } = props;
 
   const table = parameters.table || properties.table;
-  const { extensions } = properties;
+  const { extensions, conditions } = properties;
+  let renderedConditions = '';
+  if (conditions) {
+    const t = compileTemplate(JSON.stringify(conditions));
+    renderedConditions = `conditions=${escape(t(parameters))}&`;
+  }
 
   const axios = useAuthenticatedAxios();
   const [tableParams, setTableParams] = useState({
@@ -73,7 +78,7 @@ function RecordList(props) {
   } = useQuery({
     queryKey: [`${table}-list`, tableParams.pagination.current],
     queryFn: () => axios
-      .get(`/data/tables/${table}?${extensions ? `extensions=${escape(JSON.stringify(extensions))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
+      .get(`/data/tables/${table}?${renderedConditions}${extensions ? `extensions=${escape(JSON.stringify(extensions))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
       .then((results) => {
         setTableParams({
           ...tableParams,
@@ -93,7 +98,7 @@ function RecordList(props) {
     const o = { ...c };
     if (c.render) {
       if (typeof c.render !== 'string') throw new Error('column.render should be a string, not anything else');
-      const renderTemplate = Handlebars.compile(c.render);
+      const renderTemplate = compileTemplate(c.render);
       o.render = (text, context) => renderTemplate(context);
     }
     return o;

@@ -1,9 +1,10 @@
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppAnimate from "@crema/components/AppAnimate";
-import { Button, Form, Input } from "antd";
-import { useIntl } from "react-intl";
-import AppPageMeta from "@crema/components/AppPageMeta";
-import Logo from "../../../assets/icon/comingsoon.svg";
+import React from 'react';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppAnimate from '@crema/components/AppAnimate';
+import { Button, Form, Input } from 'antd';
+import { useIntl } from 'react-intl';
+import AppPageMeta from '@crema/components/AppPageMeta';
+import Logo from '../../../../assets/icon/comingsoon.svg';
 import {
   StyledErrorContainer,
   StyledErrorContent,
@@ -11,16 +12,16 @@ import {
   StyledErrorFormComing,
   StyledErrorImageLg,
   StyledErrorPara,
-} from "../index.styled";
+} from '../index.styled';
 
-const ComingSoon = () => {
+function ComingSoon() {
   const { messages } = useIntl();
   const onFinish = (values) => {
-    console.log("Success:", values);
+    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   return (
@@ -34,7 +35,8 @@ const ComingSoon = () => {
           <div>
             <StyledErrorContent>
               <h3>
-                <IntlMessages id="error.comingSoon" />!
+                <IntlMessages id="error.comingSoon" />
+                !
               </h3>
               <StyledErrorPara>
                 <p className="mb-0">
@@ -56,10 +58,10 @@ const ComingSoon = () => {
                   name="email"
                   className="form-field"
                   rules={[
-                    { required: true, message: "Please enter Email Address!" },
+                    { required: true, message: 'Please enter Email Address!' },
                   ]}
                 >
-                  <Input placeholder={messages["common.emailAddress"]} />
+                  <Input placeholder={messages['common.emailAddress']} />
                 </Form.Item>
 
                 <Button type="primary" className="error-btn" htmlType="submit">
@@ -68,11 +70,11 @@ const ComingSoon = () => {
               </StyledErrorForm>
             </StyledErrorFormComing>
           </div>
-          {/*<AppInfoView />*/}
+          {/* <AppInfoView /> */}
         </StyledErrorContainer>
       </AppAnimate>
     </>
   );
-};
+}
 
 export default ComingSoon;

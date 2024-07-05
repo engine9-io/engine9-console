@@ -1,10 +1,9 @@
 import React from 'react';
 import AppLogo from '../components/AppLogo';
 import { useIntl } from 'react-intl';
-import AppLanguageSwitcher from '../../AppLanguageSwitcher';
-import AppMessages from '../../AppMessages';
-import AppNotifications from '../../AppNotifications';
-import PropTypes from 'prop-types';
+//import AppLanguageSwitcher from '../../AppLanguageSwitcher';
+//import AppMessages from '../../AppMessages';
+//import AppNotifications from '../../AppNotifications';
 import { FiMoreVertical } from 'react-icons/fi';
 import { AiOutlineMenu } from 'react-icons/ai';
 import {
@@ -19,9 +18,9 @@ import { StyledDropdownWrapper } from '../index.styled';
 import { allowMultiLanguage } from '../../../constants/AppConst';
 
 const items = [
-  { key: 1, label: <AppMessages /> },
-  { key: 2, label: <AppNotifications /> },
-  { key: 3, label: <AppLanguageSwitcher /> },
+  //{ key: 1, label: <AppMessages /> },
+  //{ key: 2, label: <AppNotifications /> },
+  //{ key: 3, label: <AppLanguageSwitcher /> },
 ];
 
 const AppHeader = ({ isCollapsed, onToggleSidebar }) => {

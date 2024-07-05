@@ -1,12 +1,13 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
-function DataDisplay(props) {
+function RecordDisplay(props) {
   const {
     properties, parameters = {},
 
@@ -33,6 +34,7 @@ function DataDisplay(props) {
   if (!data.data?.[0]) return <Error404 />;
   if (error) return <Error500 />;
 
-  return JSON.stringify(data.data?.[0]);
+  const renderTemplate = compileTemplate(properties.template || '- no template -');
+  return renderTemplate(data.data?.[0]);
 }
-export default DataDisplay;
+export default RecordDisplay;

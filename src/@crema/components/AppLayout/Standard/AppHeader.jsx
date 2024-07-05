@@ -18,7 +18,7 @@ import { StyledDropdownWrapper } from '../index.styled';
 import { allowMultiLanguage } from '../../../constants/AppConst';
 
 const items = [
-  { key: 1, label: <AppMessages /> },
+  //{ key: 1, label: <AppMessages /> },
   { key: 2, label: <AppNotifications /> },
   { key: 3, label: <AppLanguageSwitcher /> },
 ];

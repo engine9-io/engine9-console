@@ -174,6 +174,9 @@ export const StyledMiniSidebarToggle = styled(MainSidebar)`
   & .ant-layout-sider-trigger {
     display: none;
   }
+  & .ant-layout-sider-zero-width-trigger{
+    width:38px; //sizing a bit off, covers up border
+  }
 
   &.ant-layout-sider-has-trigger {
     padding-bottom: 0;
