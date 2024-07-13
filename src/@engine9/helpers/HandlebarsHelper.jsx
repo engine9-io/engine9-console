@@ -9,5 +9,15 @@ Handlebars.registerHelper('date', (d, f) => {
 
 // eslint-disable-next-line import/prefer-default-export
 export function compileTemplate(s) {
-  return Handlebars.compile(s);
+  if (s === undefined || s === null) return () => '<no template>';
+  try {
+    const template = Handlebars.compile(s);
+    // test it
+    template();
+    return template;
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Invalid template:', s, e);
+    return () => 'Invalid Template';
+  }
 }

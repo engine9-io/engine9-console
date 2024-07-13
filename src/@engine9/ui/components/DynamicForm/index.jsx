@@ -13,7 +13,8 @@ function DynamicForm({
 
   // Only deal with fields we've explicitly requested, even if there's others in the form
   const localData = {};
-  fieldNames.forEach((f) => { localData[f] = data[f]; });
+  // only if specified, otherwise defaults are ignored
+  fieldNames.forEach((f) => { if (data[f] !== undefined) localData[f] = data[f]; });
 
   const localOnSubmit = (formData) => {
     if (typeof onSubmit === 'function') onSubmit(formData);
@@ -22,9 +23,9 @@ function DynamicForm({
   const localOnError = (errorInfo) => {
     if (typeof onError === 'function') onError(errorInfo);
   };
+
   return (
     <StyleProvider>
-      {JSON.stringify(uiSchema)}
       <Form
         schema={form}
         uiSchema={uiSchema}
@@ -34,6 +35,7 @@ function DynamicForm({
         onSubmit={({ formData }) => localOnSubmit(formData)}
         onError={localOnError}
       />
+
     </StyleProvider>
   );
 

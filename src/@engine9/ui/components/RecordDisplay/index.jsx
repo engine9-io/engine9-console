@@ -34,7 +34,12 @@ function RecordDisplay(props) {
   if (!data.data?.[0]) return <Error404 />;
   if (error) return <Error500 />;
 
-  const renderTemplate = compileTemplate(properties.template || '- no template -');
-  return renderTemplate(data.data?.[0]);
+  const renderTemplate = compileTemplate(properties.template);
+  try {
+    return renderTemplate(data.data?.[0]);
+  } catch (e) {
+    console.error('Error rendering template with data', data?.data?.[0], e);
+    return 'Error with template';
+  }
 }
 export default RecordDisplay;

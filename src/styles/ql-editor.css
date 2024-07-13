@@ -709,7 +709,7 @@
 }
 
 .ql-snow .ql-even {
-    fill-rule: evenodd;
+    fillRule: evenodd;
 }
 
 .ql-snow .ql-thin,

@@ -7,7 +7,7 @@ import Error404 from '@engine9/ui/errorPages/Error404';
 import { message } from 'antd';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
-import DynamicForm from '../DynamicForm';
+import QueryBuilder from '../QueryBuilder';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
 
@@ -19,7 +19,7 @@ function RecordForm(props) {
   const table = parameters.table || properties.table;
   let id = parameters.id || properties.id;
   if (id === 'create' || id === 'new') id = 0;
-  const { form, uiSchema = { } } = properties;
+  const { fields } = properties;
   let { title } = properties;
   const axios = useAuthenticatedAxios();
   let onSaveAction = () => {};
@@ -50,6 +50,14 @@ function RecordForm(props) {
   const record = response?.[0] || {};
 
   title = compileTemplate(title || 'No title template')({ record });
+  let query = record.query || '{}';
+  if (typeof query === 'string') {
+    try {
+      query = JSON.parse(query);
+    } catch (e) {
+      return `Query ${id} has an invalid structure.`;
+    }
+  }
 
   return (
     <AppCard
@@ -60,15 +68,14 @@ function RecordForm(props) {
       {error && <div>Error retrieving data</div>}
       {!error
       && (
-      <DynamicForm
-        data={record}
-        form={form}
-        uiSchema={uiSchema}
-        onSubmit={(formValues) => {
+      <QueryBuilder
+        query={query}
+        fields={fields}
+        onSubmit={(newQuery) => {
           axios({
             method: 'POST',
             url: `/data/tables/${table}/${id || ''}`,
-            data: formValues,
+            data: { query: newQuery },
           }).then(({ data }) => {
             message.success(`Saved ${table}`);
             onSaveAction({ record: data });

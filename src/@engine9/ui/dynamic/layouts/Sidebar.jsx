@@ -5,7 +5,7 @@ import { Routes, Route, useParams } from 'react-router-dom';
 
 import AppsContainer from '@crema/components/AppsContainer';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
-import AppPageMeta from '@crema/components/AppPageMeta';
+// import AppPageMeta from '@crema/components/AppPageMeta';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
 import SidebarContent from '../../components/SidebarContent';
 
@@ -17,7 +17,7 @@ import SidebarContent from '../../components/SidebarContent';
 function SidebarLayout({ components }) {
   const parameters = useParams();
 
-  const { header = 'Edit person', sidebar, main } = components;
+  const { header = '', sidebar, main } = components;
   if (!Array.isArray(main)) return 'property main for layout Sidebar must be an array of items with paths';
 
   return (
@@ -32,7 +32,6 @@ function SidebarLayout({ components }) {
           />
 )}
       >
-        <AppPageMeta title="Edit Person" />
         <AppsContent>
           <div className="e9-layout-person-tabs">
             <Routes>

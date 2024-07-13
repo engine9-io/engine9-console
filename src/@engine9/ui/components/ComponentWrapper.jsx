@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Button from './Button';
 import RecordList from './RecordList';
 import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
 import StatCard from './StatCard';
+// import QueryBuilder from './QueryBuilder';
+import RecordQueryBuilder from './RecordQueryBuilder';
 
 function LinkComponent({ properties }) {
   const { to, label } = properties;
@@ -16,6 +19,8 @@ const componentMap = {
   RecordDisplay,
   StatCard,
   Link: LinkComponent,
+  Button,
+  RecordQueryBuilder,
 };
 
 export function ComponentWrapper({ component, properties: _props = {}, parameters }) {

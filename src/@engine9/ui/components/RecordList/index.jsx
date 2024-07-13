@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AppCard from '@crema/components/AppCard';
 import { Table } from 'antd';
 // import qs from 'qs';
+import './index.css';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
@@ -52,9 +53,9 @@ function RecordList(props) {
     renderedConditions = `conditions=${escape(t(parameters))}&`;
   }
 
-  const axios = useAuthenticatedAxios();
   const [tableParams, setTableParams] = useState({
     pagination: {
+      position: ['topRight'],
       onChange: (_page, _pageSize) => {
         setTableParams({
           ...tableParams,
@@ -66,13 +67,13 @@ function RecordList(props) {
         });
       },
       placeholderData: keepPreviousData,
-      hideOnSinglePage: true,
+      hideOnSinglePage: false,
       current: 1,
       pageSize: 25,
     },
   });
   const offset = (tableParams.pagination.current - 1) * 5;
-
+  const axios = useAuthenticatedAxios();
   const {
     isPending, error, isFetching, data,
   } = useQuery({
@@ -96,9 +97,9 @@ function RecordList(props) {
   if (!Array.isArray(properties.columns)) return 'No column array specified';
   const columns = properties.columns.map((c) => {
     const o = { ...c };
-    if (c.render) {
-      if (typeof c.render !== 'string') throw new Error('column.render should be a string, not anything else');
-      const renderTemplate = compileTemplate(c.render);
+    if (c.template) {
+      if (typeof c.template !== 'string') throw new Error('column.template should be a string, not anything else');
+      const renderTemplate = compileTemplate(c.template);
       o.render = (text, context) => renderTemplate(context);
     }
     return o;

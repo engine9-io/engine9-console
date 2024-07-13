@@ -1,26 +1,36 @@
 import React from 'react';
 import {
-  FiUser, FiUsers, FiBarChart, FiHome,
+  FiUser, FiUsers, FiBarChart, FiHome, FiSearch,
 } from 'react-icons/fi';
-import { TbDatabaseExport } from 'react-icons/tb';
+import { TbDatabase, TbDatabaseExport } from 'react-icons/tb';
+import { LuForklift } from 'react-icons/lu';
+
 import {
   FaSms, FaRegPaperPlane, FaMailBulk, FaDollarSign,
+  FaPlus, FaArrowLeft, FaRegEdit,
 } from 'react-icons/fa';
 
-import { MdQuestionMark } from 'react-icons/md';
+// import { MdQuestionMark } from 'react-icons/md';
 
-function getIcon(name) {
+export function getIcon(name) {
   switch (name) {
     case 'home': return <FiHome />;
+    case 'dashboard': return <FiHome />;
     case 'report': return <FiBarChart />;
+    case 'back': return <FaArrowLeft />;
+    case 'plus': return <FaPlus />;
     case 'person': return <FiUser />;
-    case 'segment': return <FiUsers />;
+    case 'search': return <FiSearch />;
+    case 'people': return <FiUsers />;
     case 'export': return <TbDatabaseExport />;
+    case 'messages': return <FaRegEdit />;
+    case 'forklift': return <LuForklift />;
     case 'campaign': return <FaMailBulk />;
+    case 'data': return <TbDatabase />;
     case 'email': return <FaRegPaperPlane />;
     case 'sms': return <FaSms />;
     case 'transaction': return <FaDollarSign />;
-    default: return <MdQuestionMark />;
+    default: return `<${name}?>`;// <MdQuestionMark />;
   }
 }
 
@@ -38,5 +48,4 @@ export function appendIcons(_config) {
   }
   return config;
 }
-
 export default appendIcons;
