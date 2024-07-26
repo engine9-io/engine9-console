@@ -63,7 +63,15 @@ function LayoutHome({ menuConfig, routeConfig }) {
                 )}
               />
             ))}
-            <Route path="*" element={<div>Path not found</div>} />
+            <Route
+              path="*"
+              element={(
+                <div>
+                  Path not found.  Available paths:
+                  {routeConfig.map((r) => r.path).join(',')}
+                </div>
+)}
+            />
           </Routes>
           <AppFooter />
         </StyledMainMiniScrollbar>

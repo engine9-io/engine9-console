@@ -5,6 +5,7 @@ import RecordList from './RecordList';
 import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
 import StatCard from './StatCard';
+import Profile from './Profile';
 // import QueryBuilder from './QueryBuilder';
 import RecordQueryBuilder from './RecordQueryBuilder';
 
@@ -20,6 +21,7 @@ const componentMap = {
   StatCard,
   Link: LinkComponent,
   Button,
+  Profile,
   RecordQueryBuilder,
 };
 

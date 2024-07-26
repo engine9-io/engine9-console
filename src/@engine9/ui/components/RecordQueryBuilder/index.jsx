@@ -4,12 +4,27 @@ import AppCard from '@crema/components/AppCard';
 import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
+import Error500 from '@engine9/ui/errorPages/Error500';
 import { message } from 'antd';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
 import QueryBuilder from '../QueryBuilder';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+
+function useQueryFields() {
+  const axios = useAuthenticatedAxios();
+  const {
+    isPending, isFetching, error, data,
+  } = useQuery({
+    queryKey: ['query-fields'],
+    queryFn: () => axios
+      .get('/data/query/fields')
+      .then((results) => results.data),
+  });
+  if (isPending || isFetching || error) return { isPending, isFetching, error };
+  return { data };
+}
 
 function RecordForm(props) {
   const {
@@ -19,14 +34,17 @@ function RecordForm(props) {
   const table = parameters.table || properties.table;
   let id = parameters.id || properties.id;
   if (id === 'create' || id === 'new') id = 0;
-  const { fields } = properties;
+  // const { fields } = properties;
   let { title } = properties;
   const axios = useAuthenticatedAxios();
   let onSaveAction = () => {};
   if (properties.onSave) {
     onSaveAction = useActionFunction(properties.onSave);
   }
-  const enabled = !!id;
+  const {
+    isPending: fieldPending, isFetching: fieldFetching, error: fieldError, data: fieldData,
+  } = useQueryFields();
+  const enabled = !!id && !fieldPending && !fieldFetching && !fieldError;
   let initialData;
   if (!id) initialData = { data: [{}] };
 
@@ -40,6 +58,9 @@ function RecordForm(props) {
       .get(`/data/tables/${table}/${id}`)
       .then((results) => results.data?.data),
   });
+  if (fieldPending || fieldFetching) return <AppLoader />;
+  if (fieldError) return <Error500 />;
+  if (!fieldData.fields) return 'No fields available for query';
 
   if (isPending || isFetching) return <AppLoader />;
 
@@ -70,7 +91,7 @@ function RecordForm(props) {
       && (
       <QueryBuilder
         query={query}
-        fields={fields}
+        fields={fieldData.fields}
         onSubmit={(newQuery) => {
           axios({
             method: 'POST',

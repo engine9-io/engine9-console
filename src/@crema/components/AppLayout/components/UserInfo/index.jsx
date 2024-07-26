@@ -38,7 +38,7 @@ const UserInfo = ({ hasColor }) => {
   const items = [
     {
       key: 1,
-      label: <div onClick={() => navigate('/my-profile')}>My Profile</div>,
+      label: <div onClick={() => navigate('/profile')}>My Profile</div>,
     },
     {
       key: 2,
