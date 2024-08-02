@@ -17,7 +17,7 @@ function FullWidth({ components }) {
         <div className="e9-header">
           <Flex justify="space-between">
             {header.map((item) => (
-              typeof item === 'string' ? <h2>{item}</h2> : (
+              typeof item === 'string' ? <h2 key={JSON.stringify(item)}>{item}</h2> : (
                 <ComponentWrapper
                   key={JSON.stringify(item)}
                   component={item.component}

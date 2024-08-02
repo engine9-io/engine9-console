@@ -13,8 +13,12 @@ import Profile from '../components/Profile';
 
 import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
 
+import useLocalUIConfig from './LocalUIConfig';
+
 function DynamicAccountLayout() {
+  const useLocal = false;
   const axios = useAuthenticatedAxios();
+  const localUI = useLocalUIConfig();
   const {
     isPending, error, data, isFetching,
   } = useQuery({
@@ -22,22 +26,25 @@ function DynamicAccountLayout() {
     queryFn: () => axios
       .get('/ui/console')
       .then((res) => res.data),
+    enabled: !useLocal,
   });
 
-  if (isPending || isFetching) return <AppLoader />;
+  if (!useLocal && (isPending || isFetching)) return <AppLoader />;
   if (error) return `An error has occurred: ${error.message}`;
-  let { routes } = data;
+  if (!localUI) return 'Loading...';
+  const d = data || localUI;
+  let { routes } = d;
   if (!Array.isArray(routes)) {
     routes = [];
-    Object.keys(data.routes).forEach((path) => {
-      routes.push({ path, ...data.routes[path] });
+    Object.keys(d.routes).forEach((path) => {
+      routes.push({ path, ...d.routes[path] });
     });
   }
-  let { menu } = data;
+  let { menu } = d;
   if (!Array.isArray(menu)) {
     menu = [];
-    Object.keys(data.menu).forEach((id) => {
-      const item = data.menu[id];
+    Object.keys(d.menu).forEach((id) => {
+      const item = d.menu[id];
 
       if (item.children && !Array.isArray(item.children)) {
         const children = [];
