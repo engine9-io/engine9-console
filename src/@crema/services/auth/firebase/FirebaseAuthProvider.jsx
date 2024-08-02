@@ -39,6 +39,14 @@ const FirebaseAuthProvider = ({ children }) => {
     const getAuthUser = onAuthStateChanged(
       auth,
       async (user) => {
+        if (!user){
+          return setFirebaseData({
+            user: undefined,
+            token:undefined,
+            isLoading: false,
+            isAuthenticated: false,
+          });
+        }
         let token=await user.getIdToken();
 
         setFirebaseData({

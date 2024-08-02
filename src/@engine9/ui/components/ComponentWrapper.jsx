@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AppErrorBoundary from '@crema/components/AppErrorBoundary';
 import Button from './Button';
 import RecordList from './RecordList';
 import RecordForm from './RecordForm';
@@ -70,7 +71,7 @@ export function ComponentWrapper({ component, properties: _props = {}, parameter
 
   return (
     <div className="dynamic-component">
-      {element}
+      <AppErrorBoundary>{element}</AppErrorBoundary>
     </div>
   );
 }

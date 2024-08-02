@@ -4,6 +4,7 @@ import {
 } from 'react-icons/fi';
 import { TbDatabase, TbDatabaseExport } from 'react-icons/tb';
 import { LuForklift } from 'react-icons/lu';
+import { useAccountId } from '@engine9/helpers/AccountHelper';
 
 import {
   FaSms, FaRegPaperPlane, FaMailBulk, FaDollarSign,
@@ -35,6 +36,7 @@ export function getIcon(name) {
 }
 
 export function appendIcons(_config) {
+  const accountId = useAccountId();
   if (typeof _config !== 'object') return _config;
   const config = JSON.parse(JSON.stringify(_config));
   if (Array.isArray(config)) {
@@ -43,6 +45,8 @@ export function appendIcons(_config) {
   if (typeof config.icon === 'string') {
     config.icon = getIcon(config.icon);
   }
+  if (config.url && config.url.indexOf('/') === 0) config.url = `/${accountId}${config.url}`;
+
   if (Array.isArray(config.children)) {
     config.children = appendIcons(config.children);
   }

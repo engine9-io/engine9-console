@@ -91,7 +91,7 @@ const UserInfo = ({ hasColor }) => {
                   </StyledUserArrow>
                 </StyledUsernameInfo>
                 <StyledCrUserDesignation className='text-truncate'>
-                  System Manager
+                  User
                 </StyledCrUserDesignation>
               </StyledCrUserInfoContent>
             </StyledCrUserInfoInner>
@@ -134,7 +134,7 @@ const UserInfo = ({ hasColor }) => {
                   </StyledUserArrow>
                 </StyledUsernameInfo>
                 <StyledCrUserDesignation className='text-truncate cr-user-designation'>
-                  System Manager
+                  User
                 </StyledCrUserDesignation>
               </StyledCrUserInfoContent>
             </StyledCrUserInfoInner>

@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useAccountId } from '@engine9/helpers/AccountHelper';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 /*
   An action is a user operation, like a click to navigate.
@@ -8,13 +9,15 @@ import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 */
 export function useActionFunction({ action, ...props }) {
   const navigate = useNavigate();
+  const accountId = useAccountId();
 
   switch (action) {
     case 'navigate': {
       const urlTemplate = compileTemplate(props.url);
       return function doAction(context) {
         console.log(`Executing action ${action}`, context);
-        const url = urlTemplate(context);
+        let url = urlTemplate(context);
+        if (url.indexOf('/') === 0) url = `/${accountId}${url}`;
         navigate(url);
       };
     }

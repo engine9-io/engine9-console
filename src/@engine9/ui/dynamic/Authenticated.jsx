@@ -5,10 +5,15 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
+import { Routes, Route } from 'react-router-dom';
 import LayoutHome from './layouts';
-import { useAuthenticatedAxios } from '../AuthenticatedEndpoint';
 
-function DynamicLayout() {
+import AccountPicker from '../components/AccountPicker';
+import Profile from '../components/Profile';
+
+import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
+
+function DynamicAccountLayout() {
   const axios = useAuthenticatedAxios();
   const {
     isPending, error, data, isFetching,
@@ -56,7 +61,7 @@ function DynamicLayout() {
 
   return (
     <div>
-      <div>{isFetching ? 'Updating...' : ''}</div>
+      {isFetching ? <div>Updating...</div> : ''}
       <LayoutHome menuConfig={finalMenu} routeConfig={routes} />
     </div>
   );
@@ -79,7 +84,13 @@ const queryClient = new QueryClient(
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <DynamicLayout />
+      <Routes>
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/:accountId" element={<DynamicAccountLayout />} />
+        <Route path="/:accountId/*" element={<DynamicAccountLayout />} />
+        <Route path="*" element={<AccountPicker />} />
+      </Routes>
+
     </QueryClientProvider>
   );
 }

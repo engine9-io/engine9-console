@@ -10,7 +10,7 @@ import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
 import QueryBuilder from '../QueryBuilder';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 
 function useQueryFields() {
   const axios = useAuthenticatedAxios();

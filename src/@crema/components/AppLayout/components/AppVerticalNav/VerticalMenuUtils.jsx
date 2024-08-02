@@ -19,7 +19,8 @@ const MenuItemChildren = (item) => {
     }
   }
   
-  if (url && url.includes('/')){
+  //if (url && url.includes('/')) //could have simple relative links
+  if (url){
     return {
       key: item.id,
       icon:validIcon,

@@ -19,7 +19,11 @@ function Profile() {
 
   if (isPending || isFetching) return <AppLoader />;
   if (error) return <Error500 />;
-
-  return JSON.stringify(data);
+  return (
+    <div>
+      <h1>Account Picker</h1>
+      {JSON.stringify(data)}
+    </div>
+  );
 }
 export default Profile;

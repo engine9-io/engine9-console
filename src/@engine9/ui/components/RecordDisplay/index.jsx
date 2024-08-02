@@ -5,7 +5,7 @@ import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 
 function RecordDisplay(props) {
   const {
@@ -14,7 +14,7 @@ function RecordDisplay(props) {
   } = props;
 
   if (!properties) {
-    return 'No properties specified';
+    return 'No properties specified for RecordDisplay';
   }
   const table = parameters.table || properties.table;
   const id = parameters.id || properties.id;

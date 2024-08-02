@@ -4,7 +4,7 @@ import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 
 function StatCard(props) {
   const {
@@ -12,7 +12,7 @@ function StatCard(props) {
   } = props;
 
   if (!properties) {
-    return 'No properties specified';
+    return 'No properties specified for StatCard';
   }
   const {
     table, columns, conditions, groupBy, orderBy, limit,

@@ -8,7 +8,7 @@ import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
 import { useActionFunction } from '../Actions';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 
 /* const columns = [
   {

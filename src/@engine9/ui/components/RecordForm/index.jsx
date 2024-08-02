@@ -9,7 +9,7 @@ import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
 import DynamicForm from '../DynamicForm';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedEndpoint';
+import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 
 function RecordForm(props) {
   const {
