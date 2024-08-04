@@ -13,10 +13,10 @@ import Profile from '../components/Profile';
 
 import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
 
-import useLocalUIConfig from './LocalUIConfig';
+import useLocalUIConfig from './TestingLocalUIConfig';
 
 function DynamicAccountLayout() {
-  const useLocal = false;
+  const useLocal = true;
   const axios = useAuthenticatedAxios();
   const localUI = useLocalUIConfig();
   const {

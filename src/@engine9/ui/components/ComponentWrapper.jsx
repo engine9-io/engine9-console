@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import AppErrorBoundary from '@crema/components/AppErrorBoundary';
 import Button from './Button';
 import RecordList from './RecordList';
+import RecordTable from './RecordTable';
 import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
 import StatCard from './StatCard';
 import Profile from './Profile';
+import Title from './Title';
 // import QueryBuilder from './QueryBuilder';
 import RecordQueryBuilder from './RecordQueryBuilder';
 
@@ -17,11 +19,13 @@ function LinkComponent({ properties }) {
 
 const componentMap = {
   RecordList,
+  RecordTable,
   RecordForm,
   RecordDisplay,
   StatCard,
   Link: LinkComponent,
   Button,
+  Title,
   Profile,
   RecordQueryBuilder,
 };

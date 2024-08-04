@@ -1,26 +1,27 @@
 import React from 'react';
 import { useActionFunction } from '@engine9/ui/components/Actions';
 import { getIcon } from '@engine9/ui/Icons';
-import { Button } from 'antd';
+import { Typography } from 'antd';
 
-export default function ButtonComponent(props) {
+const { Title } = Typography;
+
+export default function TitleComponent(props) {
   const {
     properties,
   } = props;
 
   const {
-    onClick, type, icon, content,
+    onClick, icon, content = '(No content property)',
   } = properties;
 
   const onClickAction = useActionFunction(onClick);
 
   return (
-    <Button
+    <Title
       onClick={onClickAction}
-      type={type}
       icon={icon && getIcon(icon)}
     >
       {content}
-    </Button>
+    </Title>
   );
 }

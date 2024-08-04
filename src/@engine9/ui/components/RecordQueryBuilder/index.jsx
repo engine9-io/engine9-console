@@ -37,10 +37,8 @@ function RecordForm(props) {
   // const { fields } = properties;
   let { title } = properties;
   const axios = useAuthenticatedAxios();
-  let onSaveAction = () => {};
-  if (properties.onSave) {
-    onSaveAction = useActionFunction(properties.onSave);
-  }
+  const onSaveAction = useActionFunction(properties.onSave);
+
   const {
     isPending: fieldPending, isFetching: fieldFetching, error: fieldError, data: fieldData,
   } = useQueryFields();

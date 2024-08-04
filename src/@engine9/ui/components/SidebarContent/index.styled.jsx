@@ -110,3 +110,32 @@ export const StyledDots = styled.span`
   border-radius: ${({ theme }) => theme.sizes.borderRadius.circle};
   display: block;
 `;
+
+export const StyledSidebarListItem = styled.div`
+  display: flex;
+  padding: 8px 20px;
+  cursor: pointer;
+
+  &.active {
+    background-color: ${({ theme }) => rgba(theme.palette.primary.main, 0.07)};
+  }
+`;
+
+export const StyledSidebarListItemContent = styled.div`
+  font-size: ${({ theme }) => theme.font.size.base};
+  padding-left: 14px;
+  width: calc(100% - 40px);
+  color: ${({ theme }) => theme.palette.text.secondary};
+  overflow: hidden;
+
+  [dir='rtl'] & {
+    padding-left: 0;
+    padding-right: 16px;
+  }
+
+  & h3 {
+    font-weight: ${({ theme }) => theme.font.weight.medium};
+    margin-bottom: 2px;
+    font-size: ${({ theme }) => theme.font.size.base};
+  }
+`;

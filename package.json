@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "watch_and_build_ui_config":"fswatch -o ../engine9-interfaces | node src/@engine9/ui/dynamic/TestingLocalUIConfig.cjs",
     "start_prod": "VITE_ENGINE9_DATA_ENDPOINT=https://data.engine9.io:4321 vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",

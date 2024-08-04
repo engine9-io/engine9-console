@@ -22,10 +22,8 @@ function RecordForm(props) {
   const { form, uiSchema = { } } = properties;
   let { title } = properties;
   const axios = useAuthenticatedAxios();
-  let onSaveAction = () => {};
-  if (properties.onSave) {
-    onSaveAction = useActionFunction(properties.onSave);
-  }
+  const onSaveAction = useActionFunction(properties.onSave);
+
   const enabled = !!id;
   let initialData;
   if (!id) initialData = { data: [{}] };

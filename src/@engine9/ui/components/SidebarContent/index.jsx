@@ -32,12 +32,14 @@ function SidebarItem({ label = '(No label)', to = '/', dot }) {
 }
 
 function SidebarContent({ properties, parameters }) {
-  const { title = 'SidebarHeader', items } = properties;
+  const { title = '', items } = properties;
   return (
     <>
+      {title && (
       <StyledSidebarHeader>
         <h2>{title}</h2>
       </StyledSidebarHeader>
+      )}
 
       <StyledSidebarScrollbar>
         <StyledSidebarContent>
