@@ -46,11 +46,11 @@ function RecordTable(props) {
   const { title, properties, parameters } = props;
 
   const table = parameters.table || properties.table;
-  const { extensions, conditions } = properties;
+  const { includes, conditions } = properties;
   let renderedConditions = '';
   if (conditions) {
     const t = compileTemplate(JSON.stringify(conditions));
-    renderedConditions = `conditions=${escape(t(parameters))}&`;
+    renderedConditions = `conditions=${escape(t({ parameters, properties }))}&`;
   }
 
   const [tableParams, setTableParams] = useState({
@@ -79,7 +79,7 @@ function RecordTable(props) {
   } = useQuery({
     queryKey: [`${table}-list`, tableParams.pagination.current],
     queryFn: () => axios
-      .get(`/data/tables/${table}?${renderedConditions}${extensions ? `extensions=${escape(JSON.stringify(extensions))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
+      .get(`/data/tables/${table}?${renderedConditions}${includes ? `includes=${escape(JSON.stringify(includes))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
       .then((results) => {
         setTableParams({
           ...tableParams,
@@ -90,7 +90,7 @@ function RecordTable(props) {
             // total: data.totalCount,
           },
         });
-        return results.data;
+        return results.data.data.map((d) => Object.assign(d, d.attributes));
       }),
   });
 
@@ -112,8 +112,12 @@ function RecordTable(props) {
       ...sorter,
     });
   };
-
-  const onClickAction = useActionFunction(properties?.onRecord?.onClick);
+  const actionOpts = properties?.onRecord?.onClick;
+  if (actionOpts && !actionOpts.action) {
+    // eslint-disable-next-line no-console
+    console.error("RecordTable: Invalid onClick -- no 'action':", actionOpts);
+  }
+  const onClickAction = useActionFunction(actionOpts);
 
   const onRow = (record, rowIndex) => ({
     onClick: (event) => {
@@ -138,11 +142,12 @@ function RecordTable(props) {
         columns={columns}
         rowKey={(record) => record.id}
         onRow={onRow}
-        dataSource={data?.data}
+        dataSource={data}
         pagination={tableParams.pagination}
         loading={isPending || isFetching}
         onChange={handleTableChange}
       />
+
     </AppCard>
   );
 }

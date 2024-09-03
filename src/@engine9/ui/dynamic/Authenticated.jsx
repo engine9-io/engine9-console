@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import LayoutHome from './layouts';
 
 import AccountPicker from '../components/AccountPicker';
+import AlternativeDataSource from '../components/AlternativeDataSource';
 import Profile from '../components/Profile';
 
 import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
@@ -92,6 +93,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
+        <Route path="/datasource" element={<AlternativeDataSource />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/:accountId" element={<DynamicAccountLayout />} />
         <Route path="/:accountId/*" element={<DynamicAccountLayout />} />

@@ -8,6 +8,7 @@ import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
 import StatCard from './StatCard';
 import Profile from './Profile';
+import Message from './Message';
 import Title from './Title';
 // import QueryBuilder from './QueryBuilder';
 import RecordQueryBuilder from './RecordQueryBuilder';
@@ -24,6 +25,7 @@ const componentMap = {
   RecordDisplay,
   StatCard,
   Link: LinkComponent,
+  Message,
   Button,
   Title,
   Profile,

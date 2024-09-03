@@ -17,4 +17,18 @@ export function useAuthenticatedAxios() {
   });
   return authenticatedAxios;
 }
+
+export function useAlternateDataSourceAuthenticatedAxios() {
+  const { token } = useAuthUser();
+  const accountId = useAccountId();
+  const authenticatedAxios = axios.create({
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'X-Account-Id': accountId || 'system',
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return authenticatedAxios;
+}
 export default useAuthenticatedAxios;

@@ -16,43 +16,59 @@ function RecordList(props) {
   const onClickAction = useActionFunction(properties?.onRecord?.onClick);
 
   const table = parameters.table || properties.table;
-  const { extensions, conditions } = properties;
+  const { include, conditions, template } = properties;
   let renderedConditions = '';
   if (conditions) {
-    const t = compileTemplate(JSON.stringify(conditions));
-    renderedConditions = `conditions=${escape(t(parameters))}&`;
+    const conditionTemplate = compileTemplate(JSON.stringify(conditions));
+    renderedConditions = `conditions=${escape(conditionTemplate({ properties, parameters }))}&`;
   }
+  const renderTemplate = compileTemplate(template || '<h3>{{record.name}}</h3>');
 
   const axios = useAuthenticatedAxios();
   const {
     isPending, error, isFetching, data,
   } = useQuery({
-    queryKey: [`${table}-list`],
+    queryKey: [`${table}-list-${renderedConditions}`],
     queryFn: () => axios
-      .get(`/data/tables/${table}?${renderedConditions}${extensions ? `extensions=${escape(JSON.stringify(extensions))}&` : ''}`)
-      .then((results) => results.data),
+      .get(`/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}`)
+      .then((results) => results.data?.data?.map((d) => Object.assign(d, d.attributes))),
   });
 
   if (isPending || isFetching) return <AppLoader />;
 
-  if (error) return <div>Error retrieving data</div>;
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.error('RecordList: Error retrieving data', { properties, parameters });
+    return <div>Error retrieving data</div>;
+  }
   return (
-    <List
-      bordered={false}
-      dataSource={data?.data}
-      pagination={{ position: 'bottom', align: 'end' }}
-      renderItem={(record, index) => (
-        <List.Item
-          key={index}
-          onClick={() => {
-            onClickAction({ table, record, parameters });
-          }}
-        >
-          <h3>{record.name}</h3>
-          {JSON.stringify(record)}
-        </List.Item>
-      )}
-    />
+    <>
+      <List
+        bordered={false}
+        dataSource={data}
+        pagination={{ position: 'bottom', align: 'end' }}
+        renderItem={(item, index) => {
+          const record = { ...item.attributes, ...item };
+
+          return (
+            <List.Item
+              key={index}
+              onClick={() => {
+                onClickAction({ table, record, parameters });
+              }}
+            >
+              <div
+            // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: renderTemplate({ table, record, parameters }) }}
+              />
+            </List.Item>
+          );
+        }}
+      />
+      {data?.data?.length}
+      {' '}
+      records
+    </>
   );
 }
 export default RecordList;

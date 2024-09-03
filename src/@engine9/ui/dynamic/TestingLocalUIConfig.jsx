@@ -122,10 +122,10 @@
                 ],
                 main: [
                     {
-                        component: 'RecordList',
+                        component: 'RecordTable',
                         properties: {
                             table: 'person',
-                            extensions: {
+                            include: {
                                 emails: {
                                     table: 'person_email',
                                 },
@@ -141,7 +141,7 @@
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
-                                    template: '{{given_name}} {{family_name}} {{emails.0.email}}',
+                                    template: '{{record.given_name}} {{record.family_name}} {{record.emails.0.email}}',
                                     width: '40%',
                                 },
                                 {
@@ -150,7 +150,7 @@
                                     width: '40%',
                                 },
                             ],
-                            onRow: {
+                            onRecord: {
                                 onClick: {
                                     action: 'navigate',
                                     url: '/person/{{record.id}}',
@@ -212,7 +212,7 @@
                             properties: {
                                 table: 'person',
                                 id: '{{parameters.id}}',
-                                extensions: {
+                                include: {
                                     emails: {
                                         table: 'person_email',
                                         orderBy: 'preference_order',
@@ -295,7 +295,7 @@
                             table: 'person_email',
                             conditions: [
                                 {
-                                    eql: 'person_id={{id}}',
+                                    eql: 'person_id={{parameters.id}}',
                                 },
                             ],
                             columns: [
@@ -400,9 +400,9 @@
                                 },
                                 {
                                     title: 'Name',
-                                    dataIndex: 'label',
+                                    dataIndex: 'name',
                                     sorter: true,
-                                    template: '{{label}}',
+                                    template: '{{name}}',
                                     width: '40%',
                                 },
                             ],
@@ -424,7 +424,7 @@
                     {
                         component: 'RecordForm',
                         properties: {
-                            table: 'job',
+                            table: 'segment',
                             title: '{{#if record.id}}Edit Segment{{else}}Create Segment{{/if}}',
                             form: {
                                 type: 'object',
@@ -472,7 +472,7 @@
                         component: 'RecordTable',
                         properties: {
                             table: 'person_segment',
-                            extensions: [
+                            include: [
                                 {
                                     alias: 'people',
                                     table: 'person',
@@ -513,7 +513,7 @@
                         component: 'RecordTable',
                         properties: {
                             table: 'person_segment',
-                            extensions: [
+                            include: [
                                 {
                                     alias: 'segments',
                                     table: 'segment',
@@ -565,7 +565,7 @@
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
-                                    template: '{{name}}',
+                                    template: '{{record.name}}',
                                     width: '40%',
                                 },
                             ],
@@ -611,6 +611,70 @@
                 ],
             },
         },
+        'campaign/:campaign_id/message_set/:message_set_id': {
+            layout: 'sidebar',
+            components: {
+                sidebar: {
+                    items: [
+                        {
+                            component: 'Title',
+                            properties: {
+                                content: 'Messages',
+                            },
+                        },
+                        {
+                            component: 'Button',
+                            properties: {
+                                icon: 'plus',
+                                content: 'Add Message',
+                                onClick: {
+                                    action: 'table.upsert',
+                                    table: 'message',
+                                    data: {
+                                        name: 'Message - {{date 0 "MMM, yyyy"}}',
+                                        message_set_id: '{{parameters.message_set_id}}',
+                                    },
+                                    redirect: '/campaign/{{parameters.campaign_id}}/message_set/{{parameters.message_set_id}}/message/{{record.id}}',
+                                },
+                            },
+                        },
+                        {
+                            component: 'RecordList',
+                            properties: {
+                                table: 'message',
+                                conditions: [
+                                    {
+                                        eql: 'message_set_id={{parameters.message_set_id}}',
+                                    },
+                                ],
+                                onRecord: {
+                                    onClick: {
+                                        action: 'navigate',
+                                        url: '/campaign/{{parameters.campaign_id}}/message_set/{{parameters.message_set_id}}/message/{{record.id}}/',
+                                    },
+                                },
+                            },
+                        },
+                    ],
+                },
+                main: [
+                    {
+                        component: 'Title',
+                        properties: {
+                            content: 'Message Set Summary',
+                        },
+                    },
+                    {
+                        component: 'RecordDisplay',
+                        properties: {
+                            table: 'message_set',
+                            id: '{{parameters.message_set_id}}',
+                            template: '{{record.name}}',
+                        },
+                    },
+                ],
+            },
+        },
         'campaign/:id/*': {
             layout: 'sidebar',
             components: {
@@ -623,9 +687,30 @@
                             },
                         },
                         {
+                            component: 'Button',
+                            properties: {
+                                icon: 'plus',
+                                content: 'Add Message Set',
+                                onClick: {
+                                    action: 'table.upsert',
+                                    table: 'message_set',
+                                    data: {
+                                        name: 'Messages - {{date 0 "MMMM, yyyy"}}',
+                                        campaign_id: '{{parameters.id}}',
+                                    },
+                                    redirect: '/campaign/{{parameters.id}}/message_set/{{record.id}}',
+                                },
+                            },
+                        },
+                        {
                             component: 'RecordList',
                             properties: {
                                 table: 'message_set',
+                                conditions: [
+                                    {
+                                        eql: 'campaign_id={{parameters.id}}',
+                                    },
+                                ],
                                 onRecord: {
                                     onClick: {
                                         action: 'navigate',
@@ -648,13 +733,13 @@
                         properties: {
                             table: 'campaign',
                             id: '{{parameters.id}}',
-                            template: '{{name}}',
+                            template: '{{record.name}}',
                         },
                     },
                 ],
             },
         },
-        message: {
+        '/campaign/:campaign_id/message_set/:message_set_id/message/create': {
             layout: 'full_width',
             components: {
                 main: [
@@ -679,7 +764,7 @@
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
-                                    template: '{{label}}',
+                                    template: '{{record.name}}',
                                     width: '40%',
                                 },
                             ],
@@ -694,46 +779,17 @@
                 ],
             },
         },
-        'message/:id/*': {
-            layout: 'sidebar',
+        '/campaign/:campaign_id/message_set/:message_set_id/message/:id': {
+            layout: 'fullwidth',
             components: {
-                sidebar: [
-                    {
-                        component: 'RecordDisplay',
-                        properties: {
-                            table: 'message',
-                            id: '{{parameters.id}}',
-                            components: [
-                                '{{label}}',
-                            ],
-                        },
-                    },
-                ],
                 main: [
                     {
-                        component: 'RecordDisplay',
+                        component: 'Message',
                         properties: {
                             table: 'message',
                             id: '{{parameters.id}}',
                             components: [
-                                '{{label}}',
-                            ],
-                        },
-                    },
-                    {
-                        path: 'source_codes',
-                        label: 'Source Codes',
-                        component: 'RecordDisplay',
-                        properties: {
-                            table: 'message',
-                            id: '{{parameters.id}}',
-                            extensions: {
-                                source_codes: {
-                                    table: 'source_code',
-                                },
-                            },
-                            components: [
-                                '{{label}}',
+                                '{{record.name}}',
                             ],
                         },
                     },
@@ -892,7 +948,7 @@
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
-                                    template: '{{label}}',
+                                    template: '{{record.name}}',
                                     width: '40%',
                                 },
                             ],

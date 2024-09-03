@@ -14,6 +14,8 @@ import AppErrorBoundary from '@crema/components/AppErrorBoundary';
 
 import './styles/index.css';
 
+const Signin = React.lazy(() => import('@crema/core/Signin'));
+
 function App() {
   return (
     <AppContextProvider>
@@ -27,6 +29,7 @@ function App() {
                 <AppSuspense>
                   <AppErrorBoundary>
                     <Routes>
+                      <Route path="/signin" element={<Signin />} />
                       <Route path="*" element={<Engine9UI />} />
                     </Routes>
                   </AppErrorBoundary>

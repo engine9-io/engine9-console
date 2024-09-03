@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { useAccountId } from '@engine9/helpers/AccountHelper';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
+import { useAuthenticatedAxios } from '@engine9/ui/AuthenticatedDataEndpoint';
+import { notification } from 'antd';
+
 /*
   An action is a user operation, like a click to navigate.
   Unlike components, it often does not have a corresponding html component.
@@ -10,6 +13,8 @@ import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 export function useActionFunction({ action, ...props } = {}) {
   const navigate = useNavigate();
   const accountId = useAccountId();
+  const axios = useAuthenticatedAxios();
+
   if (!action) return () => {};
 
   switch (action) {
@@ -22,6 +27,40 @@ export function useActionFunction({ action, ...props } = {}) {
         navigate(url);
       };
     }
+    case 'table.upsert': {
+      const {
+        table, id, data: dataInput = {}, redirect,
+      } = props;
+      const redirectTemplate = redirect ? compileTemplate(redirect) : null;
+      const dataTemplates = {};
+      Object.entries(dataInput).forEach(([k, v]) => {
+        dataTemplates[k] = compileTemplate(v);
+      });
+      return function doAction(context) {
+        const data = {};
+        Object.entries(dataTemplates).forEach(([k, valFunc]) => {
+          data[k] = valFunc(context);
+        });
+        let u = `/data/tables/${table}`;
+        if (table === 'message') {
+          u = '/data/message';
+        }
+        axios.post(`${u}${id ? `/${id}` : ''}`, data)
+          .then((results) => {
+            context.record = results.data;
+            if (redirectTemplate) {
+              let url = redirectTemplate(context);
+              if (url.indexOf('/') === 0) url = `/${accountId}${url}`;
+              return navigate(url);
+            }
+            return notification.success({
+              message: 'Saved',
+              description: `Saved ${table}`,
+            });
+          });
+      };
+    }
+
     default:
       return () => {};
   }

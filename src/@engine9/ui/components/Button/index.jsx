@@ -5,7 +5,7 @@ import { Button } from 'antd';
 
 export default function ButtonComponent(props) {
   const {
-    properties,
+    properties, parameters,
   } = props;
 
   const {
@@ -16,7 +16,9 @@ export default function ButtonComponent(props) {
 
   return (
     <Button
-      onClick={onClickAction}
+      onClick={(event) => {
+        onClickAction({ event, properties, parameters });
+      }}
       type={type}
       icon={icon && getIcon(icon)}
     >
