@@ -46,7 +46,7 @@ function RecordTable(props) {
   const { title, properties, parameters } = props;
 
   const table = parameters.table || properties.table;
-  const { includes, conditions } = properties;
+  const { include, conditions } = properties;
   let renderedConditions = '';
   if (conditions) {
     const t = compileTemplate(JSON.stringify(conditions));
@@ -79,7 +79,7 @@ function RecordTable(props) {
   } = useQuery({
     queryKey: [`${table}-list`, tableParams.pagination.current],
     queryFn: () => axios
-      .get(`/data/tables/${table}?${renderedConditions}${includes ? `includes=${escape(JSON.stringify(includes))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
+      .get(`/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
       .then((results) => {
         setTableParams({
           ...tableParams,

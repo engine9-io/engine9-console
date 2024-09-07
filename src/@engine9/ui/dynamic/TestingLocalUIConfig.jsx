@@ -480,12 +480,12 @@
                             ],
                             conditions: [
                                 {
-                                    eql: 'segment_id={{parameters.segment_id}}',
+                                    eql: 'segment_id={{parameters.id}}',
                                 },
                             ],
                             columns: [
                                 {
-                                    template: '{{person_id}}',
+                                    template: '{{record.person_id}}',
                                 },
                             ],
                         },
@@ -630,7 +630,7 @@
                                 onClick: {
                                     action: 'table.upsert',
                                     table: 'message',
-                                    data: {
+                                    defaultData: {
                                         name: 'Message - {{date 0 "MMM, yyyy"}}',
                                         message_set_id: '{{parameters.message_set_id}}',
                                     },
@@ -694,7 +694,7 @@
                                 onClick: {
                                     action: 'table.upsert',
                                     table: 'message_set',
-                                    data: {
+                                    defaultData: {
                                         name: 'Messages - {{date 0 "MMMM, yyyy"}}',
                                         campaign_id: '{{parameters.id}}',
                                     },

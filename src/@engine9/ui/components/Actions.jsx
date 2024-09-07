@@ -10,7 +10,9 @@ import { notification } from 'antd';
   It typically takes a type, and some properties that can be compiled,
    and is evaluated against context which is often used for filling in data
 */
-export function useActionFunction({ action, ...props } = {}) {
+export function useActionFunction({
+  action, onStart, onComplete, onError, ...props
+} = {}) {
   const navigate = useNavigate();
   const accountId = useAccountId();
   const axios = useAuthenticatedAxios();
@@ -29,23 +31,39 @@ export function useActionFunction({ action, ...props } = {}) {
     }
     case 'table.upsert': {
       const {
-        table, id, data: dataInput = {}, redirect,
+        table, id: initialId, defaultData = {}, redirect,
       } = props;
       const redirectTemplate = redirect ? compileTemplate(redirect) : null;
-      const dataTemplates = {};
-      Object.entries(dataInput).forEach(([k, v]) => {
-        dataTemplates[k] = compileTemplate(v);
+      const defaultDataTemplates = {};
+      Object.entries(defaultData).forEach(([k, v]) => {
+        defaultDataTemplates[k] = compileTemplate(v);
       });
       return function doAction(context) {
+        if (typeof onStart === 'function') onStart(context);
         const data = {};
-        Object.entries(dataTemplates).forEach(([k, valFunc]) => {
+        Object.entries(defaultDataTemplates).forEach(([k, valFunc]) => {
           data[k] = valFunc(context);
         });
+        Object.entries(context.data || {}).forEach(([k, v]) => {
+          data[k] = v;
+        });
+        const id = data.id || initialId;
+        delete data.id;
         let u = `/data/tables/${table}`;
         if (table === 'message') {
           u = '/data/message';
         }
         axios.post(`${u}${id ? `/${id}` : ''}`, data)
+          .catch((error) => {
+            console.error('Error with post:', error.toJSON());
+            if (onError) return onError(error.toJSON());
+
+            return notification.error({
+              message: 'Error saving data',
+              description: '',
+              placement: 'bottomLeft',
+            });
+          })
           .then((results) => {
             context.record = results.data;
             if (redirectTemplate) {
@@ -53,9 +71,11 @@ export function useActionFunction({ action, ...props } = {}) {
               if (url.indexOf('/') === 0) url = `/${accountId}${url}`;
               return navigate(url);
             }
+            if (typeof onComplete === 'function') return onComplete(context);
             return notification.success({
               message: 'Saved',
               description: `Saved ${table}`,
+              placement: 'bottomLeft',
             });
           });
       };

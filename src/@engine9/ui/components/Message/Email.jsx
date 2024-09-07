@@ -20,14 +20,21 @@ BlockAttributeConfigurationManager.add({
 });
 
 const initialValues = {
-  subject: 'Hello, Engine9',
   content: BlockManager.getBlockByType(BasicType.PAGE).create({}),
 };
 
-export default function Message(
+export default function Email(
   { message, saveMessage },
 ) {
   if (message?.publish_date) return 'Cannot edit, already published';
+  if (!message.id) return 'The message id must be created before editing';
+
+  let mContent = message.content;
+  if (mContent && typeof mContent === 'string')mContent = JSON.parse(mContent);
+
+  initialValues.content = mContent.easyEmailConfig || initialValues.content;
+  if (typeof initialValues.content === 'string')initialValues.content = JSON.parse(initialValues.content);
+
   return (
     <EmailEditorProvider
       data={initialValues}
@@ -35,8 +42,15 @@ export default function Message(
       autoComplete
       dashed={false}
     >
-      {({ values }) => {
-        if (typeof saveMessage === 'function')saveMessage({ content: { values } });
+      {(easyEmailOutput) => {
+        const easyEmailConfig = easyEmailOutput.values.content;
+        const newMessage = {
+          id: message.id,
+          content: {
+            easyEmailConfig,
+          },
+        };
+        if (typeof saveMessage === 'function') { saveMessage(newMessage); }
         return (
           <StandardLayout
             compact={false}
