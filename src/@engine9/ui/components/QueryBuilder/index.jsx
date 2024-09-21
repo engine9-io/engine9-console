@@ -1,41 +1,102 @@
-import React, { useState } from 'react';
-import { Button } from 'antd';
-import { QueryBuilder, formatQuery } from 'react-querybuilder';
-import { QueryBuilderAntD } from '@react-querybuilder/antd';
-import 'react-querybuilder/dist/query-builder.scss';
-// import { fields } from './fields';
-import './styles.css';
+/* eslint-disable no-console */
+import React from 'react';
+import AppCard from '@crema/components/AppCard';
+import { useQuery } from '@tanstack/react-query';
+import AppLoader from '@crema/components/AppLoader';
+import Error404 from '@engine9/ui/errorPages/Error404';
+import Error500 from '@engine9/ui/errorPages/Error500';
+import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
+import { useActionFunction } from '@engine9/ui/components/Actions';
+import QueryBuilder from './RenderBuilder';
 
-export const validator = (r) => !!r.value;
+import { useAuthenticatedAxios, useRemoteData } from '../../AuthenticatedDataEndpoint';
 
-export default function App(props) {
-  const { query: queryProperty, fields: fieldsProp, onSubmit = () => {} } = props;
-  if (typeof queryProperty === 'string') return 'query is a string, must be an object';
-  const initialQuery = JSON.parse(JSON.stringify(queryProperty));
-  initialQuery.combinator = initialQuery.combinator || 'and';
-  initialQuery.rules = initialQuery.rules || [];
-  const [query, setQuery] = useState(initialQuery);
+function useQueryFields() {
+  const axios = useAuthenticatedAxios();
+  const {
+    isPending, isFetching, error, data,
+  } = useQuery({
+    queryKey: ['query-fields'],
+    queryFn: () => axios
+      .get('/data/query/fields')
+      .then((results) => results.data),
+  });
+  if (isPending || isFetching || error) return { isPending, isFetching, error };
+  return { data };
+}
 
-  const fieldsWithValidator = fieldsProp.map((f, i) => ({ validator, ...fieldsProp[i] }));
+function RecordForm(props) {
+  const {
+    properties, parameters = {},
+  } = props;
+
+  const table = parameters.table || properties.table;
+  let id = parameters.id || properties.id;
+  if (id === 'create' || id === 'new') id = 0;
+  // const { fields } = properties;
+  let { title } = properties;
+  const onSaveAction = useActionFunction(properties.onSave);
+
+  const {
+    isPending: fieldPending, isFetching: fieldFetching, error: fieldError, data: fieldData,
+  } = useQueryFields();
+  const enabled = !!id && !fieldPending && !fieldFetching && !fieldError;
+  let initialData;
+  if (!id) initialData = { data: [{}] };
+
+  const {
+    isPending, isFetching, error, data: response,
+  } = useRemoteData({
+    enabled,
+    initialData,
+    uri: `/data/tables/${table}/${id}`,
+  });
+
+  if (fieldPending || fieldFetching) return <AppLoader />;
+  if (fieldError) return <Error500 />;
+  if (!fieldData.fields) return 'No fields available for query';
+
+  if (isPending || isFetching) return <AppLoader />;
+
+  if (!!id && !response?.[0]) {
+    return <Error404 />;
+  }
+
+  const record = response?.[0] || {};
+
+  title = compileTemplate(title || 'No title template')({ record });
+  let query = record.query || '{}';
+  if (typeof query === 'string') {
+    try {
+      query = JSON.parse(query);
+    } catch (e) {
+      return `Query ${id} has an invalid structure.`;
+    }
+  }
 
   return (
-    <div>
-      <QueryBuilderAntD>
-        <QueryBuilder
-          listsAsArrays
-          fields={fieldsWithValidator}
-          query={query || {}}
-          onQueryChange={setQuery}
-        />
-      </QueryBuilderAntD>
-      {formatQuery(query, 'json_without_ids')}
+    <AppCard
+      heightFull
+      title={title}
+      className="no-card-space-ltr-rtl"
+    >
+      {error && <div>Error retrieving data</div>}
+      {!error
+      && (
+      <QueryBuilder
+        query={query}
+        fields={fieldData.fields}
+        onSubmit={(newQuery) => {
+          onSaveAction({
+            table,
+            id,
+            data: newQuery,
+          });
+        }}
+      />
+      )}
 
-      <Button
-        type="primary"
-        onClick={() => onSubmit(formatQuery(query, 'json_without_ids'))}
-      >
-        Save
-      </Button>
-    </div>
+    </AppCard>
   );
 }
+export default RecordForm;

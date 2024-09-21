@@ -3,12 +3,11 @@ import AppLoader from '@crema/components/AppLoader';
 import { List } from 'antd';
 // import qs from 'qs';
 import './index.css';
-import { useQuery } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
 import { useActionFunction } from '../Actions';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
+import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 
 function RecordList(props) {
   const { properties, parameters } = props;
@@ -24,14 +23,10 @@ function RecordList(props) {
   }
   const renderTemplate = compileTemplate(template || '<h3>{{record.name}}</h3>');
 
-  const axios = useAuthenticatedAxios();
   const {
     isPending, error, isFetching, data,
-  } = useQuery({
-    queryKey: [`${table}-list-${renderedConditions}`],
-    queryFn: () => axios
-      .get(`/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}`)
-      .then((results) => results.data?.data?.map((d) => Object.assign(d, d.attributes))),
+  } = useRemoteData({
+    uri: `/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}`,
   });
 
   if (isPending || isFetching) return <AppLoader />;

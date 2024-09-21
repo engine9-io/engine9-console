@@ -472,12 +472,11 @@
                         component: 'RecordTable',
                         properties: {
                             table: 'person_segment',
-                            include: [
-                                {
-                                    alias: 'people',
+                            include: {
+                                people: {
                                     table: 'person',
                                 },
-                            ],
+                            },
                             conditions: [
                                 {
                                     eql: 'segment_id={{parameters.id}}',
@@ -513,12 +512,11 @@
                         component: 'RecordTable',
                         properties: {
                             table: 'person_segment',
-                            include: [
-                                {
-                                    alias: 'segments',
+                            include: {
+                                segments: {
                                     table: 'segment',
                                 },
-                            ],
+                            },
                             conditions: [
                                 {
                                     eql: 'person_id={{parameters.person_id}}',
@@ -1008,7 +1006,7 @@
             components: {
                 main: [
                     {
-                        component: 'RecordQueryBuilder',
+                        component: 'QueryBuilder',
                         properties: {
                             table: 'query',
                             title: '{{record.label}}',

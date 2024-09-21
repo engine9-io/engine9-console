@@ -11,7 +11,7 @@ import Profile from './Profile';
 import Message from './Message';
 import Title from './Title';
 // import QueryBuilder from './QueryBuilder';
-import RecordQueryBuilder from './RecordQueryBuilder';
+import QueryBuilder from './QueryBuilder';
 
 function LinkComponent({ properties }) {
   const { to, label } = properties;
@@ -29,7 +29,7 @@ const componentMap = {
   Button,
   Title,
   Profile,
-  RecordQueryBuilder,
+  QueryBuilder,
 };
 
 export function ComponentWrapper({ component, properties: _props = {}, parameters }) {

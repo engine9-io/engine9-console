@@ -31,7 +31,7 @@ export function useActionFunction({
     }
     case 'table.upsert': {
       const {
-        table, id: initialId, defaultData = {}, redirect,
+        table: initialTable, id: initialId, defaultData = {}, redirect,
       } = props;
       const redirectTemplate = redirect ? compileTemplate(redirect) : null;
       const defaultDataTemplates = {};
@@ -48,6 +48,7 @@ export function useActionFunction({
           data[k] = v;
         });
         const id = data.id || initialId;
+        const table = context.table || initialTable;
         delete data.id;
         let u = `/data/tables/${table}`;
         if (table === 'message') {
@@ -65,7 +66,7 @@ export function useActionFunction({
             });
           })
           .then((results) => {
-            context.record = results.data;
+            context.data = results.data;
             if (redirectTemplate) {
               let url = redirectTemplate(context);
               if (url.indexOf('/') === 0) url = `/${accountId}${url}`;
@@ -74,7 +75,7 @@ export function useActionFunction({
             if (typeof onComplete === 'function') return onComplete(context);
             return notification.success({
               message: 'Saved',
-              description: `Saved ${table}`,
+              description: `Saved ${table}, default onComplete`,
               placement: 'bottomLeft',
             });
           });

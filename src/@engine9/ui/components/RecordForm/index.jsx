@@ -1,15 +1,13 @@
 /* eslint-disable no-console */
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
-import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
-import { message } from 'antd';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
 import DynamicForm from '../DynamicForm';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
+import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 
 function RecordForm(props) {
   const {
@@ -21,8 +19,14 @@ function RecordForm(props) {
   if (id === 'create' || id === 'new') id = 0;
   const { form, uiSchema = { } } = properties;
   let { title } = properties;
-  const axios = useAuthenticatedAxios();
-  const onSaveAction = useActionFunction(properties.onSave);
+  const afterSaveAction = useActionFunction(properties.onSave);
+  const saveAction = useActionFunction({
+    action: 'table.upsert',
+    table,
+    onComplete: (({ data }) => {
+      afterSaveAction({ record: data });
+    }),
+  });
 
   const enabled = !!id;
   let initialData;
@@ -30,13 +34,10 @@ function RecordForm(props) {
 
   const {
     isPending, isFetching, error, data: response,
-  } = useQuery({
+  } = useRemoteData({
     enabled,
     initialData,
-    queryKey: [`${table}-${id}`],
-    queryFn: () => axios
-      .get(`/data/tables/${table}/${id}`)
-      .then((results) => results.data?.data),
+    uri: `/data/tables/${table}/${id}`,
   });
 
   if (isPending || isFetching) return <AppLoader />;
@@ -62,19 +63,10 @@ function RecordForm(props) {
         data={record}
         form={form}
         uiSchema={uiSchema}
-        onSubmit={(formValues) => {
-          axios({
-            method: 'POST',
-            url: `/data/tables/${table}/${id || ''}`,
-            data: formValues,
-          }).then(({ data }) => {
-            message.success(`Saved ${table}`);
-            onSaveAction({ record: data });
-          }).catch((e) => {
-            console.error(e);
-            message.error(`Error saving ${table}`);
-          });
-        }}
+        onSubmit={(formValues) => saveAction({
+          id,
+          data: formValues,
+        })}
       />
       )}
 

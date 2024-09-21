@@ -100,6 +100,27 @@ export default function MessageDisplay(props) {
       key: 'message-content',
       children: <JsonView data={message} shouldExpandNode={allExpanded} style={defaultStyles} />,
     },
+    {
+      label: 'Publish',
+      key: 'publish',
+      children: <DynamicForm
+        form={{
+          title: 'Publish Message',
+          type: 'object',
+          required: [],
+          properties: {
+            status: {
+              type: 'hidden',
+              default: '',
+            },
+          },
+        }}
+        data={message}
+        onSubmit={(formValues) => {
+          saveMessage({ ...formValues, id });
+        }}
+      />,
+    },
   ];
 
   return (

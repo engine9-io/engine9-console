@@ -1,11 +1,10 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
+import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 
 function RecordDisplay(props) {
   const {
@@ -18,15 +17,11 @@ function RecordDisplay(props) {
   }
   const table = parameters.table || properties.table;
   const id = parameters.id || properties.id;
-  const axios = useAuthenticatedAxios();
 
   const {
     isPending, error, isFetching, data,
-  } = useQuery({
-    queryKey: [`${table}-${id}}`],
-    queryFn: () => axios
-      .get(`/data/tables/${table}/${id}`)
-      .then((results) => results.data),
+  } = useRemoteData({
+    uri: `/data/tables/${table}/${id}`,
   });
 
   if (isPending || isFetching) return <AppLoader />;

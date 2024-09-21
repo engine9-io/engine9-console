@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Tabs } from 'antd';
+import queryString from 'query-string';
 
 export default function TabComponent(props) {
   const { items, tabPosition, defaultActiveKey } = props;
-  const [tab, setTab] = useState(window.location.hash.slice(1));
+  const parsedHash = queryString.parse(window.location.hash.slice(1));
+
+  const [tab, setTab] = useState(parsedHash?.tab || items[0].key);
 
   useEffect(() => {
     window.addEventListener('hashchange', () => {
-      const hash = window.location.hash.slice(1);
-      setTab(hash);
+      const p = queryString.parse(window.location.hash.slice(1));
+      setTab(p.tab);
     });
   }, []);
 
@@ -17,7 +20,11 @@ export default function TabComponent(props) {
   };
 
   useEffect(() => {
-    if (tab) window.location.hash = tab;
+    if (tab) {
+      const p = queryString.parse(window.location.hash.slice(1));
+      p.tab = tab;
+      window.location.hash = queryString.stringify(p);
+    }
   }, [tab]);
 
   return (

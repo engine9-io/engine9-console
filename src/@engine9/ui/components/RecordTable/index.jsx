@@ -3,44 +3,12 @@ import AppCard from '@crema/components/AppCard';
 import { Table } from 'antd';
 // import qs from 'qs';
 import './index.css';
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { keepPreviousData } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
 import { useActionFunction } from '../Actions';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
-
-/* const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    sorter: true,
-    render: (x, r) => `${r.given_name} ${r.family_name}`,
-    width: '20%',
-  },
-  /*
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    filters: [
-      {
-        text: 'Male',
-        value: 'male',
-      },
-      {
-        text: 'Female',
-        value: 'female',
-      },
-    ],
-    width: '20%',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-  },
-
-];
-*/
+import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 
 function RecordTable(props) {
   const { title, properties, parameters } = props;
@@ -72,26 +40,23 @@ function RecordTable(props) {
       pageSize: 25,
     },
   });
+
   const offset = (tableParams.pagination.current - 1) * 5;
-  const axios = useAuthenticatedAxios();
   const {
     isPending, error, isFetching, data,
-  } = useQuery({
-    queryKey: [`${table}-list`, tableParams.pagination.current],
-    queryFn: () => axios
-      .get(`/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`)
-      .then((results) => {
-        setTableParams({
-          ...tableParams,
-          pagination: {
-            ...tableParams.pagination,
-            total: 200,
-            // 200 is mock data, you should read it from server
-            // total: data.totalCount,
-          },
-        });
-        return results.data.data.map((d) => Object.assign(d, d.attributes));
-      }),
+  } = useRemoteData({
+    uri: `/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`,
+    onComplete: () => {
+      setTableParams({
+        ...tableParams,
+        pagination: {
+          ...tableParams.pagination,
+          total: 200,
+          // 200 is mock data, you should read it from server
+          // total: data.totalCount,
+        },
+      });
+    },
   });
 
   if (!Array.isArray(properties.columns)) return 'No column array specified';
@@ -100,7 +65,7 @@ function RecordTable(props) {
     if (c.template) {
       if (typeof c.template !== 'string') throw new Error('column.template should be a string, not anything else');
       const renderTemplate = compileTemplate(c.template);
-      o.render = (text, context) => renderTemplate(context);
+      o.render = (text, context) => (renderTemplate(context) || 'no content');
     }
     return o;
   });
@@ -124,13 +89,13 @@ function RecordTable(props) {
       onClickAction({
         table, record, rowIndex, event,
       });
-
       // onDoubleClick: (event) => {}, // double click row
       // onContextMenu: (event) => {}, // right button click row
       // onMouseEnter: (event) => {}, // mouse enter row
       // onMouseLeave: (event) => {}, // mouse leave row
     },
   });
+
   return (
     <AppCard
       heightFull
