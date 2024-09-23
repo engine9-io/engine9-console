@@ -50,3 +50,8 @@ html[data-theme="dark"]
 .justifiedLayout .queryBuilder .chakra-select__wrapper + button.rule-remove {
   margin-left: auto !important;
 }
+
+.ruleGroup{
+  border-style:none;
+  background:none;
+}

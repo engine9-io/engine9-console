@@ -1,5 +1,4 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
@@ -13,7 +12,7 @@ import Tabs from '../Tabs';
 import DynamicForm from '../DynamicForm';
 import Email from './Email';
 
-import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
+import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 import 'react-json-view-lite/dist/index.css';
 
 export default function MessageDisplay(props) {
@@ -27,7 +26,6 @@ export default function MessageDisplay(props) {
   }
 
   const id = parameters.id || properties.id;
-  const axios = useAuthenticatedAxios();
   const throttledSaveToDatabase = throttle(useActionFunction({
     action: 'table.upsert',
     table: 'message',
@@ -42,26 +40,16 @@ export default function MessageDisplay(props) {
   };
 
   const {
-    isPending, error, isFetching, data: message,
-  } = useQuery({
-    queryKey: [`message-${id}}`],
-    queryFn: () => axios
-      .get(`/data/tables/message/${id}?include=${escape('{content:{table:"message_content"}}')}`)
-      .then((results) => {
-        const d = results.data?.data?.[0];
-        if (!d) return null;
-        const m = { id: d.id, ...d.attributes };
-        const content = results.data?.includes?.find((x) => x.type === 'message_content' && x.attributes?.message_id === d.id);
-        delete content.id;
-        Object.assign(m, content.attributes);
-
-        return m;
-      }),
+    isPending, error, isFetching, data,
+  } = useRemoteData({
+    uri: `/data/tables/message/${id}?include=${escape('{content:{table:"message_content"}}')}`,
   });
 
   if (isPending || isFetching) return <AppLoader />;
-  if (!message) return <Error404 />;
   if (error) return <Error500 />;
+  if (!data) return <Error500 />;
+  const message = data[0];
+  if (!message) return <Error404 />;
 
   const items = [
     {

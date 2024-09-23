@@ -64,8 +64,7 @@ function RecordForm(props) {
         form={form}
         uiSchema={uiSchema}
         onSubmit={(formValues) => saveAction({
-          id,
-          data: formValues,
+          data: { id, ...formValues },
         })}
       />
       )}

@@ -11,7 +11,7 @@ import { notification } from 'antd';
    and is evaluated against context which is often used for filling in data
 */
 export function useActionFunction({
-  action, onStart, onComplete, onError, ...props
+  action, onStart, ...props
 } = {}) {
   const navigate = useNavigate();
   const accountId = useAccountId();
@@ -39,6 +39,9 @@ export function useActionFunction({
         defaultDataTemplates[k] = compileTemplate(v);
       });
       return function doAction(context) {
+        if (context.id) {
+          throw new Error('Error with table.upsert -- an id was specified not in the data object');
+        }
         if (typeof onStart === 'function') onStart(context);
         const data = {};
         Object.entries(defaultDataTemplates).forEach(([k, valFunc]) => {
@@ -54,10 +57,13 @@ export function useActionFunction({
         if (table === 'message') {
           u = '/data/message';
         }
+        const onComplete = context.onComplete || props.onComplete;
+        const onError = context.onError || props.onError;
         axios.post(`${u}${id ? `/${id}` : ''}`, data)
           .catch((error) => {
+            // eslint-disable-next-line no-console
             console.error('Error with post:', error.toJSON());
-            if (onError) return onError(error.toJSON());
+            if (typeof onError === 'function') return onError(error.toJSON());
 
             return notification.error({
               message: 'Error saving data',
@@ -72,12 +78,13 @@ export function useActionFunction({
               if (url.indexOf('/') === 0) url = `/${accountId}${url}`;
               return navigate(url);
             }
-            if (typeof onComplete === 'function') return onComplete(context);
-            return notification.success({
-              message: 'Saved',
-              description: `Saved ${table}, default onComplete`,
+            notification.success({
+              message: `Saved ${table}`,
+              // description: `Saved ${table}`,
               placement: 'bottomLeft',
             });
+            if (typeof onComplete === 'function') return onComplete(context);
+            return {};
           });
       };
     }

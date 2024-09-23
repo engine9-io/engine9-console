@@ -132,12 +132,6 @@
                             },
                             columns: [
                                 {
-                                    title: 'Id',
-                                    dataIndex: 'id',
-                                    sorter: true,
-                                    width: '20%',
-                                },
-                                {
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
@@ -937,12 +931,6 @@
                             table: 'query',
                             columns: [
                                 {
-                                    title: 'Id',
-                                    dataIndex: 'id',
-                                    sorter: true,
-                                    width: '20%',
-                                },
-                                {
                                     title: 'Name',
                                     dataIndex: 'name',
                                     sorter: true,
@@ -1009,7 +997,7 @@
                         component: 'QueryBuilder',
                         properties: {
                             table: 'query',
-                            title: '{{record.label}}',
+                            title: '{{record.name}}',
                         },
                     },
                 ],
