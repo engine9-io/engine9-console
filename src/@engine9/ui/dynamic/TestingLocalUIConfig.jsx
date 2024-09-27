@@ -22,11 +22,6 @@
                     icon: 'people',
                     url: '/segments',
                 },
-                queries: {
-                    title: 'Queries',
-                    icon: 'search',
-                    url: '/queries',
-                },
             },
         },
         'message-menu': {
@@ -55,6 +50,11 @@
                     title: 'Reports',
                     icon: 'report',
                     url: '/report',
+                },
+                source_codes: {
+                    title: 'Source Codes',
+                    icon: 'report',
+                    url: '/source_codes',
                 },
             },
         },
@@ -907,49 +907,7 @@
                 ],
             },
         },
-        queries: {
-            layout: 'full_width',
-            components: {
-                header: [
-                    'Queries',
-                    {
-                        component: 'Button',
-                        properties: {
-                            icon: 'plus',
-                            content: 'Create Query',
-                            onClick: {
-                                action: 'navigate',
-                                url: '/queries/create',
-                            },
-                        },
-                    },
-                ],
-                main: [
-                    {
-                        component: 'RecordTable',
-                        properties: {
-                            table: 'query',
-                            columns: [
-                                {
-                                    title: 'Name',
-                                    dataIndex: 'name',
-                                    sorter: true,
-                                    template: '{{record.name}}',
-                                    width: '40%',
-                                },
-                            ],
-                            onRecord: {
-                                onClick: {
-                                    action: 'navigate',
-                                    url: '/queries/{{record.id}}',
-                                },
-                            },
-                        },
-                    },
-                ],
-            },
-        },
-        'queries/create': {
+        'segments/create': {
             layout: 'full_width',
             components: {
                 main: [
@@ -989,15 +947,40 @@
                 ],
             },
         },
-        'queries/:id/*': {
+        'segments/:id/*': {
             layout: 'full_width',
             components: {
                 main: [
                     {
-                        component: 'QueryBuilder',
+                        component: 'SegmentBuilder',
                         properties: {
-                            table: 'query',
+                            table: 'segment',
                             title: '{{record.name}}',
+                        },
+                    },
+                ],
+            },
+        },
+        source_codes: {
+            layout: 'full_width',
+            components: {
+                header: [
+                    'Source Codes',
+                ],
+                main: [
+                    {
+                        component: 'RecordTable',
+                        properties: {
+                            table: 'source_code_summary',
+                            columns: [
+                                {
+                                    title: 'Source Code',
+                                    dataIndex: 'source_code',
+                                    sorter: true,
+                                    template: '{{record.source_code}}',
+                                    width: '40%',
+                                },
+                            ],
                         },
                     },
                 ],

@@ -10,8 +10,8 @@ import StatCard from './StatCard';
 import Profile from './Profile';
 import Message from './Message';
 import Title from './Title';
-// import QueryBuilder from './QueryBuilder';
-import QueryBuilder from './QueryBuilder';
+
+import SegmentBuilder from './SegmentBuilder';
 
 function LinkComponent({ properties }) {
   const { to, label } = properties;
@@ -29,7 +29,7 @@ const componentMap = {
   Button,
   Title,
   Profile,
-  QueryBuilder,
+  SegmentBuilder,
 };
 
 export function ComponentWrapper({ component, properties: _props = {}, parameters }) {
