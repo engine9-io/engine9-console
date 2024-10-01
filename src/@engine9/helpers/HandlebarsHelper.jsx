@@ -10,6 +10,7 @@ Handlebars.registerHelper('date', (d, f) => {
 // eslint-disable-next-line import/prefer-default-export
 export function compileTemplate(s) {
   if (s === undefined || s === null) return () => '<no template>';
+  if (typeof s === 'object') return () => JSON.stringify(s);
   try {
     const template = Handlebars.compile(s);
     // test it

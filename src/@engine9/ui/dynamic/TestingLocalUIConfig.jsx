@@ -804,6 +804,22 @@
                             },
                         },
                     },
+                    {
+                        component: 'Button',
+                        properties: {
+                            icon: 'plus',
+                            content: 'Test Job',
+                            onClick: {
+                                action: 'table.upsert',
+                                table: 'job',
+                                defaultData: {
+                                    worker_path: 'EchoWorker',
+                                    worker_method: 'echo',
+                                    options: { foo: 'bar' },
+                                  },
+                            },
+                        },
+                    },
                 ],
                 main: [
                     {

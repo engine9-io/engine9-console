@@ -11,6 +11,7 @@ import '@crema/mockapi';
 import { Normalize } from 'styled-normalize';
 import AppSuspense from '@crema/components/AppSuspense';// Suspense and error boundary go hand in hand
 import AppErrorBoundary from '@crema/components/AppErrorBoundary';
+import SocketSample from './socket/SocketSample';
 
 import './styles/index.css';
 
@@ -29,6 +30,7 @@ function App() {
                 <AppSuspense>
                   <AppErrorBoundary>
                     <Routes>
+                      <Route path="/socket" element={<SocketSample />} />
                       <Route path="/signin" element={<Signin />} />
                       <Route path="*" element={<Engine9UI />} />
                     </Routes>
