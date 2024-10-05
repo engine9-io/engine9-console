@@ -2,20 +2,18 @@
 import React, { useState, useEffect } from 'react';
 import { QueryBuilder, formatQuery } from 'react-querybuilder';
 import { QueryBuilderAntD } from '@react-querybuilder/antd';
-import { useNavigate } from 'react-router-dom';
 
-import AppCard from '@crema/components/AppCard';
 import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error404 from '@engine9/ui/errorPages/Error404';
 import Error500 from '@engine9/ui/errorPages/Error500';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useActionFunction } from '@engine9/ui/components/Actions';
+import FullWidth from '@engine9/ui/layouts/FullWidth';
+import { Button } from 'antd';
 
 import 'react-querybuilder/dist/query-builder.scss';
 import './styles.css';
-
-import { Button } from 'antd';
 
 import { useAuthenticatedAxios, useRemoteData } from '../../AuthenticatedDataEndpoint';
 
@@ -39,13 +37,12 @@ function useQueryFields() {
   return { data: d };
 }
 
-export default function Builder(props) {
+export default function SegmentBuilder(props) {
   const {
     properties, parameters = {},
   } = props;
 
   const [query, setQuery] = useState(null);
-  const navigate = useNavigate();
 
   const table = parameters.table || properties.table;
   let id = parameters.id || properties.id;
@@ -55,7 +52,7 @@ export default function Builder(props) {
 
   const onSaveAction = useActionFunction({
     action: 'table.upsert',
-    table: 'query',
+    table: 'segment',
   });
 
   const {
@@ -80,7 +77,7 @@ export default function Builder(props) {
         if (typeof initialQuery === 'string') initialQuery = JSON.parse(initialQuery);
         else initialQuery = JSON.parse(JSON.stringify(initialQuery));
       } catch (e) {
-        return `Query ${id} has an invalid structure.`;
+        return `Segment ${id} has an invalid query structure.`;
       }
 
       initialQuery.combinator = initialQuery.combinator || 'and';
@@ -105,64 +102,67 @@ export default function Builder(props) {
 
   const record = response?.[0] || {};
 
-  title = compileTemplate(title || 'No title template')({ record });
-
-  return (
-    <AppCard
-      heightFull
-      title={title}
-    >
-      {error && <div>Error retrieving data</div>}
-      {!error
-      && query && (
-      <div>
-        <h1>Query Builder</h1>
-        <Button
-          type="primary"
-          onClick={() => {
-            const formattedQuery = formatQuery(query, 'json_without_ids');
-            onSaveAction({
-              data: {
-                id,
-                query: formattedQuery,
-              },
-            });
-          }}
-        >
-          Save
-        </Button>
-        <Button
-          type="primary"
-          onClick={() => {
-            const formattedQuery = formatQuery(query, 'json_without_ids');
-            onSaveAction({
-              data: {
-                id,
-                query: formattedQuery,
-              },
-              onComplete: () => navigate('review'),
-            });
-          }}
-        >
-          Save & Preview
-        </Button>
-        <QueryBuilderAntD>
-          <QueryBuilder
-            listsAsArrays
-            fields={fieldData.fields}
-            query={query}
-            onQueryChange={
+  title = compileTemplate(title || 'No title template')({ record }) || 'Segment Builder';
+  const main = [];
+  if (error) {
+    main.push(<div key="error">Error retrieving segment data</div>);
+  } else {
+    main.push(
+      <QueryBuilderAntD key="query-builder">
+        <QueryBuilder
+          listsAsArrays
+          fields={fieldData.fields}
+          query={query}
+          onQueryChange={
             (newQuery) => {
               console.log('Setting query');
               setQuery(newQuery);
             }
           }
-          />
-        </QueryBuilderAntD>
-        {formatQuery(query, 'sql')}
-      </div>
-      )}
+        />
+      </QueryBuilderAntD>,
+    );
+    main.push(formatQuery(query, 'sql'));
+  }
 
-    </AppCard>
+  return (
+    <FullWidth
+      components={{
+        header: [
+          title,
+          <Button
+            key="save"
+            onClick={() => {
+              const formattedQuery = formatQuery(query, 'json_without_ids');
+              onSaveAction({
+                data: {
+                  id,
+                  query: formattedQuery,
+                },
+                redirect: '/segments/{{data.id}}',
+              });
+            }}
+          >
+            Save
+          </Button>,
+          <Button
+            key="preview"
+            onClick={() => {
+              const formattedQuery = formatQuery(query, 'json_without_ids');
+              onSaveAction({
+                data: {
+                  id,
+                  query: formattedQuery,
+                },
+                redirect: '/segments/{{data.id}}/review',
+              });
+            }}
+          >
+            Save & Review
+          </Button>,
+        ],
+        main,
+      }}
+    />
   );
 }

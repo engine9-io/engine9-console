@@ -367,7 +367,7 @@
                         component: 'Button',
                         properties: {
                             icon: 'plus',
-                            content: 'Add Segment',
+                            content: 'Create Segment',
                             onClick: {
                                 action: 'navigate',
                                 url: '/segments/create',
@@ -411,9 +411,35 @@
                 ],
             },
         },
+        'segments/create': {
+            layout: 'full_width',
+            components: {
+                main: [
+                    {
+                        component: 'SegmentBuilder',
+                        properties: {
+                            table: 'segment',
+                            title: '{{record.name}}',
+                        },
+                    },
+                ],
+            },
+        },
         '/segments/:id/*': {
             layout: 'full_width',
             components: {
+                header: [
+                    {
+                        component: 'Button',
+                        properties: {
+                            content: 'Review Segment',
+                            onClick: {
+                                action: 'navigate',
+                                url: '/segments/{{parameters.id}}/review',
+                            },
+                        },
+                    },
+                ],
                 main: [
                     {
                         component: 'RecordForm',
@@ -483,6 +509,16 @@
                             ],
                         },
                     },
+                ],
+            },
+        },
+
+        'segments/:id/review': {
+            layout: 'full_width',
+            components: {
+                header: 'Review Segment',
+                main: [
+                    'segment review',
                 ],
             },
         },
@@ -918,60 +954,6 @@
                                 action: 'navigate',
                                 url: '/job/{{record.id}}',
                             },
-                        },
-                    },
-                ],
-            },
-        },
-        'segments/create': {
-            layout: 'full_width',
-            components: {
-                main: [
-                    {
-                        path: 'edit',
-                        component: 'RecordForm',
-                        properties: {
-                            table: 'query',
-                            form: {
-                                title: 'Create Query',
-                                type: 'object',
-                                required: [],
-                                properties: {
-                                    label: {
-                                        type: 'string',
-                                        title: 'Label',
-                                        default: '',
-                                    },
-                                    query: {
-                                        type: 'string',
-                                        title: 'Query',
-                                        default: '',
-                                    },
-                                },
-                            },
-                            uiSchema: {
-                                query: {
-                                    'ui:widget': 'textarea',
-                                },
-                            },
-                            onSave: {
-                                action: 'navigate',
-                                url: '/queries/{{record.id}}',
-                            },
-                        },
-                    },
-                ],
-            },
-        },
-        'segments/:id/*': {
-            layout: 'full_width',
-            components: {
-                main: [
-                    {
-                        component: 'SegmentBuilder',
-                        properties: {
-                            table: 'segment',
-                            title: '{{record.name}}',
                         },
                     },
                 ],

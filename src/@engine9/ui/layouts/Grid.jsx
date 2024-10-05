@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
 import { useParams } from 'react-router-dom';
-import { ComponentWrapper } from '../../components/ComponentWrapper';
+import { DynamicComponentWrapper } from '@engine9/ui/components/DynamicComponentWrapper';
 
 function Grid({ components }) {
   if (!components) return 'No components';
@@ -15,14 +15,18 @@ function Grid({ components }) {
     <StyledMainContentView>
       <div className="e9-layout-grid">
         <div className="e9-main">
-          {main.map((item) => (
-            <ComponentWrapper
-              key={JSON.stringify(item)}
-              component={item.component}
-              properties={item.properties}
-              parameters={parameters}
-            />
-          ))}
+          {main.map((item) => {
+            if (typeof item === 'string') return <h2 key={JSON.stringify(item)}>{item}</h2>;
+            if (React.isValidElement(item)) return item;
+            return (
+              <DynamicComponentWrapper
+                key={JSON.stringify(item)}
+                component={item.component}
+                properties={item.properties}
+                parameters={parameters}
+              />
+            );
+          })}
         </div>
       </div>
     </StyledMainContentView>

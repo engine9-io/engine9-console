@@ -4,7 +4,7 @@ import AppList from '@crema/components/AppList';
 import ListEmptyResult from '@crema/components/AppList/ListEmptyResult';
 import SidebarPlaceholder from '@crema/components/AppSkeleton/SidebarListSkeleton';
 import { NavLink } from 'react-router-dom';
-import { ComponentWrapper } from '../ComponentWrapper';
+import { DynamicComponentWrapper } from '@engine9/ui/components/DynamicComponentWrapper';
 
 import {
   StyledSidebarContent,
@@ -60,7 +60,7 @@ function SidebarContent({ properties, parameters }) {
                 if (item.component) {
                   return (
                     <StyledSidebarItem>
-                      <ComponentWrapper
+                      <DynamicComponentWrapper
                         component={item.component}
                         properties={item.properties}
                         parameters={parameters}

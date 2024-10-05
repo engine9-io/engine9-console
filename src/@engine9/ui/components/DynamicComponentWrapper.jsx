@@ -32,11 +32,11 @@ const componentMap = {
   SegmentBuilder,
 };
 
-export function ComponentWrapper({ component, properties: _props = {}, parameters }) {
+export function DynamicComponentWrapper({ component, properties: _props = {}, parameters }) {
   const properties = JSON.parse(JSON.stringify(_props));
   if (Array.isArray(properties)) {
     return properties.map((p) => (
-      <ComponentWrapper
+      <DynamicComponentWrapper
         key={JSON.stringify(_props)}
         component={p.component}
         properties={p.properties}
@@ -82,4 +82,4 @@ export function ComponentWrapper({ component, properties: _props = {}, parameter
   );
 }
 
-export default ComponentWrapper;
+export default DynamicComponentWrapper;
