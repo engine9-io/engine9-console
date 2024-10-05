@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import AppScrollbar from '../AppScrollbar';
 import { rgba } from 'polished';
 
+const sidebarWidth=10;
+
 export const StyledAppContentContainer = styled(AppScrollbar)`
   display: flex;
   flex-direction: column;
@@ -107,17 +109,17 @@ export const StyledInnerSidebar = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.background.paper};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    width: 13.5rem;
+    width: ${sidebarWidth}rem;
     display: flex;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xxl}px) {
-    width: 13.5rem;
+    width: ${sidebarWidth}rem;
   }
 `;
 
 export const StyledInnerSidebarDrawer = styled(Drawer)`
   & .ant-drawer-content-wrapper {
-    width: 13.5rem !important;
+    width: ${sidebarWidth}rem !important;
   }
 
   & .ant-drawer-body {
@@ -238,7 +240,7 @@ export const StyledMainContent = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    width: calc(100% - 13.5rem);
+    width: calc(100% - ${sidebarWidth}rem);
     padding-left: 32px;
 
     [dir='rtl'] & {

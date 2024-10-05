@@ -17,11 +17,13 @@ import {
 import FullWidth from './FullWidth';
 import Sidebar from './Sidebar';
 import GridLayout from './Grid';
+import TabLayout from './TabLayout';
 
 function LayoutPicker({ layout, components }) {
   switch (layout) {
     case 'grid': return <GridLayout components={components} />;
     case 'sidebar': return <Sidebar components={components} />;
+    case 'tabs': return <TabLayout components={components} />;
     default: return <FullWidth components={components} />;
   }
 }

@@ -6,6 +6,7 @@ import MainSidebar from '../components/MainSidebar';
 const { Header } = Layout;
 const { Search } = Input;
 
+const sidebarWidth=10;
 export const StyledAppHeaderMini = styled(Header)`
   padding-left: 20px;
   padding-right: 20px;
@@ -34,7 +35,7 @@ export const StyledAppHeaderMini = styled(Header)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl}px) {
-    width: calc(100% - 13.5rem) !important;
+    width: calc(100% - ${sidebarWidth}rem) !important;
   }
 
   & .trigger {
@@ -164,7 +165,7 @@ export const StyledMiniSidebar = styled(MainSidebar)`
     flex: 0 0 auto !important;
     max-width: none !important;
     min-width: 0 !important;
-    width: 13.5rem !important;
+    width: ${sidebarWidth}rem !important;
     transition: all 0.1s linear;
     background-color: transparent;
     border-right: 1px solid ${({ theme }) => theme.palette.borderColor};
@@ -179,7 +180,7 @@ export const StyledMiniSidebar = styled(MainSidebar)`
     }
 
     @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-      width: 13.5rem !important;
+      width: ${sidebarWidth}rem !important;
     }
   }
 
@@ -322,12 +323,12 @@ export const StyledAppLayoutMiniMain = styled(Layout)`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl}px) {
-    width: calc(100% - 13.5rem) !important;
-    margin-left: 13.5rem;
+    width: calc(100% - ${sidebarWidth}rem) !important;
+    margin-left: ${sidebarWidth}rem;
 
     [dir='rtl'] & {
       margin-left: 0;
-      margin-right: 13.5rem;
+      margin-right: ${sidebarWidth}rem;
     }
   }
 `;

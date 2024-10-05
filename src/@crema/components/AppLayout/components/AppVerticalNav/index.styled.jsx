@@ -82,11 +82,11 @@ export const StyledVerticalNav = styled(Menu)`
     .ant-menu-sub.ant-menu-inline
     > .ant-menu-submenu
     > .ant-menu-submenu-title {
-    padding-left: 68px !important;
+    padding-left: 40px !important;
 
     [dir="rtl"] & {
       padding-left: 16px !important;
-      padding-right: 68px !important;
+      padding-right: 40px !important;
     }
   }
 

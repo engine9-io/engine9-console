@@ -26,7 +26,6 @@ function SidebarLayout({ components }) {
     return "There is no required 'main' component for the Sidebar layout";
   }
   const headerArray = useComponentArray(header, parameters);
-  const sidebarArray = useComponentArray(sidebar, parameters);
 
   return (
     <StyledMainContentView>
@@ -40,7 +39,7 @@ function SidebarLayout({ components }) {
       <AppsContainer
         sidebarContent={(
           <SidebarContent
-            properties={sidebarArray}
+            properties={sidebar}
             parameters={parameters}
           />
 )}

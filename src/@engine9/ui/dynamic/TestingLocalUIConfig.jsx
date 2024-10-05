@@ -196,166 +196,145 @@
             },
         },
         'person/:id/*': {
-            layout: 'sidebar',
+            layout: 'tabs',
             components: {
-                sidebar: {
-                    title: 'Person Details',
-                    items: [
-                        {
+                header: [
+                    {
+                        component: 'RecordDisplay',
+                        properties: {
+                            table: 'person',
+                            id: '{{parameters.id}}',
+                            include: {
+                                emails: {
+                                    table: 'person_email',
+                                    orderBy: 'preference_order',
+                                },
+                            },
+                            template: '{{given_name}} {{family_name}} {{#if emails.0.email}}<{{emails.0.email}}>{{/if}}',
+                        },
+                    },
+                ],
+                tabs: {
+                    review: {
+                        label: 'Review',
+                        children: {
                             component: 'RecordDisplay',
                             properties: {
                                 table: 'person',
                                 id: '{{parameters.id}}',
-                                include: {
-                                    emails: {
-                                        table: 'person_email',
-                                        orderBy: 'preference_order',
+                                template: '{{given_name}} {{family_name}}',
+                            },
+                        },
+                    },
+                    edit: {
+                        children: {
+                            path: 'edit',
+                            component: 'RecordForm',
+                            properties: {
+                                table: 'person',
+                                id: '{{parameters.id}}',
+                                form: {
+                                    title: 'Todo',
+                                    type: 'object',
+                                    required: [],
+                                    properties: {
+                                        given_name: {
+                                            type: 'string',
+                                            title: 'First Name',
+                                            default: '',
+                                        },
+                                        family_name: {
+                                            type: 'string',
+                                            title: 'Last Name',
+                                            default: '',
+                                        },
                                     },
                                 },
-                                template: '{{given_name}} {{family_name}} {{#if emails.0.email}}<{{emails.0.email}}>{{/if}}',
                             },
                         },
-                        {
-                            component: 'Link',
+                    },
+                    emails: {
+                        children: {
+                            path: 'emails',
+                            label: 'Emails',
+                            component: 'RecordTable',
                             properties: {
-                                label: 'Edit',
-                                to: 'edit',
+                                table: 'person_email',
+                                conditions: [
+                                    {
+                                        eql: 'person_id={{parameters.id}}',
+                                    },
+                                ],
+                                columns: [
+                                    {
+                                        title: 'Id',
+                                        dataIndex: 'id',
+                                        sorter: true,
+                                        width: '20%',
+                                    },
+                                    {
+                                        title: 'Email',
+                                        template: '{{email}}',
+                                        width: '40%',
+                                    },
+                                    {
+                                        title: 'Type',
+                                        template: '{{type}}',
+                                        width: '10%',
+                                    },
+                                    {
+                                        title: 'Subscription Status',
+                                        template: '{{subscription_status}}',
+                                        width: '15%',
+                                    },
+                                    {
+                                        title: 'Modified',
+                                        template: '{{date modified_at}}',
+                                        width: '15%',
+                                    },
+                                ],
                             },
                         },
-                        {
-                            component: 'Link',
+                    },
+                    address: {
+                        children: {
+                            path: 'address',
+                            label: 'Addresses',
+                            component: 'RecordDisplay',
                             properties: {
-                                label: 'Emails',
-                                to: 'emails',
+                                table: 'person_address',
+                                conditions: [
+                                    {
+                                        eql: 'person_id={{person_id}}',
+                                    },
+                                ],
+                                rows: [
+                                    '{{street}}',
+                                ],
                             },
                         },
-                        {
-                            component: 'Link',
+                    },
+                    phones: {
+                        children: {
+                            path: 'phones',
+                            label: 'Phones',
+                            component: 'RecordDisplay',
                             properties: {
-                                label: 'Addresses',
-                                to: 'address',
+                                table: 'person_phone',
+                                conditions: [
+                                    {
+                                        eql: 'person_id={{person_id}}',
+                                    },
+                                ],
+                                rows: [
+                                    '{{phone}}',
+                                    '{{phone_type}}',
+                                ],
                             },
                         },
-                    ],
-                    items2: [
-                        {
-                            component: 'Link',
-                            properties: {
-                                label: 'Phones',
-                                to: 'phones',
-                            },
-                        },
-                    ],
+                    },
+
                 },
-                main: [
-                    {
-                        component: 'RecordDisplay',
-                        properties: {
-                            table: 'person',
-                            id: '{{parameters.id}}',
-                            template: '{{given_name}} {{family_name}}',
-                        },
-                    },
-                    {
-                        path: 'edit',
-                        component: 'RecordForm',
-                        properties: {
-                            table: 'person',
-                            id: '{{parameters.id}}',
-                            form: {
-                                title: 'Todo',
-                                type: 'object',
-                                required: [],
-                                properties: {
-                                    given_name: {
-                                        type: 'string',
-                                        title: 'First Name',
-                                        default: '',
-                                    },
-                                    family_name: {
-                                        type: 'string',
-                                        title: 'Last Name',
-                                        default: '',
-                                    },
-                                },
-                            },
-                        },
-                    },
-                    {
-                        path: 'emails',
-                        label: 'Emails',
-                        component: 'RecordTable',
-                        properties: {
-                            table: 'person_email',
-                            conditions: [
-                                {
-                                    eql: 'person_id={{parameters.id}}',
-                                },
-                            ],
-                            columns: [
-                                {
-                                    title: 'Id',
-                                    dataIndex: 'id',
-                                    sorter: true,
-                                    width: '20%',
-                                },
-                                {
-                                    title: 'Email',
-                                    template: '{{email}}',
-                                    width: '40%',
-                                },
-                                {
-                                    title: 'Type',
-                                    template: '{{type}}',
-                                    width: '10%',
-                                },
-                                {
-                                    title: 'Subscription Status',
-                                    template: '{{subscription_status}}',
-                                    width: '15%',
-                                },
-                                {
-                                    title: 'Modified',
-                                    template: '{{date modified_at}}',
-                                    width: '15%',
-                                },
-                            ],
-                        },
-                    },
-                    {
-                        path: 'address',
-                        label: 'Addresses',
-                        component: 'RecordDisplay',
-                        properties: {
-                            table: 'person_address',
-                            conditions: [
-                                {
-                                    eql: 'person_id={{person_id}}',
-                                },
-                            ],
-                            rows: [
-                                '{{street}}',
-                            ],
-                        },
-                    },
-                    {
-                        path: 'phones',
-                        label: 'Phones',
-                        component: 'RecordDisplay',
-                        properties: {
-                            table: 'person_phone',
-                            conditions: [
-                                {
-                                    eql: 'person_id={{person_id}}',
-                                },
-                            ],
-                            rows: [
-                                '{{phone}}',
-                                '{{phone_type}}',
-                            ],
-                        },
-                    },
-                ],
             },
         },
         '/segments': {

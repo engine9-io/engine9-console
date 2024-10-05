@@ -148,19 +148,19 @@ export const StyledAppHeaderSectionMobile = styled.div`
     display: none;
   }
 `;
-
+const sidebarWidth=10;
 export const StyledAppMainSidebar = styled(MainSidebar)`
   &.ant-layout-sider {
     flex: 0 0 auto !important;
     max-width: none !important;
     min-width: 0 !important;
-    width: 13.5rem !important;
+    width: ${sidebarWidth}rem !important;
     transition: all 0.1s linear;
     border-right: 1px solid ${({ theme }) => theme.palette.borderColor};
     background-color: inherit;
 
     @media screen and (min-width: 1200px) and (max-width: 1300px) {
-      width: 15rem !important;
+      width: ${sidebarWidth+1.5}rem !important;
     }
   }
 
@@ -341,10 +341,10 @@ export const StyledAppLayoutMain = styled(Layout)`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xl}px) {
     flex-shrink: inherit;
-    width: calc(100% - 13.5rem) !important;
+    width: calc(100% - ${sidebarWidth}rem) !important;
   }
 
   @media screen and (min-width: 1200px) and (max-width: 1300px) {
-    width: calc(100% - 15rem) !important;
+    width: calc(100% - ${sidebarWidth+1.5}rem) !important;
   }
 `;

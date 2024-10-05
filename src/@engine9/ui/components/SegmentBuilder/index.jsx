@@ -139,7 +139,7 @@ export default function SegmentBuilder(props) {
                   id,
                   query: formattedQuery,
                 },
-                redirect: '/segments/{{data.id}}',
+                redirect: '/segments/{{record.id}}',
               });
             }}
           >
@@ -154,7 +154,7 @@ export default function SegmentBuilder(props) {
                   id,
                   query: formattedQuery,
                 },
-                redirect: '/segments/{{data.id}}/review',
+                redirect: '/segments/{{record.id}}/review',
               });
             }}
           >
