@@ -152,7 +152,7 @@ export const wallData = {
   suggestTeam: {
     icon: '/assets/images/wall/facebook.png',
     title: 'Facebook Design',
-    subTitle: 'Product Design',
+    subTitle: 'Plugin Design',
     mediaImg: '/assets/images/wall/fman.jpg',
   },
   stories: [

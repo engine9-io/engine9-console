@@ -149,7 +149,7 @@ export const brandData = [
     name: 'Sonata',
   },
 ];
-export const ProductColors = {
+export const PluginColors = {
   BLUE: '#0A8FDC',
   GREY: '#8781BD',
   PARROT: '#A3D39C',
@@ -298,7 +298,7 @@ const ecommerceData = [
     rating: 5,
     ideaFor: 1,
     brand: 1,
-    color: ProductColors.BLUE,
+    color: PluginColors.BLUE,
     reviews: 2000,
     image: [
       {
@@ -335,7 +335,7 @@ const ecommerceData = [
     ideaFor: 3,
     discount: '20',
     rating: 4,
-    color: ProductColors.PINK,
+    color: PluginColors.PINK,
     reviews: 4356,
     image: [
       {
@@ -372,7 +372,7 @@ const ecommerceData = [
     brand: 1,
     discount: '30',
     rating: 4,
-    color: ProductColors.BLUE,
+    color: PluginColors.BLUE,
     reviews: 235,
     image: [
       {
@@ -409,7 +409,7 @@ const ecommerceData = [
     rating: 4,
     ideaFor: 2,
     brand: 4,
-    color: ProductColors.PINK,
+    color: PluginColors.PINK,
     reviews: 4323,
     image: [
       {
@@ -446,7 +446,7 @@ const ecommerceData = [
     brand: 1,
     discount: '25',
     rating: 3,
-    color: ProductColors.GREY,
+    color: PluginColors.GREY,
     reviews: 2000,
     image: [
       {
@@ -483,7 +483,7 @@ const ecommerceData = [
     ideaFor: 3,
     brand: 3,
     rating: 3,
-    color: ProductColors.LIGHT_PINK,
+    color: PluginColors.LIGHT_PINK,
     reviews: 4356,
     image: [
       {
@@ -520,7 +520,7 @@ const ecommerceData = [
     brand: 2,
     discount: '30',
     rating: 4,
-    color: ProductColors.PINK,
+    color: PluginColors.PINK,
     reviews: 235,
     image: [
       {
@@ -557,7 +557,7 @@ const ecommerceData = [
     ideaFor: 2,
     brand: 1,
     rating: 2,
-    color: ProductColors.PARROT,
+    color: PluginColors.PARROT,
     reviews: 4323,
     image: [
       {
@@ -594,7 +594,7 @@ const ecommerceData = [
     brand: 2,
     ideaFor: 1,
     rating: 5,
-    color: ProductColors.PINK,
+    color: PluginColors.PINK,
     reviews: 2000,
     image: [
       {
@@ -631,7 +631,7 @@ const ecommerceData = [
     ideaFor: 2,
     brand: 3,
     rating: 4,
-    color: ProductColors.LIGHT_PINK,
+    color: PluginColors.LIGHT_PINK,
     reviews: 4356,
     image: [
       {
@@ -668,7 +668,7 @@ const ecommerceData = [
     rating: 3,
     ideaFor: 3,
     brand: 2,
-    color: ProductColors.PARROT,
+    color: PluginColors.PARROT,
     reviews: 235,
     image: [
       {
@@ -704,7 +704,7 @@ const ecommerceData = [
     discount: '35',
     rating: 4,
     ideaFor: 2,
-    color: ProductColors.GREY,
+    color: PluginColors.GREY,
     reviews: 4323,
     brand: 3,
     image: [

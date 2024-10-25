@@ -34,8 +34,11 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
       },
       alias: {
-        map: [['@crema', './src/@crema'],
-          ['@engine9', './src/@engine9']],
+        map: [
+          ['@crema', './src/@crema'],
+          ['@engine9', './src/@engine9'],
+          ['@market', './src/@market'],
+        ],
         extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
       },
     },

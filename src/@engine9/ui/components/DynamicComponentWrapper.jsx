@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import AppErrorBoundary from '@crema/components/AppErrorBoundary';
+import Market from '@market';
 import Button from './Button';
 import RecordList from './RecordList';
 import RecordTable from './RecordTable';
@@ -30,6 +31,7 @@ const componentMap = {
   Title,
   Profile,
   SegmentBuilder,
+  Market,
 };
 
 export function DynamicComponentWrapper({ component, properties: _props = {}, parameters }) {

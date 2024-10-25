@@ -15,7 +15,7 @@ export const invoiceData = {
     date: '05/10/2019',
     dueDate: '05/10/2020',
   },
-  products: [
+  plugins: [
     {
       id: 1,
       item: 'Logo Design',

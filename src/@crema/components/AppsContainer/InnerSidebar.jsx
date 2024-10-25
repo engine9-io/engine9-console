@@ -22,7 +22,7 @@ const InnerSidebar = (props) => {
       >
         {sidebarContent}
       </StyledInnerSidebarDrawer>
-      <StyledInnerSidebarCard style={{ borderRadius: 16 }}>
+      <StyledInnerSidebarCard style={{ borderRadius: 0 }}>
         {sidebarContent}
       </StyledInnerSidebarCard>
     </StyledInnerSidebar>

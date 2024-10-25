@@ -3,7 +3,7 @@ const ecommerceDat = {
     {
       id: 3,
       icon: 'domain',
-      title: 'Total Products',
+      title: 'Total Plugins',
       value: 2140,
       growth: 33,
       color: '#54B435',
@@ -33,7 +33,7 @@ const ecommerceDat = {
       color: '#F04F47',
     },
   ],
-  popularProducts: [
+  popularPlugins: [
     {
       id: 1,
       icon: '/assets/images/dashboard/product_image_1.png',

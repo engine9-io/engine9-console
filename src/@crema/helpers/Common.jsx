@@ -37,9 +37,9 @@ export const getFileSize = (bytes) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-export const multiPropsFilter = (products, filters, stringKey = 'title') => {
+export const multiPropsFilter = (plugins, filters, stringKey = 'title') => {
   const filterKeys = Object.keys(filters);
-  return products.filter((product) => {
+  return plugins.filter((product) => {
     return filterKeys.every((key) => {
       if (filters[key].length === 0) return true;
       // Loops again if product[key] is an array (for material attribute).

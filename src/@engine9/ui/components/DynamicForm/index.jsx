@@ -2,6 +2,7 @@ import React from 'react';
 import Form from '@rjsf/antd';
 import { StyleProvider } from '@ant-design/cssinjs';
 import validator from '@rjsf/validator-ajv8';
+import { Button, Collapse } from 'antd';
 
 const log = (type) => console.log.bind(console, type);
 
@@ -13,8 +14,21 @@ function DynamicForm({
 
   // Only deal with fields we've explicitly requested, even if there's others in the form
   const localData = {};
-  // only if specified, otherwise defaults are ignored
-  fieldNames.forEach((f) => { if (data[f] !== undefined) localData[f] = data[f]; });
+
+  // only if specified, otherwise database defaults are ignored
+  fieldNames.forEach((f) => {
+    const config = form.properties[f];
+    if (data[f] !== undefined) {
+      localData[f] = data[f];
+      if (!data[f]) {
+        if (config.default !== undefined) {
+          localData[f] = config.default;
+        } else if (config.type === 'string') {
+          localData[f] = '';// because null strings should be filled with something not null
+        }
+      }
+    }
+  });
 
   const localOnSubmit = (formData) => {
     if (typeof onSubmit === 'function') onSubmit(formData);
@@ -34,6 +48,14 @@ function DynamicForm({
         onChange={log('changed')}
         onSubmit={({ formData }) => localOnSubmit(formData)}
         onError={localOnError}
+      >
+        <Button type="primary" htmlType="submit">Save</Button>
+      </Form>
+      <Collapse items={[
+        { key: 'data', label: 'Data JSON', children: <pre>{JSON.stringify(localData, null, 4)}</pre> },
+        { key: 'form', label: 'Schema JSON', children: <pre>{JSON.stringify(form, null, 4)}</pre> },
+        { key: 'form', label: 'UI Schema', children: <pre>{JSON.stringify(uiSchema, null, 4)}</pre> },
+      ]}
       />
 
     </StyleProvider>

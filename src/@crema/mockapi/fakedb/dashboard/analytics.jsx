@@ -165,7 +165,7 @@ const analyticsData = {
       { time: '32', value: 635 },
     ],
   },
-  topSellingProduct: [
+  topSellingPlugin: [
     {
       id: 1,
       icon: '/assets/images/dashboard/product_image_1.png',
@@ -261,7 +261,7 @@ const analyticsData = {
     },
     {
       id: 2,
-      page: '/products/index.html',
+      page: '/plugins/index.html',
       pageView: 234,
       visitors: 232,
     },

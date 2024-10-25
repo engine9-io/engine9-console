@@ -7,11 +7,13 @@ export const StyledMainContentView = styled(Content)`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 20px 20px 0;
+  padding:0;
+  //padding: 20px 20px 0;
   min-height: auto !important;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.md}px) {
-    padding: 30px 32px 0;
+    padding:0;
+    //padding: 30px 32px 0;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xxl}px) {
     max-width: 1650px;

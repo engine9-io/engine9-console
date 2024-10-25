@@ -6,14 +6,14 @@ import ecommerceData, {
   discountList,
   idealFor,
   productCategory,
-  ProductColors,
+  PluginColors,
   recentOrders,
 } from './ecommerceData';
 
 export {
   ecommerceData,
   brandData,
-  ProductColors,
+  PluginColors,
   idealFor,
   addresses,
   discountList,

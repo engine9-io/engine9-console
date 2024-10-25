@@ -25,6 +25,10 @@ export default defineConfig({
         find: '@engine9',
         replacement: fileURLToPath(new URL('./src/@engine9', import.meta.url)),
       },
+      {
+        find: '@market',
+        replacement: fileURLToPath(new URL('./src/@market', import.meta.url)),
+      },
     ],
   },
 });

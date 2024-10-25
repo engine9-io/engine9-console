@@ -11,7 +11,7 @@ import ecommerce, {
   customersData,
   discountList,
   idealFor,
-  ProductColors,
+  PluginColors,
   recentOrders,
 } from './ecommerce/ecommerceData';
 import reactSlickData from './thirdParty/reactSlick';
@@ -26,7 +26,7 @@ export {
   aboutUsData,
   addresses,
   brandData,
-  ProductColors,
+  PluginColors,
   idealFor,
   discountList,
   cartItems,

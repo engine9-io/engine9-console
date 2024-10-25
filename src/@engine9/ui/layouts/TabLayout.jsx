@@ -4,8 +4,8 @@ import queryString from 'query-string';
 
 import { useParams } from 'react-router-dom';
 
-import AppsContainer from '@crema/components/AppsContainer';
-import AppsContent from '@crema/components/AppsContainer/AppsContent';
+// import AppsContainer from '@crema/components/AppsContainer';
+// import AppsContent from '@crema/components/AppsContainer/AppsContent';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
 // import SidebarContent from '@engine9/ui/components/SidebarContent';
 import { useComponentArray } from './LayoutUtilities';
@@ -32,7 +32,6 @@ export default function TabbarLayout({ components }) {
       if (typeof obj !== 'object') {
         throw new Error(`Invalid key ${key} in tabs, should be an object`);
       }
-      console.log({ key }, obj);
       return { ...obj, key };
     });
   }

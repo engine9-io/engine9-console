@@ -28,7 +28,7 @@ function LayoutPicker({ layout, components }) {
   }
 }
 
-function LayoutHome({ menuConfig, routeConfig }) {
+export default function LayoutHome({ menuConfig, routeConfig, components }) {
   const [isCollapsed, setCollapsed] = useState(false);
   // const { footer, footerType } = useLayoutContext();
   const footer = false; const footerType = false;
@@ -52,6 +52,8 @@ function LayoutHome({ menuConfig, routeConfig }) {
           onToggleSidebar={onToggleSidebar}
         />
         <StyledMainMiniScrollbar>
+          {components
+          || (
           <Routes>
             {routeConfig.map((r) => (
               <Route
@@ -75,6 +77,7 @@ function LayoutHome({ menuConfig, routeConfig }) {
 )}
             />
           </Routes>
+          )}
           <AppFooter />
         </StyledMainMiniScrollbar>
       </StyledAppLayoutMiniSidebarMain>
@@ -82,5 +85,3 @@ function LayoutHome({ menuConfig, routeConfig }) {
     </StyledAppLayoutMiniSidebar>
   );
 }
-
-export default LayoutHome;

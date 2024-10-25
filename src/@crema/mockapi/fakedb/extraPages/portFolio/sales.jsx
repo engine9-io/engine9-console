@@ -1,13 +1,13 @@
 export const salesData = [
   {
     id: 2001,
-    ques: 'How much one could earn using your products?',
+    ques: 'How much one could earn using your plugins?',
     ans: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     tags: ['SALES', 'EARNING', 'PRE-SALES'],
   },
   {
     id: 2002,
-    ques: 'What are some common taxes applied to these products?',
+    ques: 'What are some common taxes applied to these plugins?',
     ans: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     tags: ['SALES', 'EARNING', 'PRE-SALES'],
   },
@@ -25,7 +25,7 @@ export const salesData = [
   },
   {
     id: 2005,
-    ques: 'How much one could earn using your products?',
+    ques: 'How much one could earn using your plugins?',
     ans: "orem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.",
     tags: ['SALES', 'EARNING', 'PRE-SALES'],
   },

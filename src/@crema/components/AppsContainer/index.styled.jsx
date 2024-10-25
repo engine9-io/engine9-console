@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AppScrollbar from '../AppScrollbar';
 import { rgba } from 'polished';
 
-const sidebarWidth=10;
+const sidebarWidth=13;
 
 export const StyledAppContentContainer = styled(AppScrollbar)`
   display: flex;
@@ -138,7 +138,7 @@ export const StyledInnerSidebarCard = styled(Card)`
   }
 
   & .ant-card-body {
-    padding: 0;
+    padding: 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -156,7 +156,7 @@ export const StyledAppWrap = styled.div`
 export const StyledAppWrapHeader = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  //margin-bottom: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xxl}px) {
     margin-bottom: 20px;
