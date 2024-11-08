@@ -14,7 +14,7 @@ import Profile from '../components/Profile';
 
 import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
 
-import useLocalUIConfig from './localUI/TestingLocalUIConfig';
+import useLocalUIConfig from '../../localUI/TestingLocalUIConfig';
 
 function DynamicAccountLayout() {
   const useLocal = true;

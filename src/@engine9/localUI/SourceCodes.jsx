@@ -1,5 +1,16 @@
 /* eslint-disable indent */
   export default {
+      menu: {
+        data: {
+            children: {
+                source_code: {
+                    title: 'Source Codes',
+                    icon: 'forklift',
+                    url: '/source_codes',
+                },
+            },
+        },
+      },
       routes: {
         source_codes: {
           layout: 'full_width',

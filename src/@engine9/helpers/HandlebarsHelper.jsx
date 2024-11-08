@@ -6,6 +6,7 @@ Handlebars.registerHelper('date', (d, f) => {
   if (typeof f === 'string')format = f;
   return getFormattedDateTime(d, undefined, format);
 });
+Handlebars.registerHelper('json', (d) => JSON.stringify(d));
 
 // eslint-disable-next-line import/prefer-default-export
 export function compileTemplate(s) {

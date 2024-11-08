@@ -6,6 +6,7 @@ import Messages from './Messages';
 import People from './People';
 import Reports from './Reports';
 import Market from './Market';
+import Transactions from './Transactions';
 
 export default function useLocalUI() {
   return JSON.parse(JSON.stringify(merge.all([{
@@ -32,37 +33,27 @@ export default function useLocalUI() {
                 },
             },
         },
-        'message-menu': {
+        message: {
             title: 'Messages',
             icon: 'messages',
             type: 'collapse',
             children: {
                 campaigns: {
-                    title: 'Campaigns',
+                    title: 'List',
                     icon: 'campaign',
-                    url: '/campaign',
+                    url: '/messages',
                 },
             },
         },
-        'data-menu': {
+        data: {
             title: 'Data',
             icon: 'data',
             type: 'collapse',
             children: {
-                job: {
-                    title: 'Jobs',
-                    icon: 'forklift',
-                    url: '/job',
-                },
                 report: {
                     title: 'Reports',
                     icon: 'report',
                     url: '/report',
-                },
-                source_codes: {
-                    title: 'Source Codes',
-                    icon: 'report',
-                    url: '/source_codes',
                 },
             },
         },
@@ -78,12 +69,12 @@ export default function useLocalUI() {
                             table: 'person',
                             columns: [
                                 {
+                                    name: 'year_modified',
                                     eql: 'YEAR(modified_at)',
-                                    alias: 'year_modified',
                                 },
                                 {
                                     eql: 'count(id)',
-                                    alias: 'count',
+                                    name: 'count',
                                 },
                             ],
                             conditions: [
@@ -102,5 +93,5 @@ export default function useLocalUI() {
             },
         },
     },
-    }, SourceCodes, Messages, People, Reports, Jobs, Market])));
+    }, SourceCodes, Messages, People, Reports, Jobs, Transactions, Market])));
 }

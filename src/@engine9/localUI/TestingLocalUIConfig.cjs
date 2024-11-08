@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 // eslint-disable-next-line import/no-unresolved
-const UIWorker = require('../../../../../../engine9-server/workers/UIWorker');
+const UIWorker = require('../../../../engine9-server/workers/UIWorker');
 
 (async () => {
   const worker = new UIWorker();

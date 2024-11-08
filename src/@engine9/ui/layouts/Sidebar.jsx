@@ -7,7 +7,7 @@ import AppsContainer from '@crema/components/AppsContainer';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';
 // import AppPageMeta from '@crema/components/AppPageMeta';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
-import SidebarContent from '@engine9/ui/components/SidebarContent';
+// import SidebarContent from '@engine9/ui/components/SidebarContent';
 import { Flex } from 'antd';
 import { useComponentArray } from './LayoutUtilities';
 
@@ -26,6 +26,18 @@ function SidebarLayout({ components }) {
     return "There is no required 'main' component for the Sidebar layout";
   }
   const headerArray = useComponentArray(header, parameters);
+  const sidebarElements = [].concat(sidebar).map((config) => {
+    // if (!config) return '';
+    const { component, properties } = config;
+
+    return (
+      <DynamicComponentWrapper
+        component={component}
+        properties={properties}
+        parameters={parameters}
+      />
+    );
+  });
 
   return (
     <StyledMainContentView>
@@ -37,12 +49,7 @@ function SidebarLayout({ components }) {
         </div>
       )}
       <AppsContainer
-        sidebarContent={(
-          <SidebarContent
-            properties={sidebar}
-            parameters={parameters}
-          />
-)}
+        sidebarContent={sidebarElements}
       >
         <AppsContent>
           <div className="e9-layout-person-tabs">

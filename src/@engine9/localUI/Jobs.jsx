@@ -1,5 +1,16 @@
 /* eslint-disable indent */
   export default {
+    menu: {
+      data: {
+          children: {
+            job: {
+              title: 'Jobs',
+              icon: 'forklift',
+              url: '/job',
+          },
+          },
+      },
+    },
     routes: {
       job: {
         layout: 'full_width',

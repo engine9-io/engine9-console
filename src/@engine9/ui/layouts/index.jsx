@@ -6,7 +6,6 @@ import { appendIcons } from '@engine9/ui/Icons';
 import { Routes, Route } from 'react-router-dom';
 import AppSidebar from '@crema/components/AppLayout/MiniSidebarToggle/AppSidebar';
 import AppHeader from '@crema/components/AppLayout/MiniSidebarToggle/AppHeader';
-import AppThemeSetting from '@crema/components/AppThemeSetting';
 import AppFooter from '@crema/components/AppLayout/components/AppFooter';
 import {
   StyledAppLayoutMiniSidebar,
@@ -81,7 +80,6 @@ export default function LayoutHome({ menuConfig, routeConfig, components }) {
           <AppFooter />
         </StyledMainMiniScrollbar>
       </StyledAppLayoutMiniSidebarMain>
-      <AppThemeSetting />
     </StyledAppLayoutMiniSidebar>
   );
 }

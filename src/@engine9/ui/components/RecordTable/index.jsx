@@ -65,7 +65,8 @@ function RecordTable(props) {
     if (c.template) {
       if (typeof c.template !== 'string') throw new Error('column.template should be a string, not anything else');
       const renderTemplate = compileTemplate(c.template);
-      o.render = (text, context) => (renderTemplate(context) || 'no content');
+      o.render = (text, context) => (
+        renderTemplate({ table, record: context, parameters }) || '');
     }
     return o;
   });

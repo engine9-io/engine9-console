@@ -1,11 +1,10 @@
 /* eslint-disable indent */
   export default {
       routes: {
-        campaign: {
-          layout: 'full_width',
+        messages: {
+          layout: 'sidebar',
             components: {
-                header: [
-                    'Campaigns',
+                sidebar: [
                     {
                         component: 'Button',
                         properties: {
@@ -17,19 +16,11 @@
                             },
                         },
                     },
-                ],
-                main: [
                     {
-                        component: 'RecordTable',
+                        component: 'RecordList',
                         properties: {
                             table: 'campaign',
                             columns: [
-                                {
-                                    title: 'Id',
-                                    dataIndex: 'id',
-                                    sorter: true,
-                                    width: '20%',
-                                },
                                 {
                                     title: 'Name',
                                     dataIndex: 'name',
@@ -42,6 +33,30 @@
                                 onClick: {
                                     action: 'navigate',
                                     url: '/campaign/{{record.id}}',
+                                },
+                            },
+                        },
+                    },
+
+                ],
+                main: [
+                    {
+                        component: 'RecordTable',
+                        properties: {
+                            table: 'message_summary',
+                            columns: [
+                                {
+                                    title: 'Name',
+                                    dataIndex: 'name',
+                                    sorter: true,
+                                    template: '{{record.message_id}}',
+                                    width: '40%',
+                                },
+                            ],
+                            onRecord: {
+                                onClick: {
+                                    action: 'navigate',
+                                    url: '/message/{{record.id}}',
                                 },
                             },
                         },
@@ -248,7 +263,7 @@
                 ],
             },
         },
-        '/campaign/:campaign_id/message_set/:message_set_id/message/:id': {
+        '/message/:id': {
             layout: 'fullwidth',
             components: {
                 main: [

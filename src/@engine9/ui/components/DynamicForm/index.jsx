@@ -53,8 +53,8 @@ function DynamicForm({
       </Form>
       <Collapse items={[
         { key: 'data', label: 'Data JSON', children: <pre>{JSON.stringify(localData, null, 4)}</pre> },
-        { key: 'form', label: 'Schema JSON', children: <pre>{JSON.stringify(form, null, 4)}</pre> },
-        { key: 'form', label: 'UI Schema', children: <pre>{JSON.stringify(uiSchema, null, 4)}</pre> },
+        { key: 'schema', label: 'Schema JSON', children: <pre>{JSON.stringify(form, null, 4)}</pre> },
+        { key: 'ui', label: 'UI Schema', children: <pre>{JSON.stringify(uiSchema, null, 4)}</pre> },
       ]}
       />
 

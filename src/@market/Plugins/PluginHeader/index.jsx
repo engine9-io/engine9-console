@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { AppstoreOutlined, UnorderedListOutlined } from '@ant-design/icons';
 import clsx from 'clsx';
 import {
@@ -10,7 +9,7 @@ import {
   StyledPluginHeaderSearch,
   StyledPluginHeaderShowingText,
 } from './index.styled';
-import { VIEW_TYPE } from '../index';
+import { VIEW_TYPE } from '../constants';
 
 function PluginHeader({ onChange, viewType, setViewType }) {
   return (
@@ -49,9 +48,3 @@ function PluginHeader({ onChange, viewType, setViewType }) {
 }
 
 export default PluginHeader;
-
-PluginHeader.propTypes = {
-  viewType: PropTypes.string,
-  onChange: PropTypes.func,
-  setViewType: PropTypes.func,
-};

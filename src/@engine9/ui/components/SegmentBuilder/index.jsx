@@ -83,7 +83,6 @@ export default function SegmentBuilder(props) {
       initialQuery.combinator = initialQuery.combinator || 'and';
       initialQuery.rules = initialQuery.rules || [];
 
-      console.log('Setting initialQuery ');
       setQuery(initialQuery);
     }
 
@@ -106,6 +105,8 @@ export default function SegmentBuilder(props) {
   const main = [];
   if (error) {
     main.push(<div key="error">Error retrieving segment data</div>);
+  } else if (!query) {
+    main.push('No query');
   } else {
     main.push(
       <QueryBuilderAntD key="query-builder">
