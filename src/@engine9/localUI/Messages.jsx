@@ -79,15 +79,38 @@
                                     sorter: true,
                                 },
                                 {
+                                    title: 'Channel',
+                                    dataIndex: 'channel',
+                                    sorter: true,
+                                },
+                                {
                                   title: 'Label',
                                   dataIndex: 'label',
                                   sorter: true,
                                   },
+                                  {
+                                    title: 'Sent',
+                                    dataIndex: 'sent',
+                                    sorter: true,
+                                    },
+                                    {
+                                        title: 'Clicked',
+                                        dataIndex: 'clicked',
+                                        sorter: true,
+                                    },
                                 {
-                                  title: 'ID',
-                                  dataIndex: 'message_id',
-                                  sorter: true,
-                              },
+                                    title: 'Attr. Revenue',
+                                    dataIndex: 'attributed_revenue',
+                                    sorter: true,
+                                },
+                                {
+                                    title: 'Spend',
+                                    dataIndex: 'spend',
+                                    sorter: true,
+                                },
+                            ],
+                            orderBy: [
+                                { column: 'publish_date', orderByDirection: 'desc' },
                             ],
                             onRecord: {
                                 onClick: {

@@ -23,7 +23,7 @@ export const getCurrentMonthDate = (date, format = 'MMM DD,YYYY') => {
   return dayjs().format(format);
 };
 
-export const getFormattedDateTime = (
+export const getFormattedRelativeDate = (
   value = 0,
   unit = 'days',
   format = 'MMM DD,YYYY',

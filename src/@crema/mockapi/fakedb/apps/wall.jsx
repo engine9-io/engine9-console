@@ -1,6 +1,6 @@
 import { generateUniqueID } from '@crema/helpers/StringHelper';
 import { MessageType } from './chat/connectionList';
-import { getFormattedDateTime } from '@crema/helpers/DateHelper';
+import { getFormattedRelativeDate } from '@crema/helpers/DateHelper';
 
 export const wallData = {
   id: 123,
@@ -46,31 +46,31 @@ export const wallData = {
       id: 5454,
       profilePic: '/assets/images/avatar/A4.jpg',
       name: 'Sarah Taylor',
-      date: getFormattedDateTime(-12, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
+      date: getFormattedRelativeDate(-12, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
     },
     {
       id: 435,
       profilePic: '/assets/images/avatar/A5.jpg',
       name: 'Johna Say',
-      date: getFormattedDateTime(-30, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
+      date: getFormattedRelativeDate(-30, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
     },
     {
       id: 54345,
       profilePic: '/assets/images/avatar/A25.jpg',
       name: 'Nikunj Lee',
-      date: getFormattedDateTime(-50, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
+      date: getFormattedRelativeDate(-50, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
     },
     {
       id: 7656,
       profilePic: '/assets/images/avatar/A24.jpg',
       name: 'Kennie Sebestian',
-      date: getFormattedDateTime(-120, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
+      date: getFormattedRelativeDate(-120, 'minutes', 'ddd MMM DD YYYY kk:mm:ss Z'),
     },
     {
       id: 875456,
       profilePic: '/assets/images/avatar/A23.jpg',
       name: 'Bose Warne',
-      date: getFormattedDateTime(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+      date: getFormattedRelativeDate(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
     },
   ],
   photos: [
@@ -369,7 +369,7 @@ export const postsList = [
       profilePic: '/assets/images/avatar/A18.jpg',
       id: 323445,
     },
-    date: getFormattedDateTime(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+    date: getFormattedRelativeDate(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
     attachments: [
       {
         id: 5445,
@@ -406,7 +406,7 @@ export const postsList = [
         liked: true,
         message_type: MessageType.TEXT,
         comment: 'Wow! these pics are so mesmerizing.',
-        date: getFormattedDateTime(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+        date: getFormattedRelativeDate(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
       },
       {
         id: 324,
@@ -423,7 +423,7 @@ export const postsList = [
           url: '/assets/images/wall/fman.jpg',
           mime_type: 'image/jpg',
         },
-        date: getFormattedDateTime(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+        date: getFormattedRelativeDate(-1, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
       },
     ],
   },
@@ -434,7 +434,7 @@ export const postsList = [
       profilePic: '/assets/images/avatar/A3.jpg',
       id: 3243,
     },
-    date: getFormattedDateTime(-2, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+    date: getFormattedRelativeDate(-2, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
     attachments: [
       {
         id: 5445,
@@ -465,7 +465,7 @@ export const postsList = [
         message_type: MessageType.TEXT,
         liked: true,
         comment: 'Wow! Excellent, these images are so beautiful.',
-        date: getFormattedDateTime(0, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+        date: getFormattedRelativeDate(0, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
       },
     ],
   },
@@ -476,7 +476,7 @@ export const postsList = [
       profilePic: '/assets/images/avatar/A12.jpg',
       id: 32434,
     },
-    date: getFormattedDateTime(-3, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
+    date: getFormattedRelativeDate(-3, 'days', 'ddd MMM DD YYYY kk:mm:ss Z'),
     attachments: [
       {
         id: 54546,

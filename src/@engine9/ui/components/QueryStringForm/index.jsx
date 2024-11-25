@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { QueryBuilder, formatQuery } from 'react-querybuilder';
 import { QueryBuilderAntD } from '@react-querybuilder/antd';
 import { useSearchParams } from 'react-router';
+import JSON5 from 'json5';
 import { Button } from 'antd';
 
 function QueryStringForm(props) {
-  const { fields, query: queryProp } = props;
+  const { fields } = props;
   const [searchParams, setSearchParams] = useSearchParams();
-  let initQuery = queryProp;
-  const squery = searchParams.get('query');
-  if (squery) initQuery = JSON.parse(squery);
+  let initQuery = { combinator: 'and', rules: [] };
+  const rules = searchParams.get('rules');
+  if (rules) initQuery = { combinator: 'and', rules: JSON5.parse(rules) };
   const [query, setQuery] = useState(initQuery);
 
-  useEffect(() => {
-    if (!query?.rules) {
-      let initialQuery = query || '{}';
-      try {
-        if (typeof initialQuery === 'string') initialQuery = JSON.parse(initialQuery);
-        else initialQuery = JSON.parse(JSON.stringify(initialQuery));
-      } catch (e) {
-        return 'Query has an invalid query structure.';
-      }
-
-      initialQuery.combinator = initialQuery.combinator || 'and';
-      initialQuery.rules = initialQuery.rules || [];
-
-      setQuery(initialQuery);
-    }
-
-    return undefined;
-  }, [queryProp]);
   return (
     <div className="query-string-form">
       <QueryBuilderAntD key="query-builder">
         <QueryBuilder
           listsAsArrays
+          controlElements={{
+            addGroupAction: null,
+            combinatorSelector: null,
+          }}
           fields={fields}
           query={query}
           onQueryChange={
@@ -45,24 +32,21 @@ function QueryStringForm(props) {
         />
       </QueryBuilderAntD>
       <Button
+        variant="solid"
+        color="primary"
         key="save"
         onClick={() => {
-          const formattedQuery = formatQuery(query, 'json_without_ids');
-          const p = { ...searchParams, query: formattedQuery };
+          const cleanedQuery = JSON5.parse(formatQuery(query, 'json_without_ids'));
+          const p = { ...searchParams, rules: JSON5.stringify(cleanedQuery.rules) };
           setSearchParams(p);
         }}
       >
-        Filter
+        Apply Rules
       </Button>
-      ,
-      {
-      formatQuery(query, {
-        format: 'natural_language',
-        parseNumbers: true,
-      })
-}
+
     </div>
   );
 }
 
 export default QueryStringForm;
+export { QueryStringForm };

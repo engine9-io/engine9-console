@@ -41,6 +41,9 @@
                                 width: '40%',
                             },
                           ],
+                          orderBy: [
+                            { column: 'ts', orderByDirection: 'desc' },
+                          ],
                       },
                   },
               ],

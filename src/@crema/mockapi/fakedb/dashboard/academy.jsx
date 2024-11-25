@@ -1,4 +1,4 @@
-import { getFormattedDateTime } from '@crema/helpers/DateHelper';
+import { getFormattedRelativeDate } from '@crema/helpers/DateHelper';
 
 const academyData = {
   academicStats: [
@@ -183,7 +183,7 @@ const academyData = {
       color: '#F88333',
       letter: 'B',
       content: 'You had 1 class on 28 August',
-      date: getFormattedDateTime(-5, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
+      date: getFormattedRelativeDate(-5, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
     },
     {
       id: 2,
@@ -191,7 +191,7 @@ const academyData = {
       color: '#0A8FDC',
       letter: 'A',
       content: 'Mighel sent you a message',
-      date: getFormattedDateTime(-10, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
+      date: getFormattedRelativeDate(-10, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
     },
     {
       id: 3,
@@ -199,7 +199,7 @@ const academyData = {
       color: '#FE8EB9',
       letter: 'G',
       content: 'You have taken AI class',
-      date: getFormattedDateTime(-15, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
+      date: getFormattedRelativeDate(-15, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
     },
     {
       id: 4,
@@ -207,7 +207,7 @@ const academyData = {
       color: '#47B46B',
       letter: 'W',
       content: 'You have registered for Python',
-      date: getFormattedDateTime(-25, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
+      date: getFormattedRelativeDate(-25, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
     },
     {
       id: 5,
@@ -215,7 +215,7 @@ const academyData = {
       color: '#FCA7A4',
       letter: 'J',
       content: 'Nancy sent you a message',
-      date: getFormattedDateTime(-50, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
+      date: getFormattedRelativeDate(-50, 'minutes', 'MMMM DD, YYYY, h:mm:ss a'),
     },
   ],
   courseDetails: [

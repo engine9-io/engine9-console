@@ -2,29 +2,45 @@ import React, { useState } from 'react';
 import AppCard from '@crema/components/AppCard';
 import { Table, Collapse } from 'antd';
 import { FilterOutlined, FilterFilled } from '@ant-design/icons';
-// import qs from 'qs';
-import './index.css';
+import { getFormattedDate } from '@crema/helpers/DateHelper';
+
+import JSON5 from 'json5';
+
 import { keepPreviousData } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
+import { defaultOperators, formatQuery } from 'react-querybuilder';
 
+import { useSearchParams } from 'react-router';
 import { useActionFunction } from '../Actions';
-import QueryStringForm from '../QueryStringForm';
-
+import { QueryStringForm } from '../QueryStringForm';
 import { useRemoteData } from '../../AuthenticatedDataEndpoint';
+import './index.css';
 
 const { Panel } = Collapse;
 
 function RecordTable(props) {
   const { properties, parameters } = props;
-
   const table = parameters.table || properties.table;
-  const { title, include, conditions } = properties;
-  let renderedConditions = '';
-  if (conditions) {
+  const {
+    title, include, conditions: conditionsProperty, orderBy,
+  } = properties;
+  const conditions = [];
+  if (conditionsProperty) {
     const t = compileTemplate(JSON.stringify(conditions));
-    renderedConditions = `conditions=${escape(t({ parameters, properties }))}&`;
+    conditions.push(t({ parameters, properties }));
+  }
+  const [searchParams] = useSearchParams();
+  let rules = searchParams.get('rules');
+
+  if (rules) {
+    rules = JSON5.parse(rules);
+    const eql = formatQuery({ combinator: 'and', rules }, { format: 'sql' });
+
+    conditions.push({ eql });
   }
 
+  let renderedConditions = '';
+  renderedConditions = `conditions=${escape(JSON5.stringify(conditions))}&`;
   const [tableParams, setTableParams] = useState({
     pagination: {
       position: ['bottomRight'],
@@ -44,12 +60,16 @@ function RecordTable(props) {
       pageSize: 25,
     },
   });
+  let orderByClause = '';
+  if (orderBy && orderBy.length > 0) {
+    orderByClause = `&orderBy=${escape(JSON5.stringify(orderBy))}`;
+  }
 
   const offset = (tableParams.pagination.current - 1) * 5;
   const {
     isPending, error, isFetching, data, schema,
   } = useRemoteData({
-    uri: `/data/tables/${table}?schema=true&${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`,
+    uri: `/data/tables/${table}?schema=true&${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}${orderByClause}`,
     onComplete: () => {
       setTableParams({
         ...tableParams,
@@ -62,6 +82,7 @@ function RecordTable(props) {
       });
     },
   });
+  const usd = Intl.NumberFormat('en', { currency: 'USD', style: 'currency' }).format;
 
   if (!Array.isArray(properties.columns)) return 'No column array specified';
   const columns = properties.columns.map((c) => {
@@ -71,7 +92,25 @@ function RecordTable(props) {
       const renderTemplate = compileTemplate(c.template);
       o.render = (text, context) => (
         renderTemplate({ table, record: context, parameters }) || '');
+    } else {
+      const match = schema?.columns.find((col) => col.column_name === c.dataIndex);
+      if (match) {
+        const type = match.column_type;
+        switch (type) {
+          case 'decimal':
+            o.render = ((v) => usd(parseFloat(v)));
+            break;
+          case 'date':
+          case 'datetime':
+          case 'timestamp':
+            o.render = ((v) => getFormattedDate(v));
+            break;
+          default:
+            break;
+        }
+      }
     }
+
     return o;
   });
 
@@ -100,8 +139,11 @@ function RecordTable(props) {
       // onMouseLeave: (event) => {}, // mouse leave row
     },
   });
-
-  const filterQuery = {};
+  const fields = (schema?.columns || []).map((c) => ({
+    name: c.column_name,
+    label: `${c.label}`,
+    type: c.column_type,
+  }));
   const header = (
     <Collapse
       defaultActiveKey={[]}
@@ -113,25 +155,22 @@ function RecordTable(props) {
       <Panel
         header={<h3>{title}</h3>}
         key="1"
-        // extra={}
+        extra={rules?.length && fields?.length ? (
+          <div style={{ padding: '0px 20px' }}>
+            {formatQuery({ combinator: 'and', rules }, {
+              format: 'natural_language',
+              parseNumbers: true,
+              getOperators: () => defaultOperators,
+              fields,
+            })}
+          </div>
+        ) : ''}
       >
         <div
           className="record-table-filter"
         >
-          {!schema && 'No schema'}
           <QueryStringForm
-            fields={(schema?.columns || []).map((c) => ({
-              name: c.name,
-              label: c.label,
-              type: c.type,
-            }))}
-            data={filterQuery}
-            onSubmit={(formValues) => {
-              alert('Submitting ', formValues);
-            }}
-            onQueryChange={(q) => {
-              console.log('Query changed:', q);
-            }}
+            fields={fields}
           />
         </div>
       </Panel>

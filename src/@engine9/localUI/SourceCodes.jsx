@@ -27,8 +27,22 @@
                                   dataIndex: 'source_code',
                                   sorter: true,
                                   template: '{{record.source_code}}',
-                                  width: '40%',
                               },
+                              {
+                                title: 'Channel',
+                                dataIndex: 'source_code_channel',
+                                sorter: true,
+                            },
+                            {
+                                title: 'Revenue',
+                                dataIndex: 'revenue',
+                                sorter: true,
+                            },
+                            {
+                                title: 'Spend',
+                                dataIndex: 'spend',
+                                sorter: true,
+                            },
                           ],
                       },
                   },

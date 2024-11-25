@@ -1,10 +1,10 @@
 import Handlebars from 'handlebars';
-import { getFormattedDateTime } from '@crema/helpers/DateHelper';
+import { getFormattedDate } from '@crema/helpers/DateHelper';
 
 Handlebars.registerHelper('date', (d, f) => {
   let format;
   if (typeof f === 'string')format = f;
-  return getFormattedDateTime(d, undefined, format);
+  return getFormattedDate(d, format);
 });
 Handlebars.registerHelper('json', (d) => JSON.stringify(d));
 
