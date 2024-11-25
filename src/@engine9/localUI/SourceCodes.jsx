@@ -3,7 +3,7 @@
       menu: {
         data: {
             children: {
-                source_code: {
+                source_codes: {
                     title: 'Source Codes',
                     icon: 'forklift',
                     url: '/source_codes',

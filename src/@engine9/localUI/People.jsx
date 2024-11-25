@@ -276,7 +276,7 @@
                   {
                       component: 'RecordTable',
                       properties: {
-                          table: 'segment',
+                          table: 'global_segment',
                           columns: [
                               {
                                   title: 'Id',

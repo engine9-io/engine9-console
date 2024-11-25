@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AppScrollbar from '../AppScrollbar';
 import { rgba } from 'polished';
 
-const sidebarWidth=13;
+const sidebarWidth='16rem';
 
 export const StyledAppContentContainer = styled(AppScrollbar)`
   display: flex;
@@ -109,17 +109,17 @@ export const StyledInnerSidebar = styled.div`
   border: 1px solid ${({ theme }) => theme.palette.background.paper};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    width: ${sidebarWidth}rem;
+    width: ${sidebarWidth};
     display: flex;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.xxl}px) {
-    width: ${sidebarWidth}rem;
+    width: ${sidebarWidth};
   }
 `;
 
 export const StyledInnerSidebarDrawer = styled(Drawer)`
   & .ant-drawer-content-wrapper {
-    width: ${sidebarWidth}rem !important;
+    width: ${sidebarWidth} !important;
   }
 
   & .ant-drawer-body {
@@ -199,10 +199,12 @@ export const StyledMenuBtn = styled(Button)`
     font-size: 20px;
   }
 `;
-
+const heightsPart=`
+`;
 export const StyledAppContainer = styled.div`
   display: flex;
-  height: calc(100vh - 138px);
+  flex:1;
+  ${/*height: calc(100vh - 138px);
 
   .appMainFixedFooter & {
     height: calc(100vh - 184px) !important;
@@ -231,7 +233,7 @@ export const StyledAppContainer = styled.div`
     .appMainFooter & {
       height: calc(100vh - 199px);
     }
-  }
+  }*/''}
 `;
 
 export const StyledMainContent = styled.div`
@@ -240,7 +242,7 @@ export const StyledMainContent = styled.div`
   flex-direction: column;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}px) {
-    width: calc(100% - ${sidebarWidth}rem);
+    width: calc(100% - ${sidebarWidth});
     padding-left: 32px;
 
     [dir='rtl'] & {

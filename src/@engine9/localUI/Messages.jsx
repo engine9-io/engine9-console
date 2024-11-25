@@ -1,45 +1,44 @@
 /* eslint-disable indent */
   export default {
       routes: {
-        messages: {
+        campaigns: {
           layout: 'sidebar',
-            components: {
-                sidebar: [
-                    {
-                        component: 'Button',
-                        properties: {
-                            icon: 'plus',
-                            content: 'Add Campaign',
+          components: {
+            sidebar: [
+                {
+                    component: 'Button',
+                    properties: {
+                        icon: 'plus',
+                        content: 'Add Campaign',
+                        onClick: {
+                            action: 'navigate',
+                            url: '/campaign/create',
+                        },
+                    },
+                },
+                {
+                    component: 'RecordList',
+                    properties: {
+                        table: 'campaign',
+                        columns: [
+                            {
+                                title: 'Name',
+                                dataIndex: 'name',
+                                sorter: true,
+                                template: '{{record.name}}',
+                                width: '40%',
+                            },
+                        ],
+                        onRecord: {
                             onClick: {
                                 action: 'navigate',
-                                url: '/campaign/create',
+                                url: '/campaign/{{record.id}}',
                             },
                         },
                     },
-                    {
-                        component: 'RecordList',
-                        properties: {
-                            table: 'campaign',
-                            columns: [
-                                {
-                                    title: 'Name',
-                                    dataIndex: 'name',
-                                    sorter: true,
-                                    template: '{{record.name}}',
-                                    width: '40%',
-                                },
-                            ],
-                            onRecord: {
-                                onClick: {
-                                    action: 'navigate',
-                                    url: '/campaign/{{record.id}}',
-                                },
-                            },
-                        },
-                    },
-
-                ],
-                main: [
+                },
+            ],
+            main: [
                     {
                         component: 'RecordTable',
                         properties: {
@@ -57,6 +56,45 @@
                                 onClick: {
                                     action: 'navigate',
                                     url: '/message/{{record.id}}',
+                                },
+                            },
+                        },
+                    },
+                ],
+            },
+        },
+        messages: {
+            layout: 'full_width',
+            components: {
+                header: [
+                    'Messages',
+                ],
+                main: [
+                    {
+                        component: 'RecordTable',
+                        properties: {
+                            table: 'global_message_summary',
+                            columns: [
+                                {
+                                    title: 'Publish Date',
+                                    dataIndex: 'publish_date',
+                                    sorter: true,
+                                },
+                                {
+                                  title: 'Label',
+                                  dataIndex: 'label',
+                                  sorter: true,
+                                  },
+                                {
+                                  title: 'ID',
+                                  dataIndex: 'message_id',
+                                  sorter: true,
+                              },
+                            ],
+                            onRecord: {
+                                onClick: {
+                                    action: 'navigate',
+                                    url: '/message/{{record.message_id}}',
                                 },
                             },
                         },
@@ -162,8 +200,7 @@
         'campaign/:id/*': {
             layout: 'sidebar',
             components: {
-                sidebar: {
-                    items: [
+                sidebar: [
                         {
                             component: 'Title',
                             properties: {
@@ -204,7 +241,6 @@
                             },
                         },
                     ],
-                },
                 main: [
                     {
                         component: 'Title',

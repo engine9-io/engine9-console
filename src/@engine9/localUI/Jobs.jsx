@@ -4,11 +4,11 @@
       data: {
           children: {
             job: {
-              title: 'Jobs',
-              icon: 'forklift',
-              url: '/job',
-          },
-          },
+                title: 'Jobs',
+                icon: 'forklift',
+                url: '/job',
+                },
+            },
       },
     },
     routes: {

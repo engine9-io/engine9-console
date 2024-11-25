@@ -38,7 +38,6 @@ const AppsContainer = (props) => {
           </h2>
         </QueueAnim>
       </StyledAppWrapHeader>
-
       <StyledAppContainer>
         {/*<QueueAnim
             style={{ zIndex: 3 }}

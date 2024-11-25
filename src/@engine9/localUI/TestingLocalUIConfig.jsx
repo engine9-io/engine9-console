@@ -93,5 +93,5 @@ export default function useLocalUI() {
             },
         },
     },
-    }, SourceCodes, Messages, People, Reports, Jobs, Transactions, Market])));
+    }, Messages, SourceCodes, People, Reports, Jobs, Transactions, Market])));
 }

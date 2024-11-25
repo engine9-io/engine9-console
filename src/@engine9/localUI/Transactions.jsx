@@ -3,7 +3,7 @@
       menu: {
         data: {
             children: {
-                source_code: {
+                transactions: {
                     title: 'Transactions',
                     icon: 'transaction',
                     url: '/transactions',
