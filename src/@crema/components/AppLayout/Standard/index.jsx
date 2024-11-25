@@ -16,7 +16,7 @@ import {
   StyledStandardScrollbar,
 } from './index.styled';
 import PropsTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const { useBreakpoint } = Grid;
 

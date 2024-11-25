@@ -1,5 +1,5 @@
 import { Button, Form } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import styled from 'styled-components';
 
 export const StyledSign = styled.div`

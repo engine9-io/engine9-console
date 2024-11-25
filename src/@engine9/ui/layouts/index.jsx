@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { FooterType } from '@crema/constants/AppEnums';
 // import { useLayoutContext } from '@crema/context/AppContextProvider/LayoutContextProvider';
 import { appendIcons } from '@engine9/ui/Icons';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import AppSidebar from '@crema/components/AppLayout/MiniSidebarToggle/AppSidebar';
 import AppHeader from '@crema/components/AppLayout/MiniSidebarToggle/AppHeader';
 import AppFooter from '@crema/components/AppLayout/components/AppFooter';

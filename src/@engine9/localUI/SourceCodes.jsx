@@ -15,13 +15,11 @@
         source_codes: {
           layout: 'full_width',
           components: {
-              header: [
-                  'Source Codes',
-              ],
               main: [
                   {
                       component: 'RecordTable',
                       properties: {
+                        title: 'Source Codes',
                           table: 'source_code_summary',
                           columns: [
                               {

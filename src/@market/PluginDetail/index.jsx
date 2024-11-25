@@ -1,25 +1,24 @@
-import { useEffect } from "react";
-import AppCard from "@crema/components/AppCard";
-import AppInfoView from "@crema/components/AppInfoView";
-import AppAnimate from "@crema/components/AppAnimate";
-import AppRowContainer from "@crema/components/AppRowContainer";
-import { Col } from "antd";
-import AppPageMeta from "@crema/components/AppPageMeta";
-import { useParams } from "react-router-dom";
-import { StyledPluginDetails } from "./index.styled";
-import { useGetDataApi } from "@crema/hooks/APIHooks";
-import Header from "./Header";
-import PluginView from "./PluginView";
-import SimilarPlugin from "./SimilarPlugins";
-import PluginImageSlide from "./PluginImageSlide";
+import { useEffect } from 'react';
+import AppCard from '@crema/components/AppCard';
+import AppInfoView from '@crema/components/AppInfoView';
+import AppAnimate from '@crema/components/AppAnimate';
+import AppRowContainer from '@crema/components/AppRowContainer';
+import { Col } from 'antd';
+import AppPageMeta from '@crema/components/AppPageMeta';
+import { useParams } from 'react-router';
+import { useGetDataApi } from '@crema/hooks/APIHooks';
+import { StyledPluginDetails } from './index.styled';
+import Header from './Header';
+import PluginView from './PluginView';
+import SimilarPlugin from './SimilarPlugins';
+import PluginImageSlide from './PluginImageSlide';
 
-const PluginDetail = () => {
+function PluginDetail() {
   const { id } = useParams();
-  const [{ apiData: currentPlugin }, { setQueryParams }] =
-    useGetDataApi("/api/ecommerce/get");
+  const [{ apiData: currentPlugin }, { setQueryParams }] = useGetDataApi('/api/ecommerce/get');
 
   useEffect(() => {
-    setQueryParams({ id: id });
+    setQueryParams({ id });
   }, [id]);
 
   return (
@@ -44,6 +43,6 @@ const PluginDetail = () => {
       <AppInfoView />
     </StyledPluginDetails>
   );
-};
+}
 
 export default PluginDetail;

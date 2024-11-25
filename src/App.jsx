@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import AppContextProvider from '@crema/context/AppContextProvider';
 import AppThemeProvider from '@crema/context/AppThemeProvider';
 import AppLocaleProvider from '@crema/context/AppLocaleProvider';

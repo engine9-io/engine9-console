@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "antd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import PropTypes from "prop-types";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import {

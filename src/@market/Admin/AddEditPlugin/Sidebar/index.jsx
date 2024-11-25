@@ -1,7 +1,7 @@
 import React from 'react';
 import AppCard from '@crema/components/AppCard';
 import { productCategory } from '@crema/mockapi/fakedb/ecommerce/ecommerceData';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import AppRowContainer from '@crema/components/AppRowContainer';
 import AppScrollbar from '@crema/components/AppScrollbar';
 import {

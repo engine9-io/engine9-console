@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import AppLoader from '@crema/components/AppLoader';
 import Error500 from '@engine9/ui/errorPages/Error500';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 import { useAuthenticatedAxios } from '../../AuthenticatedDataEndpoint';
 

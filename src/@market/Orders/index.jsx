@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AppsContainer from '@crema/components/AppsContainer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useIntl } from 'react-intl';
 import AppsHeader from '@crema/components/AppsContainer/AppsHeader';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';

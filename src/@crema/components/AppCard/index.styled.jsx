@@ -23,6 +23,7 @@ export const StyledCard = styled(Card)`
     margin-bottom: 0;
 
     & .ant-card-head-title {
+      font-size:1.4em;
       line-height: 1.4993rem;
       padding: 12px 0 0 0;
     }

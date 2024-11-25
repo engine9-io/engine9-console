@@ -41,6 +41,7 @@ export function useRemoteData(
   },
 ) {
   const axiosWithAuth = useAuthenticatedAxios();
+  let schema;
 
   const {
     isPending, isFetching, error, data,
@@ -55,6 +56,7 @@ export function useRemoteData(
         results.data?.includes?.forEach((inc) => {
           includeLookup[`${inc.type}:${inc.id}`] = { id: inc.id, ...inc.attributes };
         });
+        schema = results.data.schema;
         const output = results.data.data.map((record) => {
           const m = { id: record.id, ...record.attributes };
           Object.keys(record.relationships || {}).forEach((relId) => {
@@ -67,7 +69,7 @@ export function useRemoteData(
       }),
   });
   if (isPending || isFetching || error) return { isPending, isFetching, error };
-  return { data };
+  return { data, schema };
 }
 
 export default useAuthenticatedAxios;

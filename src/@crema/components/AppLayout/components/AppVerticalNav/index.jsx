@@ -5,7 +5,7 @@ import defaultConfig from "@crema/constants/defaultConfig";
 import { useSidebarContext } from "@crema/context/AppContextProvider/SidebarContextProvider";
 import { MenuStyle } from "@crema/constants/AppEnums";
 import { StyledVerticalNav } from "./index.styled";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import PropTypes from "prop-types";
 
 const AppVerticalNav = ({ routesConfig }) => {

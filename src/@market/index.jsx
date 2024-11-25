@@ -1,8 +1,7 @@
 import React from 'react';
 import Plugins from '@market/Plugins';
 import PluginDetail from '@market/PluginDetail';
-import { Routes, Route } from 'react-router-dom';
-
+import { Routes, Route } from 'react-router';
 
 export default function Market() {
   return (

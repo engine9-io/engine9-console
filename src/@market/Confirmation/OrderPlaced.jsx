@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppRowContainer from '@crema/components/AppRowContainer';
 import { Col } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import {
   StyledConfirmationCard,
   StyledLinkBtn,

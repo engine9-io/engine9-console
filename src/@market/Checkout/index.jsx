@@ -4,7 +4,7 @@ import IntlMessages from "@crema/helpers/IntlMessages";
 import AppAnimate from "@crema/components/AppAnimate";
 import AppRowContainer from "@crema/components/AppRowContainer";
 import { Col } from "antd";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import AppPageMeta from "@crema/components/AppPageMeta";
 import QueueAnim from "rc-queue-anim";
 import DeliveryAddress from "./DeliveryAddress";

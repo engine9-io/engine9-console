@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import AppCard from '@crema/components/AppCard';
-import { Table } from 'antd';
+import { Table, Collapse } from 'antd';
+import { FilterOutlined, FilterFilled } from '@ant-design/icons';
 // import qs from 'qs';
 import './index.css';
 import { keepPreviousData } from '@tanstack/react-query';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 
 import { useActionFunction } from '../Actions';
+import QueryStringForm from '../QueryStringForm';
 
 import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 
+const { Panel } = Collapse;
+
 function RecordTable(props) {
-  const { title, properties, parameters } = props;
+  const { properties, parameters } = props;
 
   const table = parameters.table || properties.table;
-  const { include, conditions } = properties;
+  const { title, include, conditions } = properties;
   let renderedConditions = '';
   if (conditions) {
     const t = compileTemplate(JSON.stringify(conditions));
@@ -23,7 +27,7 @@ function RecordTable(props) {
 
   const [tableParams, setTableParams] = useState({
     pagination: {
-      position: ['topRight'],
+      position: ['bottomRight'],
       onChange: (_page, _pageSize) => {
         setTableParams({
           ...tableParams,
@@ -43,9 +47,9 @@ function RecordTable(props) {
 
   const offset = (tableParams.pagination.current - 1) * 5;
   const {
-    isPending, error, isFetching, data,
+    isPending, error, isFetching, data, schema,
   } = useRemoteData({
-    uri: `/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`,
+    uri: `/data/tables/${table}?schema=true&${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}`,
     onComplete: () => {
       setTableParams({
         ...tableParams,
@@ -97,13 +101,50 @@ function RecordTable(props) {
     },
   });
 
+  const filterQuery = {};
+  const header = (
+    <Collapse
+      defaultActiveKey={[]}
+      expandIconPosition="end"
+      style={{ border: 0 }}
+      // eslint-disable-next-line react/no-unstable-nested-components
+      expandIcon={({ isActive }) => (isActive ? <FilterFilled /> : <FilterOutlined />)}
+    >
+      <Panel
+        header={<h3>{title}</h3>}
+        key="1"
+        // extra={}
+      >
+        <div
+          className="record-table-filter"
+        >
+          {!schema && 'No schema'}
+          <QueryStringForm
+            fields={(schema?.columns || []).map((c) => ({
+              name: c.name,
+              label: c.label,
+              type: c.type,
+            }))}
+            data={filterQuery}
+            onSubmit={(formValues) => {
+              alert('Submitting ', formValues);
+            }}
+            onQueryChange={(q) => {
+              console.log('Query changed:', q);
+            }}
+          />
+        </div>
+      </Panel>
+    </Collapse>
+  );
+
   return (
     <AppCard
       heightFull
-      title={title}
-      className="no-card-space-ltr-rtl"
+      className="no-card-space-ltr-rtl record-table"
     >
       {error && <div>Error retrieving data</div>}
+      {header}
       <Table
         columns={columns}
         rowKey={(record) => record.id}

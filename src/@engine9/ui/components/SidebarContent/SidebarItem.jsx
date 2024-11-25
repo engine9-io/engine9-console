@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { StyledSidebarItem, StyledDots } from './index.styled';
 
 function LabelItem({ label = '(No label)', to = '/', dot }) {

@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import Auth from "@aws-amplify/auth";
 import PropTypes from "prop-types";
 import { awsConfig } from "./aws-exports";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useInfoViewActionsContext } from "@crema/context/AppContextProvider/InfoViewContextProvider";
 
 const AwsCognitoContext = createContext();

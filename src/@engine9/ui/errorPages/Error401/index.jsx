@@ -1,18 +1,18 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import IntlMessages from "@crema/helpers/IntlMessages";
-import AppAnimate from "@crema/components/AppAnimate";
-import AppPageMeta from "@crema/components/AppPageMeta";
-import Logo from "../../../assets/icon/401.svg";
+import React from 'react';
+import { useNavigate } from 'react-router';
+import IntlMessages from '@crema/helpers/IntlMessages';
+import AppAnimate from '@crema/components/AppAnimate';
+import AppPageMeta from '@crema/components/AppPageMeta';
+import Logo from '../../../../assets/icon/401.svg';
 import {
   StyledErrorButton,
   StyledErrorContainer,
   StyledErrorContent,
   StyledErrorImage,
   StyledErrorPara,
-} from "../index.styled";
+} from '../index.styled';
 
-const Error401 = () => {
+function Error401() {
   const navigate = useNavigate();
 
   const onGoBackToHome = () => {
@@ -40,6 +40,6 @@ const Error401 = () => {
       </AppAnimate>
     </>
   );
-};
+}
 
 export default Error401;

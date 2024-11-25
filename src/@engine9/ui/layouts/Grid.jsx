@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { DynamicComponentWrapper } from '@engine9/ui/components/DynamicComponentWrapper';
 
 function Grid({ components }) {

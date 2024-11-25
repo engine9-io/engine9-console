@@ -5,7 +5,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from '@tanstack/react-query';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import LayoutHome from '@engine9/ui/layouts';
 
 import AccountPicker from '../components/AccountPicker';

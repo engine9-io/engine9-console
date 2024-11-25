@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 // eslint-disable-next-line import/prefer-default-export
 export function useAccountId() {

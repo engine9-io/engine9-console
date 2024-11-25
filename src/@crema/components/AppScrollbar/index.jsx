@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import SimpleBarReact from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
 import styled from 'styled-components';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 import PropTypes from 'prop-types';
 

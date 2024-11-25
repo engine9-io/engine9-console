@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Tabs, Flex } from 'antd';
 import queryString from 'query-string';
 
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 // import AppsContainer from '@crema/components/AppsContainer';
 // import AppsContent from '@crema/components/AppsContainer/AppsContent';

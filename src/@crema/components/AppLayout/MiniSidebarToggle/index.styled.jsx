@@ -5,7 +5,7 @@ import MainSidebar from '../components/MainSidebar';
 
 const { Header } = Layout;
 const { Search } = Input;
-const mainSidebarWidth="10rem";
+const mainSidebarWidth="11rem";
 
 export const StyledHeaderMiniSidebar = styled(Header)`
   padding-left: 20px;

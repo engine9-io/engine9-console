@@ -5,7 +5,6 @@
           layout: 'full_width',
           components: {
               header: [
-                  'Everybody',
                   {
                       component: 'Button',
                       properties: {
@@ -22,6 +21,7 @@
                   {
                       component: 'RecordTable',
                       properties: {
+                          title: 'Everybody',
                           table: 'person',
                           include: {
                               emails: {
@@ -33,12 +33,12 @@
                                   title: 'Name',
                                   dataIndex: 'name',
                                   sorter: true,
-                                  template: '{{record.given_name}} {{record.family_name}} {{record.emails.0.email}}',
+                                  template: '{{record.given_name}} {{record.family_name}}',
                                   width: '40%',
                               },
                               {
                                   title: 'Email',
-                                  template: '{{emails.0.email}}',
+                                  template: '{{record.emails.0.email}}',
                                   width: '40%',
                               },
                           ],

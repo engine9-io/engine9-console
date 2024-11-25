@@ -2,3 +2,7 @@
 .ant-pagination-jump-next .ant-pagination-item{
   display:none
 }
+
+.record-table .ant-collapse .ant-collapse-content-box{
+  background:#EEEEF3 !important;
+}

@@ -26,7 +26,7 @@ function RecordList(props) {
   const {
     isPending, error, isFetching, data,
   } = useRemoteData({
-    uri: `/data/tables/${table}?${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}`,
+    uri: `/data/tables/${table}?schema=true&${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}`,
   });
 
   if (isPending || isFetching) return <AppLoader />;

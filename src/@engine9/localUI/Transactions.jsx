@@ -15,13 +15,11 @@
         transactions: {
           layout: 'full_width',
           components: {
-              header: [
-                  'Transactions',
-              ],
               main: [
                   {
                       component: 'RecordTable',
                       properties: {
+                          title: 'Transactions',
                           table: 'transaction_summary',
                           columns: [
                               {

@@ -4,7 +4,7 @@ import PluginSidebar from './Sidebar';
 import PluginContent from './Content';
 import { useInfoViewActionsContext } from '@crema/context/AppContextProvider/InfoViewContextProvider';
 import { postDataApi, putDataApi } from '@crema/hooks/APIHooks';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { getStringFromHtml } from '@crema/helpers/StringHelper';
 import dayjs from 'dayjs';
 import { Form } from 'antd';

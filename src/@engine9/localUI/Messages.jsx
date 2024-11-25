@@ -66,13 +66,11 @@
         messages: {
             layout: 'full_width',
             components: {
-                header: [
-                    'Messages',
-                ],
                 main: [
                     {
                         component: 'RecordTable',
                         properties: {
+                            title: 'Messages',
                             table: 'global_message_summary',
                             columns: [
                                 {

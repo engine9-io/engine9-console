@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import PropTypes from 'prop-types';
 import { getRouteHorMenus } from './HorizontalMenuUtils';
 

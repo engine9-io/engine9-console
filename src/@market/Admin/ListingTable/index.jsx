@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import OrderActions from './OrderActions';
 import { Typography } from 'antd';
+import { ellipsisLines } from '@crema/helpers/StringHelper';
+import { useNavigate } from 'react-router';
+import OrderActions from './OrderActions';
 import { StyledListingStatus } from '../index.styled';
 import { StyledOrderTable } from '../../Orders/index.styled';
-import { ellipsisLines } from '@crema/helpers/StringHelper';
-import { useNavigate } from 'react-router-dom';
 
 const getPaymentStatusColor = (inStock) => {
   switch (inStock) {
@@ -36,7 +36,7 @@ const getColumns = (navigate) => [
             marginRight: 10,
           }}
           src={record?.image?.[0]?.src}
-          alt='crema-logo'
+          alt="crema-logo"
         />
         {ellipsisLines(record.title)}
       </Typography.Link>
@@ -60,7 +60,7 @@ const getColumns = (navigate) => [
       <StyledListingStatus
         style={{
           color: getPaymentStatusColor(record?.inStock),
-          backgroundColor: getPaymentStatusColor(record?.inStock) + '44',
+          backgroundColor: `${getPaymentStatusColor(record?.inStock)}44`,
         }}
       >
         {record?.inStock ? 'In Stock' : 'Out of Stock'}
@@ -71,7 +71,12 @@ const getColumns = (navigate) => [
     title: 'Price',
     dataIndex: 'mrp',
     key: 'mrp',
-    render: (price) => <span>${price}</span>,
+    render: (price) => (
+      <span>
+        $
+        {price}
+      </span>
+    ),
   },
   {
     title: 'Actions',
@@ -83,7 +88,7 @@ const getColumns = (navigate) => [
   },
 ];
 
-const PluginTable = ({ productData, loading }) => {
+function PluginTable({ productData, loading }) {
   const navigate = useNavigate();
 
   return (
@@ -95,7 +100,7 @@ const PluginTable = ({ productData, loading }) => {
       scroll={{ x: 'auto' }}
     />
   );
-};
+}
 
 export default PluginTable;
 

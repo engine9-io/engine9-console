@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { useAccountId } from '@engine9/helpers/AccountHelper';
 import { compileTemplate } from '@engine9/helpers/HandlebarsHelper';
 import { useAuthenticatedAxios } from '@engine9/ui/AuthenticatedDataEndpoint';

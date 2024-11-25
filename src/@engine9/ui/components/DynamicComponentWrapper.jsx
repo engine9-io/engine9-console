@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import AppErrorBoundary from '@crema/components/AppErrorBoundary';
 import Market from '@market';
 import Button from './Button';

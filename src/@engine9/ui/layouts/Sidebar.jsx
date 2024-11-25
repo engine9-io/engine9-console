@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DynamicComponentWrapper } from '@engine9/ui/components/DynamicComponentWrapper';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router';
 
 import AppsContainer from '@crema/components/AppsContainer';
 import AppsContent from '@crema/components/AppsContainer/AppsContent';

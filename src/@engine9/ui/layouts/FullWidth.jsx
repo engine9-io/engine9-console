@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { Flex } from 'antd';
 import { useComponentArray } from './LayoutUtilities';
 

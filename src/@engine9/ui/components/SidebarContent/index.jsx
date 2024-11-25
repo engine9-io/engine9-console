@@ -3,7 +3,7 @@ import React from 'react';
 import AppList from '@crema/components/AppList';
 import ListEmptyResult from '@crema/components/AppList/ListEmptyResult';
 import SidebarPlaceholder from '@crema/components/AppSkeleton/SidebarListSkeleton';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { DynamicComponentWrapper } from '@engine9/ui/components/DynamicComponentWrapper';
 
 import {

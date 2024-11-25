@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { HeartFilled, HeartOutlined, StarOutlined } from '@ant-design/icons';
 import {
   StyledPluginGridAction,
@@ -15,7 +15,7 @@ import {
   StyledPluginListFavorCheck,
 } from './index.styled';
 
-const GridItem = (props) => {
+function GridItem(props) {
   const { item } = props;
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
@@ -26,9 +26,9 @@ const GridItem = (props) => {
 
   return (
     <StyledPluginGridCard
-      className='item-hover'
+      className="item-hover"
       onClick={() => {
-        navigate('../plugins/' + item.id);
+        navigate(`../plugins/${item.id}`);
       }}
     >
       <StyledPluginGridCardHeader>
@@ -38,7 +38,7 @@ const GridItem = (props) => {
         </StyledPluginGridCardHeaderBadge>
 
         <StyledPluginGridCardHeaderThumb>
-          <img src={item.image[0].src} alt='watch' />
+          <img src={item.image[0].src} alt="watch" />
         </StyledPluginGridCardHeaderThumb>
 
         <StyledPluginListFavorCheck onClick={OnFavorite}>
@@ -46,28 +46,33 @@ const GridItem = (props) => {
         </StyledPluginListFavorCheck>
       </StyledPluginGridCardHeader>
 
-      <StyledPluginGridCardTitle className='text-truncate'>
+      <StyledPluginGridCardTitle className="text-truncate">
         {item.title}
       </StyledPluginGridCardTitle>
 
-      <StyledPluginGridCardPara className='text-truncate'>
+      <StyledPluginGridCardPara className="text-truncate">
         {item.description}
       </StyledPluginGridCardPara>
 
       <StyledPluginGridAction>
         <StyledPluginGridActionItem>
-          $ {+item.mrp - Math.round((+item.mrp * +item.discount) / 100)}
+          $
+          {' '}
+          {+item.mrp - Math.round((+item.mrp * +item.discount) / 100)}
         </StyledPluginGridActionItem>
-        <StyledPluginGridActionItem className='cut'>
-          ${item.mrp}
+        <StyledPluginGridActionItem className="cut">
+          $
+          {item.mrp}
         </StyledPluginGridActionItem>
-        <StyledPluginGridActionItem className='green'>
-          {item.discount}% <IntlMessages id='ecommerce.off' />
+        <StyledPluginGridActionItem className="green">
+          {item.discount}
+          %
+          <IntlMessages id="ecommerce.off" />
         </StyledPluginGridActionItem>
       </StyledPluginGridAction>
     </StyledPluginGridCard>
   );
-};
+}
 
 export default GridItem;
 

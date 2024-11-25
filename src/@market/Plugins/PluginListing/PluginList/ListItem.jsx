@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import IntlMessages from '@crema/helpers/IntlMessages';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { HeartFilled, HeartOutlined } from '@ant-design/icons';
 import { Checkbox, Rate } from 'antd';
 import {
@@ -34,7 +34,7 @@ const settings = {
   slidesToScroll: 1,
 };
 
-const ListItem = (props) => {
+function ListItem(props) {
   const { item } = props;
   const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
@@ -45,27 +45,25 @@ const ListItem = (props) => {
 
   return (
     <StyledPluginListCard
-      className='item-hover'
+      className="item-hover"
       onClick={() => {
-        navigate('../plugins/' + item.id);
+        navigate(`../plugins/${item.id}`);
       }}
     >
       <StyledPluginListCardContent>
         <StyledPluginListSlider>
-          <Slider className='slick-slider-global' {...settings}>
-            {item.image.map((img) => {
-              return (
-                <StyledPluginListSliderThumb key={img.id}>
-                  <img src={img.src} alt='watch' />
-                </StyledPluginListSliderThumb>
-              );
-            })}
+          <Slider className="slick-slider-global" {...settings}>
+            {item.image.map((img) => (
+              <StyledPluginListSliderThumb key={img.id}>
+                <img src={img.src} alt="watch" />
+              </StyledPluginListSliderThumb>
+            ))}
           </Slider>
         </StyledPluginListSlider>
 
         <StyledPluginListSliderContent>
           <StyledPluginListSliderContentHeader>
-            <h3 className='text-truncate'>{item.title}</h3>
+            <h3 className="text-truncate">{item.title}</h3>
 
             <StyledPluginListFavorCheck onClick={OnFavorite}>
               {isFavorite ? <HeartFilled /> : <HeartOutlined />}
@@ -79,28 +77,34 @@ const ListItem = (props) => {
           <StyledPluginListPrice>
             <StyledPluginListPriceItem>
               <StyledPluginListPriceItemText>
-                <IntlMessages id='ecommerce.exclusivePrice' />:
+                <IntlMessages id="ecommerce.exclusivePrice" />
+                :
               </StyledPluginListPriceItemText>
               <StyledPluginListPriceItemValue>
-                ${+item.mrp - Math.round((+item.mrp * +item.discount) / 100)}
+                $
+                {+item.mrp - Math.round((+item.mrp * +item.discount) / 100)}
               </StyledPluginListPriceItemValue>
             </StyledPluginListPriceItem>
             <StyledPluginListPriceItem>
-              <IntlMessages id='ecommerce.mrp' />:
+              <IntlMessages id="ecommerce.mrp" />
+              :
               <StyledPluginListPriceItemValueCut>
-                ${item.mrp}
+                $
+                {item.mrp}
               </StyledPluginListPriceItemValueCut>
             </StyledPluginListPriceItem>
-            <StyledPluginListPriceItem className='green'>
-              {item.discount}% <IntlMessages id='ecommerce.off' />
+            <StyledPluginListPriceItem className="green">
+              {item.discount}
+              %
+              <IntlMessages id="ecommerce.off" />
             </StyledPluginListPriceItem>
           </StyledPluginListPrice>
 
           <StyledPluginListAction>
-            <StyledPluginListActionItem className='add-to-com'>
+            <StyledPluginListActionItem className="add-to-com">
               <Checkbox />
               <span>
-                <IntlMessages id='ecommerce.addToCompare' />
+                <IntlMessages id="ecommerce.addToCompare" />
               </span>
             </StyledPluginListActionItem>
             <StyledPluginListActionItem>
@@ -112,7 +116,7 @@ const ListItem = (props) => {
       </StyledPluginListCardContent>
     </StyledPluginListCard>
   );
-};
+}
 
 export default ListItem;
 
