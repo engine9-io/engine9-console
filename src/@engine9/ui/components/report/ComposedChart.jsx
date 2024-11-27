@@ -15,44 +15,15 @@ import {
 import queryString from 'query-string';
 import { Typography, Row, Col } from 'antd';
 
-import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { relativeDate, formatValue } from '@engine9/helpers/formatters';
-import { useColorFunc } from './colors';
+import { useColorFunc } from './Colors';
 
-export function Delta(props) {
+export default function ReportComposedChart({ properties }) {
   const {
-    label, value, percent, format,
-  } = props;
-  let className = '';
-  if (value > 0) {
-    className = 'text-success';
-  } else if (value < 0) {
-    className = 'text-danger';
-  }
-
-  return (
-    <div className="d-flex p-3 justify-content-around align-middle text-center">
-      <div>
-        <strong>{label}</strong>
-        <div className={className}>
-          <Typography variant="h4">{formatValue(value, format)}</Typography>
-          <Typography variant="h5">
-            {formatValue(percent, 'percent')}
-            {value > 0 && <FaArrowUp />}
-            {value < 0 && <FaArrowDown />}
-          </Typography>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function BarChart({ parameters, properties }) {
-  const {
-    metrics, breakdown: _breakdown, displayMax = 5, isDate, label = '', qs,
+    metrics, breakdown: _breakdown, displayMax = 5, isDate, name = '', qs,
     dimensionName, stack,
   } = properties;
-  let { data = [], delta } = properties;
+  let { data = [] } = properties;
   const getColor = useColorFunc();
   const [refAreaLeft, setLeft] = useState();
   const [refAreaRight, setRight] = useState();
@@ -61,7 +32,7 @@ export default function BarChart({ parameters, properties }) {
   if (data.length === 0) {
     return (
       <>
-        {label && <Typography className="report-item-label" variant="h6">{label}</Typography>}
+        {name && <Typography className="report-item-name" variant="h6">{name}</Typography>}
         No data available
       </>
     );
@@ -77,20 +48,19 @@ export default function BarChart({ parameters, properties }) {
     return v;
   }
 
-  let xAlias = dimensionName || 'dimension_name';
-  if (!data[0][xAlias] && data[0].col0) xAlias = 'col0';
+  let xName = dimensionName || 'dimension_name';
+  if (!data[0][xName] && data[0].col0) xName = 'col0';
 
   const formattersByName = {};
   metrics.forEach((f) => {
-    formattersByName[f.alias] = (val) => formatValue(val, f.format);
-    formattersByName[f.label] = (val) => formatValue(val, f.format);
+    formattersByName[f.name] = (val) => formatValue(val, f.format);
   });
 
   let displayMetrics = metrics;
   const total = {};
   if (breakdown) {
     const distinctBreakdown = data.reduce((a, d) => {
-      a[d[breakdown.alias]] = (a[d[breakdown.alias]] || 0) + 1; return a;
+      a[d[breakdown.name]] = (a[d[breakdown.name]] || 0) + 1; return a;
     }, {});
     let keyCount = Object.keys(distinctBreakdown)
       .map((key) => ({ key, count: distinctBreakdown[key] }))
@@ -103,15 +73,15 @@ export default function BarChart({ parameters, properties }) {
     }
     const newData = {};
     data.forEach((d) => {
-      newData[d[xAlias]] = newData[d[xAlias]] || {};// Create an object
-      newData[d[xAlias]][xAlias] = d[xAlias]; // set the date
-      const value = d[metrics[0].alias];
-      if (validValueLookup && !validValueLookup[d[breakdown.alias]]) {
+      newData[d[xName]] = newData[d[xName]] || {};// Create an object
+      newData[d[xName]][xName] = d[xName]; // set the date
+      const value = d[metrics[0].name];
+      if (validValueLookup && !validValueLookup[d[breakdown.name]]) {
         total['(Other)'] = (total['(Other)'] || 0) + value;
-        newData[d[xAlias]]['(Other)'] = (newData[d[xAlias]]['(Other)'] || 0) + value;
+        newData[d[xName]]['(Other)'] = (newData[d[xName]]['(Other)'] || 0) + value;
       } else {
-        total[d[breakdown.alias]] = (total[d[breakdown.alias]] || 0) + value;
-        newData[d[xAlias]][d[breakdown.alias]] = (newData[d[xAlias]][d[breakdown.alias]] || 0)
+        total[d[breakdown.name]] = (total[d[breakdown.name]] || 0) + value;
+        newData[d[xName]][d[breakdown.name]] = (newData[d[xName]][d[breakdown.name]] || 0)
          + value;
       }
     });
@@ -120,7 +90,7 @@ export default function BarChart({ parameters, properties }) {
     displayMetrics = [].concat(keyCount.map((d) => {
       formattersByName[d.key] = (val) => formatValue(val, metrics[0].format);
       return {
-        alias: d.key, yAxis: breakdown.yAxis, type: 'bar', stackId: 'stackA',
+        names: d.key, yAxis: breakdown.yAxis, type: 'bar', stackId: 'stackA',
       };
     }));
   }
@@ -140,7 +110,7 @@ export default function BarChart({ parameters, properties }) {
     // return JSON.stringify({length:data.length,leftPad,rightPad});
   }
 
-  let xaxis = <XAxis dataKey={xAlias} tickFormatter={xFormat} />;
+  let xaxis = <XAxis dataKey={xName} tickFormatter={xFormat} />;
   let domain = null;
 
   if (isDate) {
@@ -156,7 +126,7 @@ export default function BarChart({ parameters, properties }) {
 
     xaxis = (
       <XAxis
-        dataKey={xAlias}
+        dataKey={xName}
         domain={domain}
         scale="time"
         type="number"
@@ -166,27 +136,35 @@ export default function BarChart({ parameters, properties }) {
     );
   }
 
-  if (breakdown) breakdown.alias = breakdown.alias || breakdown.label || '_breakdown';
+  if (breakdown) breakdown.name = breakdown.name || '_breakdown';
 
   let rightAxis = null;
   if (metrics.find((d) => d.yaxis === 'right')) {
     const r1 = metrics.find((d) => d.yaxis === 'right');
-    rightAxis = <YAxis yAxisId="right" orientation="right" tickFormatter={(val) => formatValue(val, r1.format)} />;
+    rightAxis = (
+      <YAxis
+        yAxisId="right"
+        orientation="right"
+        tickFormatter={(val) => formatValue(val, r1.format)}
+        type="number"
+        domain={[0, 500000]}
+      />
+    );
   }
   // find the first left format
   const left1 = metrics.find((d) => d.yaxis !== 'right') || {};
   function yFormatLeft(val) { return formatValue(val, left1.format); }
   data = data.map((d) => {
     if (!isDate) return d;
-    if (String(d[xAlias]).length === 4) {
-      d[xAlias] = new Date(`${String(d[xAlias])}-01-01`).getTime(); // fix for year functions that don't return full date format
+    if (String(d[xName]).length === 4) {
+      d[xName] = new Date(`${String(d[xName])}-01-01`).getTime(); // fix for year functions that don't return full date format
     } else {
-      d[xAlias] = new Date(d[xAlias]).getTime();
+      d[xName] = new Date(d[xName]).getTime();
     }
-    if (domain && d[xAlias] < domain[0]) {
+    if (domain && d[xName] < domain[0]) {
       return false;
     }
-    if (domain && d[xAlias] > domain[1]) return false;
+    if (domain && d[xName] > domain[1]) return false;
     return d;
   }).filter(Boolean);
 
@@ -213,55 +191,25 @@ export default function BarChart({ parameters, properties }) {
   }
 
   if (isDate) {
-    data.sort((a, b) => (a[xAlias] < b[xAlias] ? -1 : 1));
-  }
-  const deltas = [];
-  if (delta) {
-    if (Array.isArray(delta)) {
-      delta = { range: delta };
-    }
-    let includeSince = false;
-    if (delta.includeSince) includeSince = true;
-
-    if (Array.isArray(delta.range) && data.length > 1) {
-      const [a, b] = delta.range;
-      const x1 = a < 0 ? data.length + a : a;
-      const x2 = b < 0 ? data.length + b : b;
-
-      const value = data[x2][metrics[0].alias] - data[x1][metrics[0].alias];
-      const percent = value / data[x1][metrics[0].alias];
-      // const label = `Since ${formatValue(relativeDate(data[x1][xAlias]), 'date')}`;
-      deltas.push(Delta({
-        value, percent, format: metrics[0].format, label: includeSince ? label : '',
-      }));
-      if (data.length > 2) {
-        const allValue = data[data.length - 1][metrics[0].alias] - data[0][metrics[0].alias];
-        const allPercent = allValue / data[0][metrics[0].alias];
-        let allLabel = '';
-        if (qs.start) {
-          allLabel = `Since ${formatValue(relativeDate(qs.start), 'date')}`;
-          deltas.push(Delta({
-            value: allValue, percent: allPercent, format: metrics[0].format, label: includeSince ? allLabel : '',
-          }));
-        }
-      }
-    } else {
-      console.error('Invalid delta:', delta);
-    }
+    data.sort((a, b) => (a[xName] < b[xName] ? -1 : 1));
   }
 
   return (
-    <Row className="h-100 report-bar-chart">
-      {label && <Col sm={12}><Typography className="report-item-label" variant="h6">{label}</Typography></Col>}
-      <Col md={deltas.length ? 10 : 12} sm={12}>
-        <ResponsiveContainer>
+    <Row className="h-100 w-100 report-bar-chart">
+      {name && (
+      <Col span={24}>
+        <Typography className="report-item-name" variant="h6">{name}</Typography>
+      </Col>
+      )}
+      <Col span={24}>
+        <ResponsiveContainer width="100%" height={400}>
           <ComposedChart
-            data={data}
+            data={data.slice(0, 50)}
             margin={{
               top: 20, right: 10, bottom: 0, left: 25,
             }}
-            onMouseDown={isDate ? (e) => { if (e) setLeft(e.activeLabel); } : null}
-            onMouseMove={isDate ? (e) => e && refAreaLeft && setRight(e.activeLabel) : null}
+            onMouseDown={isDate ? (e) => { if (e) setLeft(e.activeName); } : null}
+            onMouseMove={isDate ? (e) => e && refAreaLeft && setRight(e.activeName) : null}
             onMouseUp={isDate ? (e) => e && zoom() : null}
           >
             <defs>
@@ -288,24 +236,28 @@ export default function BarChart({ parameters, properties }) {
             </defs>
             <CartesianGrid />
             {xaxis}
-            <YAxis yAxisId="left" tickFormatter={yFormatLeft} />
+            <YAxis
+              yAxisId="left"
+              tickFormatter={yFormatLeft}
+              type="number"
+              domain={[0, '100000000']}
+            />
             {rightAxis}
             <Tooltip
-              labelFormatter={(value) => (isDate ? formatValue(value, 'utcdate') : value)}
+              nameFormatter={(value) => (isDate ? formatValue(value, 'utcdate') : value)}
               formatter={
-   (value, n) => {
-     if (typeof formattersByName[n] === 'function') {
-       return formattersByName[n](value);
-     }
-     // console.error("Could not find formatter "+n);
-     return value;
-   }
-}
+                (value, n) => {
+                  if (typeof formattersByName[n] === 'function') {
+                    return formattersByName[n](value);
+                  }
+                  return value;
+                }
+              }
             />
             <Legend />
             {displayMetrics.map((f, i) => {
               const key = `key${i}`;
-              const color = f.color || getColor(i, f.label || f.alias);
+              const color = f.color || getColor(i, f.name);
               let dot = null;
               if (data.length < 40) {
                 dot = {
@@ -317,23 +269,18 @@ export default function BarChart({ parameters, properties }) {
                 };
               }
               switch (f.type) {
-                case 'bar': return <Bar key={key} yAxisId={f.yaxis || 'left'} name={f.label} dataKey={f.alias} stackId={f.stackId || (stack ? 'stackA' : '') || null} fill={color} />;
-                case 'area': return <Area key={key} yAxisId={f.yaxis || 'left'} type="linear" name={f.label} dataKey={f.alias} fill={color} stroke={color} />;
-                default: return <Line type="monotone" dot={dot} connectNulls={false} key={key} name={f.label} yAxisId={f.yaxis || 'left'} dataKey={f.alias} stroke={color} filter="url(#lineShadow)" />;
+                case 'bar': return <Bar key={key} yAxisId={f.yaxis || 'left'} name={f.name} dataKey={f.name} stackId={f.stackId || (stack ? 'stackA' : '') || null} fill={color} />;
+                case 'area': return <Area key={key} yAxisId={f.yaxis || 'left'} type="linear" name={f.name} dataKey={f.name} fill={color} stroke={color} />;
+                default: return <Line type="monotone" dot={dot} connectNulls={false} key={key} name={f.name} yAxisId={f.yaxis || 'left'} dataKey={f.name} stroke={color} filter="url(#lineShadow)" />;
               }
             })}
             {
-                     (refAreaLeft && refAreaRight) ? (
-                       <ReferenceArea yAxisId="left" x1={refAreaLeft} x2={refAreaRight} strokeOpacity={0.3} />) : null
-                  }
+                (refAreaLeft && refAreaRight) ? (
+                  <ReferenceArea yAxisId="left" x1={refAreaLeft} x2={refAreaRight} strokeOpacity={0.3} />) : null
+            }
           </ComposedChart>
         </ResponsiveContainer>
       </Col>
-      {deltas.length > 0 && (
-      <Col style={{ alignSelf: 'center' }} md={2} sm={12}>
-        {deltas}
-      </Col>
-      )}
     </Row>
   );
 }

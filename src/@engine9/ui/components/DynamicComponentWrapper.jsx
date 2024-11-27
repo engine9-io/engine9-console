@@ -7,7 +7,7 @@ import RecordList from './RecordList';
 import RecordTable from './RecordTable';
 import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
-import BarChart from './report/BarChart';
+import ComposedChart from './report/ComposedChart';
 import Scorecard from './report/Scorecard';
 import StatCard from './StatCard';
 import Profile from './Profile';
@@ -34,7 +34,7 @@ const componentMap = {
   Profile,
   SegmentBuilder,
   Market,
-  BarChart,
+  ComposedChart,
   Scorecard,
 };
 

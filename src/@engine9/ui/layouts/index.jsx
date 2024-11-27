@@ -17,14 +17,13 @@ import FullWidth from './FullWidth';
 import Sidebar from './Sidebar';
 import GridLayout from './Grid';
 import TabLayout from './TabLayout';
-import ReportAlpha from '../dynamic/Reports';
+import { ReportLanding } from '../components/report/Landing';
 
 export function LayoutPicker({ layout, components }) {
   switch (layout) {
     case 'grid': return <GridLayout components={components} />;
     case 'sidebar': return <Sidebar components={components} />;
     case 'tabs': return <TabLayout components={components} />;
-    case 'reportAlpha': return <ReportAlpha components={components} />;
     default: return <FullWidth components={components} />;
   }
 }
@@ -56,6 +55,7 @@ export default function LayoutHome({ menuConfig, routeConfig, components }) {
           {components
           || (
           <Routes>
+            <Route path="/reports/*" element={<ReportLanding />} />
             {routeConfig.map((r) => (
               <Route
                 key={r.path}

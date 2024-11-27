@@ -1,0 +1,57 @@
+.recharts-responsive-container-wrapper{
+    min-height:500px;
+    min-width:500px;
+    max-height:500px;
+}
+.dynamic-component{
+    width:100%;
+}
+
+
+:root{
+	//Standard white and grey theme
+	--theme-1:#FFF;
+	--theme-1-light:#FFF;
+	--theme-2:#FFF;
+	--theme-3:#f3f4f7;
+	--theme-4:#848A90;
+	--theme-5:#FFF;
+	--theme-1-text:#000;
+	--theme-2-text:#000;
+	--theme-3-text:#000;
+	--theme-4-text:#000;
+	--theme-5-text:#000;
+	--theme-chart-1:#0795d3; //blue
+	--theme-chart-2:#be1337;//red
+	--theme-chart-3:#da8707;//orange
+	--theme-chart-4:#ffa600; //yellow
+	--theme-chart-5:#00b050;//green
+	--theme-chart-6:#03A9F4;
+	--theme-chart-7:#9e5bb3;
+	--theme-chart-8:#FF5722;
+	--theme-chart-9:#0365a3; //blue
+	--theme-chart-10:#fe4377;
+	/*
+	--theme-1:#F1F6F4;
+	--theme-2:#00bcd4; //#F2AE72;
+	--theme-3:#ED8142;
+	--theme-4:#848A90;
+	--theme-5:#3C4F5B;
+*/
+}
+
+$border-color: #CCC;
+$list-background: #FFF;
+$list-text: #333;//rgb(56, 85, 99);
+$theme-1:var(--theme-1);
+$theme-1-light:var(--theme-1-light);
+$theme-2:var(--theme-2);
+$theme-3:var(--theme-3);
+$theme-4:var(--theme-4);
+$theme-5:var(--theme-5);
+$theme-1-text:var(--theme-1-text);
+$theme-2-text:var(--theme-2-text);
+$theme-3-text:var(--theme-3-text);
+$theme-4-text:var(--theme-4-text);
+$theme-5-text:var(--theme-5-text);
+

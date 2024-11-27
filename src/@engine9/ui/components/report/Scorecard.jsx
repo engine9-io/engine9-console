@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from 'antd';
 import { formatValue } from '@engine9/helpers/formatters';
 
-export default function Scorecard({ parameters, properties }) {
+export default function Scorecard({ properties }) {
   const {
     metrics = [], label, size = 'md', previousData: prevData, data, query,
   } = properties;
@@ -11,7 +11,6 @@ export default function Scorecard({ parameters, properties }) {
   // support dynamic queries
   if (!metric && query && query.fields) [metric] = query.fields;
   if (!metric && metrics?.[0]) [metric] = metrics;
-  return JSON.stringify(properties);
 
   let variants = ['h6', 'h4'];
   switch (size) {
@@ -35,8 +34,8 @@ export default function Scorecard({ parameters, properties }) {
   if (!data[0]) return 'No Data';
   let val = null;
   let metricName = 'value';
-  if (metric.name || metric.alias) {
-    metricName = metric.name || metric.alias;
+  if (metric.name) {
+    metricName = metric.name;
     val = data[0][metricName];
   } else {
     [val] = Object.values(data[0]);
@@ -57,7 +56,7 @@ export default function Scorecard({ parameters, properties }) {
 
   if (metrics?.[1]) {
     const m = metrics?.[1];
-    item = formatValue(data[0][m.name || m.alias], m.format);
+    item = formatValue(data[0][m.name], m.format);
   } else if (!includePrevious) {
     item = null;
   } else if (!prevData[0][metricName] || prevData[0][metricName] === 0) {

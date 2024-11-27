@@ -15,7 +15,6 @@ import Profile from '../components/Profile';
 import { useAuthenticatedAxios } from '../AuthenticatedDataEndpoint';
 
 import useLocalUIConfig from '../../localUI/TestingLocalUIConfig';
-import { Reports } from './Reports';
 
 function DynamicAccountLayout() {
   const useLocal = true;
@@ -97,7 +96,6 @@ export default function App() {
         <Route path="/datasource" element={<AlternativeDataSource />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/:accountId" element={<DynamicAccountLayout />} />
-        <Route path="/:accountId/reports/*" element={<Reports />} />
         <Route path="/:accountId/*" element={<DynamicAccountLayout />} />
         <Route path="*" element={<AccountPicker />} />
       </Routes>

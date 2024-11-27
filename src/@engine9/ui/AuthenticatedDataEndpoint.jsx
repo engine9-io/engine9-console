@@ -52,6 +52,8 @@ export function useRemoteData(
       .get(uri)
       .then((results) => {
         const includeLookup = {};
+        if (results.data?.report) return { data: results.data.report };
+
         results.data?.includes?.forEach((inc) => {
           includeLookup[`${inc.type}:${inc.id}`] = { id: inc.id, ...inc.attributes };
         });
