@@ -26,20 +26,32 @@
                                   title: 'Date',
                                   dataIndex: 'ts',
                                   sorter: true,
-                                  width: '40%',
+
                               },
                               {
                                 title: 'Amount',
                                 dataIndex: 'amount',
                                 sorter: true,
-                                width: '40%',
+
                                 },
-                              {
-                                title: 'ID',
-                                dataIndex: 'transaction_id',
+                                {
+                                    title: 'Source Channel',
+                                    dataIndex: 'source_code_channel_label',
+                                    sorter: true,
+                                },
+
+                            {
+                                title: 'Form Name',
+                                dataIndex: 'remote_page_name',
                                 sorter: true,
-                                width: '40%',
+
+                            }, {
+                                title: 'Source Code',
+                                dataIndex: 'transaction_source_code',
+                                sorter: true,
+
                             },
+
                           ],
                           orderBy: [
                             { column: 'ts', orderByDirection: 'desc' },

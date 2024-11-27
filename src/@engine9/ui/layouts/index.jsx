@@ -17,12 +17,14 @@ import FullWidth from './FullWidth';
 import Sidebar from './Sidebar';
 import GridLayout from './Grid';
 import TabLayout from './TabLayout';
+import ReportAlpha from '../dynamic/Reports';
 
-function LayoutPicker({ layout, components }) {
+export function LayoutPicker({ layout, components }) {
   switch (layout) {
     case 'grid': return <GridLayout components={components} />;
     case 'sidebar': return <Sidebar components={components} />;
     case 'tabs': return <TabLayout components={components} />;
+    case 'reportAlpha': return <ReportAlpha components={components} />;
     default: return <FullWidth components={components} />;
   }
 }

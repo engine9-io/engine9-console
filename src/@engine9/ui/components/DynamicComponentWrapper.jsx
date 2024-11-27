@@ -7,6 +7,8 @@ import RecordList from './RecordList';
 import RecordTable from './RecordTable';
 import RecordForm from './RecordForm';
 import RecordDisplay from './RecordDisplay';
+import BarChart from './report/BarChart';
+import Scorecard from './report/Scorecard';
 import StatCard from './StatCard';
 import Profile from './Profile';
 import Message from './Message';
@@ -32,6 +34,8 @@ const componentMap = {
   Profile,
   SegmentBuilder,
   Market,
+  BarChart,
+  Scorecard,
 };
 
 export function DynamicComponentWrapper({ component, properties: _props = {}, parameters }) {
