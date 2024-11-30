@@ -19,12 +19,12 @@ function RecordDisplay(props) {
   const id = parameters.id || properties.id;
 
   const {
-    isPending, error, isFetching, data,
+    isPending, error, data,
   } = useRemoteData({
     uri: `/data/tables/${table}/${id}`,
   });
 
-  if (isPending || isFetching) return <AppLoader />;
+  if (isPending) return <AppLoader />;
   if (!data) return <AppLoader />;
   if (!data[0]) return <Error404 />;
   if (error) return <Error500 />;

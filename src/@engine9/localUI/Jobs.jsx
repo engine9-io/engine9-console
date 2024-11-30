@@ -53,31 +53,31 @@
                         columns: [
                             {
                                 title: 'Id',
-                                dataIndex: 'id',
+                                name: 'id',
                                 sorter: true,
                                 width: '20%',
                             },
                             {
                                 title: 'Created',
-                                dataIndex: 'created_at',
+                                name: 'created_at',
                                 sorter: true,
                                 width: '20%',
                             },
                             {
                                 title: 'Status',
-                                dataIndex: 'status',
+                                name: 'status',
                                 sorter: true,
                                 width: '20%',
                             },
                             {
                                 title: 'Worker',
-                                dataIndex: 'worker_path',
+                                name: 'worker_path',
                                 sorter: true,
                                 width: '20%',
                             },
                             {
                                 title: 'Method',
-                                dataIndex: 'worker_method',
+                                name: 'worker_method',
                                 sorter: true,
                                 width: '20%',
                             },

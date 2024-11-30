@@ -21,7 +21,7 @@ const getPaymentStatusColor = (inStock) => {
 const getColumns = (navigate) => [
   {
     title: 'Plugin Name',
-    dataIndex: 'id',
+    name: 'id',
     key: 'id',
     render: (id, record) => (
       <Typography.Link
@@ -44,17 +44,17 @@ const getColumns = (navigate) => [
   },
   {
     title: 'Plugin SKU',
-    dataIndex: 'SKU',
+    name: 'SKU',
     key: 'SKU',
   },
   {
     title: 'Created at',
-    dataIndex: 'createdAt',
+    name: 'createdAt',
     key: 'createdAt',
   },
   {
     title: 'Status',
-    dataIndex: 'date',
+    name: 'date',
     key: 'date',
     render: (data, record) => (
       <StyledListingStatus
@@ -69,7 +69,7 @@ const getColumns = (navigate) => [
   },
   {
     title: 'Price',
-    dataIndex: 'mrp',
+    name: 'mrp',
     key: 'mrp',
     render: (price) => (
       <span>
@@ -80,7 +80,7 @@ const getColumns = (navigate) => [
   },
   {
     title: 'Actions',
-    dataIndex: 'actions',
+    name: 'actions',
     key: 'actions',
     className: 'order-table-action',
     fixed: 'right',

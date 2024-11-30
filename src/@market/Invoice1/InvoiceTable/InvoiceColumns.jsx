@@ -4,7 +4,7 @@ import { StyledInvoiceTruncateView } from './index.styled';
 const InvoiceColumns = [
   {
     title: 'Item & Description',
-    dataIndex: 'item',
+    name: 'item',
     key: 'item',
     render: (item) => (
       <>
@@ -19,17 +19,17 @@ const InvoiceColumns = [
   },
   {
     title: 'Assignment Type',
-    dataIndex: 'type',
+    name: 'type',
     key: 'type',
   },
   {
     title: 'Quantity',
-    dataIndex: 'quantity',
+    name: 'quantity',
     key: 'quantity',
   },
   {
     title: 'Price',
-    dataIndex: 'price',
+    name: 'price',
     key: 'price',
   },
 ];

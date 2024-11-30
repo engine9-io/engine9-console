@@ -3,7 +3,7 @@ import merge from 'deepmerge';
 import SourceCodes from './SourceCodes';
 import Jobs from './Jobs';
 import Messages from './Messages';
-import People from './People';
+import Person from './Person';
 import Reports from './Reports';
 import Market from './Market';
 import Transactions from './Transactions';
@@ -38,7 +38,7 @@ export default function useLocalUI() {
             icon: 'messages',
             type: 'collapse',
             children: {
-                campaigns: {
+                messages: {
                     title: 'List',
                     icon: 'campaign',
                     url: '/messages',
@@ -93,5 +93,5 @@ export default function useLocalUI() {
             },
         },
     },
-    }, Messages, SourceCodes, People, Reports, Jobs, Transactions, Market])));
+    }, Messages, SourceCodes, Person, Reports, Jobs, Transactions, Market])));
 }

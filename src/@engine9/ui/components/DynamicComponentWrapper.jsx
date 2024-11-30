@@ -12,6 +12,7 @@ import Scorecard from './report/Scorecard';
 import StatCard from './StatCard';
 import Profile from './Profile';
 import Message from './Message';
+import MessageTree from './MessageTree';
 import Title from './Title';
 
 import SegmentBuilder from './SegmentBuilder';
@@ -29,6 +30,7 @@ const componentMap = {
   StatCard,
   Link: LinkComponent,
   Message,
+  MessageTree,
   Button,
   Title,
   Profile,

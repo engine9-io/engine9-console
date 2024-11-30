@@ -24,30 +24,30 @@
                           columns: [
                               {
                                   title: 'Date',
-                                  dataIndex: 'ts',
+                                  name: 'ts',
                                   sorter: true,
 
                               },
                               {
                                 title: 'Amount',
-                                dataIndex: 'amount',
+                                name: 'amount',
                                 sorter: true,
 
                                 },
                                 {
                                     title: 'Source Channel',
-                                    dataIndex: 'source_code_channel_label',
+                                    name: 'source_code_channel_label',
                                     sorter: true,
                                 },
 
                             {
                                 title: 'Form Name',
-                                dataIndex: 'remote_page_name',
+                                name: 'remote_page_name',
                                 sorter: true,
 
                             }, {
                                 title: 'Source Code',
-                                dataIndex: 'transaction_source_code',
+                                name: 'transaction_source_code',
                                 sorter: true,
 
                             },

@@ -19,38 +19,38 @@ const getPaymentStatusColor = (status) => {
 const columns = [
   {
     title: 'Order ID',
-    dataIndex: 'id',
+    name: 'id',
     key: 'id',
     render: (id) => <StyledOrderId>{id}</StyledOrderId>,
   },
   {
     title: 'Plugin',
-    dataIndex: 'product',
+    name: 'product',
     key: 'product',
   },
   {
     title: 'Customer',
-    dataIndex: 'customer',
+    name: 'customer',
     key: 'customer',
   },
   {
     title: 'Delivery Date',
-    dataIndex: 'date',
+    name: 'date',
     key: 'date',
   },
   {
     title: 'Price',
-    dataIndex: 'price',
+    name: 'price',
     key: 'price',
   },
   {
     title: 'Payment Method',
-    dataIndex: 'paymentType',
+    name: 'paymentType',
     key: 'paymentType',
   },
   {
     title: 'Status',
-    dataIndex: 'status',
+    name: 'status',
     key: 'status',
     render: (status) => (
       <span
@@ -66,7 +66,7 @@ const columns = [
   },
   {
     title: 'Actions',
-    dataIndex: 'actions',
+    name: 'actions',
     key: 'actions',
     className: 'order-table-action',
     fixed: 'right',

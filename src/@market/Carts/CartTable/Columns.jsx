@@ -5,7 +5,7 @@ import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 const Columns = [
   {
     title: 'Plugin',
-    dataIndex: 'product',
+    name: 'product',
     key: 'product',
     render: (product) => (
       <div className='cart-user'>
@@ -19,13 +19,13 @@ const Columns = [
   },
   {
     title: 'Unit Price',
-    dataIndex: 'price',
+    name: 'price',
     key: 'price',
     render: (price) => <>${+price.mrp - +price.discount}</>,
   },
   {
     title: 'QTY',
-    dataIndex: 'count',
+    name: 'count',
     key: 'count',
     render: (count, onIncrement, onDecrement) => (
       <div className='cart-inc-dec'>
@@ -37,7 +37,7 @@ const Columns = [
   },
   {
     title: 'Total',
-    dataIndex: 'total',
+    name: 'total',
     key: 'total',
     render: (total) => <>${(+total.mrp - +total.discount) * +total.count}</>,
   },

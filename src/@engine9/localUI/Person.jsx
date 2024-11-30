@@ -31,7 +31,7 @@
                           columns: [
                               {
                                   title: 'Name',
-                                  dataIndex: 'name',
+                                  name: 'name',
                                   sorter: true,
                                   template: '{{record.given_name}} {{record.family_name}}',
                                   width: '40%',
@@ -165,7 +165,7 @@
                               columns: [
                                   {
                                       title: 'Id',
-                                      dataIndex: 'id',
+                                      name: 'id',
                                       sorter: true,
                                       width: '20%',
                                   },
@@ -280,18 +280,18 @@
                           columns: [
                               {
                                   title: 'Id',
-                                  dataIndex: 'id',
+                                  name: 'id',
                                   sorter: true,
                                   width: '20%',
                               },
                               {
                                   title: 'Type',
-                                  dataIndex: 'type',
+                                  name: 'type',
                                   sorter: true,
                               },
                               {
                                   title: 'Name',
-                                  dataIndex: 'name',
+                                  name: 'name',
                                   sorter: true,
                                   template: '{{name}}',
                                   width: '40%',

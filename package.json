@@ -1,10 +1,10 @@
 {
-  "name": "crema-antd",
+  "name": "engine9-console",
   "private": true,
-  "version": "4.1.1",
+  "version": "5.1.1",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "DEBUG=;vite",
     "watch_and_build_ui_config": "    fswatch -o ../engine9-interfaces | xargs -n1 -I{} node src/@engine9/ui/dynamic/TestingLocalUIConfig.cjs",
     "start_prod": "VITE_ENGINE9_DATA_ENDPOINT=https://data.engine9.io vite",
     "build": "vite build",
@@ -86,7 +86,7 @@
     "react-icons": "^4.10.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-intl": "^6.4.4",
-    "react-json-view-lite": "^1.5.0",
+    "react-json-view-lite": "^2.0.1",
     "react-player": "^2.12.0",
     "react-querybuilder": "^8.0.0",
     "react-router": "^7.0.1",

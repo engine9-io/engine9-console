@@ -23,7 +23,7 @@
                         columns: [
                             {
                                 title: 'Name',
-                                dataIndex: 'name',
+                                name: 'name',
                                 sorter: true,
                                 template: '{{record.name}}',
                                 width: '40%',
@@ -46,7 +46,7 @@
                             columns: [
                                 {
                                     title: 'Name',
-                                    dataIndex: 'name',
+                                    name: 'name',
                                     sorter: true,
                                     template: '{{record.message_id}}',
                                     width: '40%',
@@ -63,7 +63,7 @@
                 ],
             },
         },
-        messages: {
+        'messages/list': {
             layout: 'full_width',
             components: {
                 main: [
@@ -74,38 +74,43 @@
                             table: 'global_message_summary',
                             columns: [
                                 {
+                                    title: 'Id',
+                                    name: 'id',
+                                    hidden: true,
+                                },
+                                {
                                     title: 'Publish Date',
-                                    dataIndex: 'publish_date',
+                                    name: 'publish_date',
                                     sorter: true,
                                 },
                                 {
                                     title: 'Channel',
-                                    dataIndex: 'channel',
+                                    name: 'channel',
                                     sorter: true,
                                 },
                                 {
                                   title: 'Label',
-                                  dataIndex: 'label',
+                                  name: 'label',
                                   sorter: true,
                                   },
-                                  {
-                                    title: 'Sent',
-                                    dataIndex: 'sent',
+                                {
+                                title: 'Sent',
+                                name: 'sent',
+                                sorter: true,
+                                },
+                                {
+                                    title: 'Clicked',
+                                    name: 'clicked',
                                     sorter: true,
-                                    },
-                                    {
-                                        title: 'Clicked',
-                                        dataIndex: 'clicked',
-                                        sorter: true,
-                                    },
+                                },
                                 {
                                     title: 'Attr. Revenue',
-                                    dataIndex: 'attributed_revenue',
+                                    name: 'attributed_revenue',
                                     sorter: true,
                                 },
                                 {
                                     title: 'Spend',
-                                    dataIndex: 'spend',
+                                    name: 'spend',
                                     sorter: true,
                                 },
                             ],
@@ -115,12 +120,85 @@
                             onRecord: {
                                 onClick: {
                                     action: 'navigate',
-                                    url: '/message/{{record.message_id}}',
+                                    url: '/message/{{record.id}}',
                                 },
                             },
                         },
                     },
                 ],
+            },
+        },
+        'messages/*': {
+            layout: 'sidebar',
+            components: {
+                sidebar: [
+                    {
+                        component: 'MessageTree',
+                        properties: {
+                            start: '-14d',
+                        },
+                    },
+                ],
+               /* main: [
+                    {
+                        component: 'RecordTable',
+                        properties: {
+                            title: 'Messages',
+                            table: 'global_message_summary',
+                            columns: [
+                                {
+                                    title: 'Id',
+                                    name: 'id',
+                                    hidden: true,
+                                },
+                                {
+                                    title: 'Publish Date',
+                                    name: 'publish_date',
+                                    sorter: true,
+                                },
+                                {
+                                    title: 'Channel',
+                                    name: 'channel',
+                                    sorter: true,
+                                },
+                                {
+                                  title: 'Label',
+                                  name: 'label',
+                                  sorter: true,
+                                  },
+                                {
+                                title: 'Sent',
+                                name: 'sent',
+                                sorter: true,
+                                },
+                                {
+                                    title: 'Clicked',
+                                    name: 'clicked',
+                                    sorter: true,
+                                },
+                                {
+                                    title: 'Attr. Revenue',
+                                    name: 'attributed_revenue',
+                                    sorter: true,
+                                },
+                                {
+                                    title: 'Spend',
+                                    name: 'spend',
+                                    sorter: true,
+                                },
+                            ],
+                            orderBy: [
+                                { column: 'publish_date', orderByDirection: 'desc' },
+                            ],
+                            onRecord: {
+                                onClick: {
+                                    action: 'navigate',
+                                    url: '/message/{{record.id}}',
+                                },
+                            },
+                        },
+                    },
+                ], */
             },
         },
         'campaign/create': {
@@ -157,8 +235,7 @@
         'campaign/:campaign_id/message_set/:message_set_id': {
             layout: 'sidebar',
             components: {
-                sidebar: {
-                    items: [
+                sidebar: [
                         {
                             component: 'Title',
                             properties: {
@@ -199,7 +276,7 @@
                             },
                         },
                     ],
-                },
+
                 main: [
                     {
                         component: 'Title',
@@ -291,19 +368,19 @@
                             columns: [
                                 {
                                     title: 'Id',
-                                    dataIndex: 'id',
+                                    name: 'id',
                                     sorter: true,
                                     width: '20%',
                                 },
                                 {
                                     title: 'Publish Date',
-                                    dataIndex: 'publish_date',
+                                    name: 'publish_date',
                                     sorter: true,
                                     width: '40%',
                                 },
                                 {
                                     title: 'Name',
-                                    dataIndex: 'name',
+                                    name: 'name',
                                     sorter: true,
                                     template: '{{record.name}}',
                                     width: '40%',

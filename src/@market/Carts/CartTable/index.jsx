@@ -76,7 +76,7 @@ const CartTable = ({ cartItems, loading, setTableData }) => {
       <ColumnGroup>
         <Column
           title="Plugin"
-          dataIndex="product"
+          name="product"
           key="product"
           render={(product) => {
             console.log("product:", product);
@@ -93,13 +93,13 @@ const CartTable = ({ cartItems, loading, setTableData }) => {
         />
         <Column
           title="Unit Price"
-          dataIndex="price"
+          name="price"
           key="price"
           render={(price) => <>${+price.mrp - +price.discount}</>}
         />
         <Column
           title="QTY"
-          dataIndex="count"
+          name="count"
           key="count"
           render={(count, record) => (
             <StyledCartIncDec>
@@ -117,7 +117,7 @@ const CartTable = ({ cartItems, loading, setTableData }) => {
         />
         <Column
           title="Total"
-          dataIndex="total"
+          name="total"
           key="total"
           render={(total, record) => {
             console.log("total:", total);
@@ -129,7 +129,7 @@ const CartTable = ({ cartItems, loading, setTableData }) => {
         />
         <Column
           title=""
-          dataIndex="close"
+          name="close"
           key="close"
           render={(_, record) => (
             <span onClick={() => onRemoveItem(record)}>

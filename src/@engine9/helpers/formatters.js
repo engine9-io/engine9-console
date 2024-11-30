@@ -1,5 +1,7 @@
-/* eslint-disable no-param-reassign */
 import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc'; // ES 2015
+
+dayjs.extend(utc);
 
 function humanizeDate(_d) {
   if (!_d) return '(no date)';
@@ -81,8 +83,10 @@ function humanize(o, _chars) {
       case 'object':
         return Object.keys(o).reduce((a, i) => {
           if (i?.slice(-3) === '_id') {
+            // eslint-disable-next-line no-param-reassign
             a[i] = o[i];
           } else {
+            // eslint-disable-next-line no-param-reassign
             a[i] = humanize(o[i], chars);
           }
           return a;
@@ -97,7 +101,8 @@ function humanize(o, _chars) {
   }
 }
 
-function formatValue(v, format, emptyValue = '') {
+function formatValue(_v, format, emptyValue = '') {
+  let v = _v;
   if (v === undefined) return emptyValue;
   if (v == null) return emptyValue;
 
@@ -168,8 +173,14 @@ function getStringArray(s, nonZeroLength) {
 
 /*
 Function that supports relative date calculations, like "-3d" for 3 days ago, etc
+
+BE CAREFUL!  Relative dates shouldn't be exact, because it will refresh every time
+For that reason, any relative dates will
 */
-function relativeDate(s, initialDate) {
+function relativeDate(_s, _initialDate) {
+  let s = _s;
+
+  let initialDate = _initialDate;
   if (!s || s === 'none') return null;
   if (typeof s.getMonth === 'function') return s;
   // We actually want a double equals here to test strings as well
@@ -186,9 +197,16 @@ function relativeDate(s, initialDate) {
     initialDate = new Date();
   }
 
+  // These are protection from endless react reloads due to changing
+  // values
+  if (s === 'now') s = '-0d.end.day';
+
   const r = s.match(/^([+-]{1})([0-9]+)([YyMwdhms]{1})([.a-z]*)$/);
 
   if (r) {
+    if (s.indexOf('.start') < 0 && s.indexOf('.end') < 0) {
+      s += '.start.day';
+    }
     let period = null;
     switch (r[3]) {
       case 'Y':
@@ -220,16 +238,14 @@ function relativeDate(s, initialDate) {
 
     return d.toDate();
   }
-  if (s === 'now') {
-    return dayjs(new Date()).toDate();
-  }
 
-  const x = dayjs(new Date(s)).toDate();
-  if (x === 'Invalid Date') throw new Error(`Invalid Date: ${s}`);
-  return x;
+  const x = dayjs(s);
+  if (!x.isValid()) throw new Error(`Invalid Date: ${s}`);
+  return x.toDate();
 }
 
-function parseRegExp(o, opts) {
+function parseRegExp(_o, opts) {
+  const o = _o;
   if (o instanceof RegExp) return o;
   try {
     switch (typeof o) {

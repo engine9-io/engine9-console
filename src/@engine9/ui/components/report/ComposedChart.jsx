@@ -110,6 +110,28 @@ export default function ReportComposedChart({ properties }) {
     // return JSON.stringify({length:data.length,leftPad,rightPad});
   }
 
+  function zoom() {
+    if (refAreaLeft === refAreaRight || refAreaRight === '') {
+      setLeft('');
+      setRight('');
+      return;
+    }
+
+    // xAxis domain
+    if (refAreaLeft > refAreaRight) {
+      setLeft(refAreaRight);
+      setRight(refAreaLeft);
+    }
+
+    const query = queryString.parse(location.search) || {};
+    query.start = refAreaLeft;
+    query.end = refAreaRight;
+    navigate({ location: location.pathname, search: queryString.stringify(query) });
+
+    setLeft(null);
+    setRight(null);
+  }
+
   let xaxis = <XAxis dataKey={xName} tickFormatter={xFormat} />;
   let domain = null;
 
@@ -138,23 +160,14 @@ export default function ReportComposedChart({ properties }) {
 
   if (breakdown) breakdown.name = breakdown.name || '_breakdown';
 
-  let rightAxis = null;
-  if (metrics.find((d) => d.yaxis === 'right')) {
-    const r1 = metrics.find((d) => d.yaxis === 'right');
-    rightAxis = (
-      <YAxis
-        yAxisId="right"
-        orientation="right"
-        tickFormatter={(val) => formatValue(val, r1.format)}
-        type="number"
-        domain={[0, 500000]}
-      />
-    );
-  }
   // find the first left format
   const left1 = metrics.find((d) => d.yaxis !== 'right') || {};
   function yFormatLeft(val) { return formatValue(val, left1.format); }
   data = data.map((d) => {
+    metrics.forEach((metric) => {
+      const v = parseFloat(d[metric.name]);
+      d[metric.name] = v;
+    });
     if (!isDate) return d;
     if (String(d[xName]).length === 4) {
       d[xName] = new Date(`${String(d[xName])}-01-01`).getTime(); // fix for year functions that don't return full date format
@@ -168,30 +181,20 @@ export default function ReportComposedChart({ properties }) {
     return d;
   }).filter(Boolean);
 
-  function zoom() {
-    if (refAreaLeft === refAreaRight || refAreaRight === '') {
-      setLeft('');
-      setRight('');
-      return;
-    }
-
-    // xAxis domain
-    if (refAreaLeft > refAreaRight) {
-      setLeft(refAreaRight);
-      setRight(refAreaLeft);
-    }
-
-    const query = queryString.parse(location.search) || {};
-    query.start = refAreaLeft;
-    query.end = refAreaRight;
-    navigate({ location: location.pathname, search: queryString.stringify(query) });
-
-    setLeft(null);
-    setRight(null);
-  }
-
   if (isDate) {
     data.sort((a, b) => (a[xName] < b[xName] ? -1 : 1));
+  }
+
+  let rightAxis = null;
+  if (metrics.find((d) => d.yaxis === 'right')) {
+    const r1 = metrics.find((d) => d.yaxis === 'right');
+    rightAxis = (
+      <YAxis
+        yAxisId="right"
+        orientation="right"
+        tickFormatter={(val) => formatValue(val, r1.format)}
+      />
+    );
   }
 
   return (
@@ -204,13 +207,13 @@ export default function ReportComposedChart({ properties }) {
       <Col span={24}>
         <ResponsiveContainer width="100%" height={400}>
           <ComposedChart
-            data={data.slice(0, 50)}
+            data={data}
             margin={{
               top: 20, right: 10, bottom: 0, left: 25,
             }}
-            onMouseDown={isDate ? (e) => { if (e) setLeft(e.activeName); } : null}
-            onMouseMove={isDate ? (e) => e && refAreaLeft && setRight(e.activeName) : null}
-            onMouseUp={isDate ? (e) => e && zoom() : null}
+            onMouseDown={isDate ? (ev) => { if (ev) setLeft(ev.activeLabel); } : null}
+            onMouseMove={isDate ? (ev) => ev && refAreaLeft && setRight(ev.activeLabel) : null}
+            onMouseUp={isDate ? (ev) => ev && zoom() : null}
           >
             <defs>
               <filter x="0" y="-10%" id="lineBlur">
@@ -239,12 +242,10 @@ export default function ReportComposedChart({ properties }) {
             <YAxis
               yAxisId="left"
               tickFormatter={yFormatLeft}
-              type="number"
-              domain={[0, '100000000']}
             />
             {rightAxis}
             <Tooltip
-              nameFormatter={(value) => (isDate ? formatValue(value, 'utcdate') : value)}
+              labelFormatter={(value) => (isDate ? formatValue(value, 'utcdate') : value)}
               formatter={
                 (value, n) => {
                   if (typeof formattersByName[n] === 'function') {

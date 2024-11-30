@@ -2,6 +2,7 @@ import React from 'react';
 import { BlockManager, BasicType } from 'easy-email-core';
 import { BlockAttributeConfigurationManager, StandardLayout } from 'easy-email-extensions';
 import { EmailEditor, EmailEditorProvider } from 'easy-email-editor';
+import IFrame from '../IFrame';
 
 import 'easy-email-editor/lib/style.css';
 import 'easy-email-extensions/lib/style.css';
@@ -23,14 +24,14 @@ const initialValues = {
   content: BlockManager.getBlockByType(BasicType.PAGE).create({}),
 };
 
-export default function Email(
+export default function EmailContent(
   { message, saveMessage },
 ) {
-  if (message?.publish_date) return 'Cannot edit, already published';
   if (!message.id) return 'The message id must be created before editing';
 
-  let mContent = message.content;
-  if (mContent && typeof mContent === 'string')mContent = JSON.parse(mContent);
+  const mContent = message.content;
+
+  if (message?.publish_date) return <IFrame content={mContent.html} />;
 
   initialValues.content = mContent.easyEmailConfig || initialValues.content;
   if (typeof initialValues.content === 'string')initialValues.content = JSON.parse(initialValues.content);

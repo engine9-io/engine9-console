@@ -28,7 +28,7 @@ function useQueryFields() {
       .get('/data/query/fields')
       .then((results) => results.data),
   });
-  if (isPending || isFetching || error) return { isPending, isFetching, error };
+  if (isPending || isFetching || error) return { isPending: isPending || isFetching, error };
   const d = JSON.parse(JSON.stringify(data));
   d.fields = data.fields.map(
     (f, i) => ({ validator, ...data.fields[i] }),
@@ -56,14 +56,14 @@ export default function SegmentBuilder(props) {
   });
 
   const {
-    isPending: fieldPending, isFetching: fieldFetching, error: fieldError, data: fieldData,
+    isPending: fieldPending, error: fieldError, data: fieldData,
   } = useQueryFields();
-  const enabled = !!id && !fieldPending && !fieldFetching && !fieldError;
+  const enabled = !!id && !fieldPending && !fieldError;
   let initialData;
   if (!id) initialData = { data: [{}] };
 
   const {
-    isPending, isFetching, error, data: response,
+    isPending, error, data: response,
   } = useRemoteData({
     enabled,
     initialData,
@@ -89,11 +89,11 @@ export default function SegmentBuilder(props) {
     return undefined;
   }, [response]);
 
-  if (fieldPending || fieldFetching) return <AppLoader />;
+  if (fieldPending) return <AppLoader />;
   if (fieldError) return <Error500 />;
   if (!fieldData.fields) return 'No fields available for query';
 
-  if (isPending || isFetching) return <AppLoader />;
+  if (isPending) return <AppLoader />;
 
   if (!!id && !response?.[0]) {
     return <Error404 />;

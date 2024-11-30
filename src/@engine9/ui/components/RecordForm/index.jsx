@@ -33,14 +33,14 @@ function RecordForm(props) {
   if (!id) initialData = { data: [{}] };
 
   const {
-    isPending, isFetching, error, data: response,
+    isPending, error, data: response,
   } = useRemoteData({
     enabled,
     initialData,
     uri: `/data/tables/${table}/${id}`,
   });
 
-  if (isPending || isFetching) return <AppLoader />;
+  if (isPending) return <AppLoader />;
 
   if (!!id && !response?.[0]) {
     return <Error404 />;

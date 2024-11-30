@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
 import { useParams } from 'react-router';
-import { Report } from './Report';
+import { Report } from '@engine9/ui/components/report/Report';
 
 export function ReportLanding({ properties, parameters }) {
   const { '*': reportPath } = useParams();

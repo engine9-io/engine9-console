@@ -8,27 +8,27 @@ const CustomerTable = ({ customers, loading }) => {
   const columns = [
     {
       title: 'Name',
-      dataIndex: 'name',
+      name: 'name',
       key: 'name',
     },
     {
       title: 'Email',
-      dataIndex: 'email',
+      name: 'email',
       key: 'email',
     },
     {
       title: 'Last Item',
-      dataIndex: 'lastItem',
+      name: 'lastItem',
       key: 'lastItem',
     },
     {
       title: 'Last Order',
-      dataIndex: 'lastOrder',
+      name: 'lastOrder',
       key: 'lastOrder',
     },
     {
       title: 'Rating',
-      dataIndex: 'rating',
+      name: 'rating',
       key: 'rating',
       render: (rating) => (
         <span className='badge'>
@@ -38,22 +38,22 @@ const CustomerTable = ({ customers, loading }) => {
     },
     {
       title: 'Wallet Balance',
-      dataIndex: 'balance',
+      name: 'balance',
       key: 'balance',
     },
     {
       title: 'Address',
-      dataIndex: 'address',
+      name: 'address',
       key: 'address',
     },
     {
       title: 'Join Date',
-      dataIndex: 'joinDate',
+      name: 'joinDate',
       key: 'joinDate',
     },
     {
       title: 'Actions',
-      dataIndex: 'actions',
+      name: 'actions',
       key: 'actions',
       className: 'customer-table-actions',
       fixed: 'right',

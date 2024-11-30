@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 
 // import AppsContainer from '@crema/components/AppsContainer';
 // import AppsContent from '@crema/components/AppsContainer/AppsContent';
+import AppCard from '@crema/components/AppCard';
 import { StyledMainContentView } from '@crema/components/AppContentView/index.styled';
 // import SidebarContent from '@engine9/ui/components/SidebarContent';
 import { useComponentArray } from './LayoutUtilities';
@@ -69,26 +70,31 @@ export default function TabbarLayout({ components }) {
 
   return (
     <StyledMainContentView>
-      {header.length > 0 && (
+      <AppCard
+        heightFull
+        className="no-card-space-ltr-rtl record-table"
+      >
+
+        {header.length > 0 && (
         <div className="e9-header">
           <Flex justify="space-between">
             {header}
           </Flex>
         </div>
-      )}
-      {/* <AppsContainer>
+        )}
+        {/* <AppsContainer>
         <AppsContent> */}
-      <div className="e9-layout-tabs">
-        <Tabs
-          tabPosition={tabPosition}
-          defaultActiveKey={defaultActiveKey}
-          items={items}
-          activeKey={tab}
-          onChange={onChange}
-        />
-      </div>
-      {/* </AppsContent>
-      </AppsContainer> */}
+        <div className="e9-layout-tabs">
+          <Tabs
+            tabPosition={tabPosition}
+            defaultActiveKey={defaultActiveKey}
+            items={items}
+            activeKey={tab}
+            onChange={onChange}
+          />
+        </div>
+
+      </AppCard>
     </StyledMainContentView>
   );
 }

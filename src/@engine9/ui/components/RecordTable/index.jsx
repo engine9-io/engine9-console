@@ -67,7 +67,7 @@ function RecordTable(props) {
 
   const offset = (tableParams.pagination.current - 1) * 5;
   const {
-    isPending, error, isFetching, data, schema,
+    isPending, error, data, schema,
   } = useRemoteData({
     uri: `/data/tables/${table}?schema=true&${renderedConditions}${include ? `include=${escape(JSON.stringify(include))}&` : ''}limit=${tableParams.pagination.pageSize}&offset=${offset}${orderByClause}`,
     onComplete: () => {
@@ -87,13 +87,14 @@ function RecordTable(props) {
   if (!Array.isArray(properties.columns)) return 'No column array specified';
   const columns = properties.columns.map((c) => {
     const o = { ...c };
+    if (c.name) o.dataIndex = c.name;
     if (c.template) {
       if (typeof c.template !== 'string') throw new Error('column.template should be a string, not anything else');
       const renderTemplate = compileTemplate(c.template);
       o.render = (text, context) => (
         renderTemplate({ table, record: context, parameters }) || '');
     } else {
-      const match = schema?.columns.find((col) => col.column_name === c.dataIndex);
+      const match = schema?.columns.find((col) => col.column_name === c.name);
       if (match) {
         const type = match.column_type;
         switch (type) {
@@ -190,7 +191,7 @@ function RecordTable(props) {
         onRow={onRow}
         dataSource={data}
         pagination={tableParams.pagination}
-        loading={isPending || isFetching}
+        loading={isPending}
         onChange={handleTableChange}
       />
 
