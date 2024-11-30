@@ -201,11 +201,12 @@ function relativeDate(_s, _initialDate) {
   // values
   if (s === 'now') s = '-0d.end.day';
 
-  const r = s.match(/^([+-]{1})([0-9]+)([YyMwdhms]{1})([.a-z]*)$/);
+  let r = s.match(/^([+-]{1})([0-9]+)([YyMwdhms]{1})([.a-z]*)$/);
 
   if (r) {
     if (s.indexOf('.start') < 0 && s.indexOf('.end') < 0) {
       s += '.start.day';
+      r = s.match(/^([+-]{1})([0-9]+)([YyMwdhms]{1})([.a-z]*)$/);
     }
     let period = null;
     switch (r[3]) {

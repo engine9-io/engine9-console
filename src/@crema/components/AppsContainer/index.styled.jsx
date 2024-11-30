@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AppScrollbar from '../AppScrollbar';
 import { rgba } from 'polished';
 
-const sidebarWidth='16rem';
+const sidebarWidth='20rem';
 
 export const StyledAppContentContainer = styled(AppScrollbar)`
   display: flex;

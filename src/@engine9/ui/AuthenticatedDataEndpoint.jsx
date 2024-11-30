@@ -47,7 +47,7 @@ export function useRemoteData(
   const r = useQuery({
     enabled,
     initialData,
-    retry: 1,
+    // retry: 1,
     queryKey: [uri],
     queryFn: async () => {
       try {

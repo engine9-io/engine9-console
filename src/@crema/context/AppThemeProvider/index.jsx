@@ -26,6 +26,11 @@ const AppThemeProvider = (props) => {
         direction={direction}
         locale={antLocale}
         theme={{
+          components:{
+            Tree:{
+              indentSize:14
+            }
+          },
           token,
           fontFamily: 'Be Vietnam, sans-serif',
         }}

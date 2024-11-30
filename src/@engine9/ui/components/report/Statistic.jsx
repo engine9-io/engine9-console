@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography } from 'antd';
 import { formatValue } from '@engine9/helpers/formatters';
 
-export default function Scorecard({ properties }) {
+export default function ReportStatistic({ properties }) {
   const {
     metrics = [], label, size = 'md', previousData: prevData, data, query,
   } = properties;
@@ -93,7 +93,7 @@ export default function Scorecard({ properties }) {
   }
 
   return (
-    <div className="scorecard" style={{ textAlign: 'center' }}>
+    <div className="statistic" style={{ textAlign: 'center' }}>
       {label && <Typography fontWeight="fontWeightBold" className="report-item-label" variant={variants[0]}><span className="resize1.5">{label}</span></Typography>}
       <Typography variant={variants[1]} className="report-scorecard-stat">{statRender}</Typography>
       <Typography variant={variants[2]}>{item}</Typography>

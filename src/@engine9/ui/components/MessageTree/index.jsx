@@ -1,64 +1,46 @@
 import React from 'react';
 import AppLoader from '@crema/components/AppLoader';
-import AppCard from '@crema/components/AppCard';
-import Error404 from '@engine9/ui/errorPages/Error404';
+
+// import Error404 from '@engine9/ui/errorPages/Error404';
 import JSON5 from 'json5';
 import Error500 from '@engine9/ui/errorPages/Error500';
 import { relativeDate } from '@engine9/helpers/formatters';
-import { useActionFunction } from '@engine9/ui/components/Actions';
+// import { useActionFunction } from '@engine9/ui/components/Actions';
+import QueryStringDateRange from '@engine9/ui/components/QueryStringDateRange';
 import { useSearchParams } from 'react-router';
+import { getIcon } from '@engine9/ui/Icons';
 
-import { Tree } from 'antd';
+import { Tree, Tag, Empty } from 'antd';
+
 import { useRemoteData, useRemoteObjects } from '../../AuthenticatedDataEndpoint';
-
-const initTreeData = [
-  {
-    title: 'Expand to load',
-    key: '0',
-  },
-  {
-    title: 'Expand to load',
-    key: '1',
-  },
-  {
-    title: 'Tree Node',
-    key: '2',
-    isLeaf: true,
-  },
-];
 
 export default function MessageTree(props) {
   const {
-    properties, parameters = {},
+    properties,
+    // parameters = {},
   } = props;
 
   const [searchParams] = useSearchParams();
 
-  const onClickAction = useActionFunction(
+  /* const onClickAction = useActionFunction(
     {
       action: 'navigate',
       url: '/message/{{record.id}}/',
     },
   );
+  */
 
   let start = searchParams.get('start') || properties.start || '-7d';
   let end = searchParams.get('end') || properties.end || 'now';
   if (start.match(/^[+-]{1}$/)) start += '.start.day';
   if (end.match(/^[+-]{1}$/)) end += '.end.day';
 
-  console.log({
-    start,
-    end,
-    startRel: relativeDate(start),
-    endRel: relativeDate(end),
-  });
-
   const conditions = [
     { eql: `publish_date>='${relativeDate(start).toISOString()}'` },
     { eql: `publish_date<'${relativeDate(end).toISOString()}'` },
     { eql: 'message_set_id is not null' },
-
   ];
+  console.log(start, end, conditions);
 
   const {
     isPending, error, data: messages,
@@ -70,12 +52,16 @@ export default function MessageTree(props) {
 
   const { isPending: msPending, error: msError, data: messageSets } = useRemoteObjects({ type: 'message_set', ids: msids });
 
-  const e = error || msError;
+  const cids = messageSets ? messageSets.map((m) => m.campaign_id) : undefined;
+
+  const { isPending: cPending, error: cError, data: campaigns } = useRemoteObjects({ type: 'campaign', ids: cids });
+
+  const e = error || msError || cError;
   if (e) {
     return e.message ? e.message : <Error500 />;
   }
 
-  if (isPending || msPending) return <AppLoader />;
+  if (isPending || msPending || cPending) return <AppLoader />;
 
   if (!Array.isArray(messages)) return <Error500 />;
 
@@ -85,21 +71,47 @@ export default function MessageTree(props) {
   const onExpand = (keys, info) => {
     console.log('Trigger Expand', keys, info);
   };
-  return JSON.stringify(messageSets);
+  if (!campaigns) return <AppLoader />;
+  const treeData = campaigns.map((c) => (
+    {
+      title: (
+        <div>
+          <h3>{c.name}</h3>
+          <Tag color="orange">{c.channel}</Tag>
+        </div>),
+      // icon: getIcon('campaign'),
+      key: `campaign:${c.id}`,
+      children: messageSets.filter((ms) => ms.campaign_id === c.id).map((ms) => ({
+        title: (
+          <h4>
+            {ms.name}
+          </h4>
+        ),
+        key: `message_set:${ms.id}`,
+        children: messages.filter((m) => m.message_set_id === ms.id).map((m) => ({
+          title: m.name,
+          icon: getIcon('message'),
+          key: `message:${m.id}`,
+          isLeaf: true,
+        })),
+      })),
+    }
+  ));
 
   return (
-    <AppCard
-      heightFull
-      className="no-card-space-ltr-rtl record-table"
-    >
-      <Tree
-        multiple
-        draggable
-        defaultExpandAll
-        onSelect={onSelect}
-        onExpand={onExpand}
-        treeData={treeData}
-      />
-    </AppCard>
+    <div>
+      <QueryStringDateRange />
+      {treeData.length > 0 ? (
+        <Tree
+          multiple
+          defaultExpandAll
+      // blockNode
+          onSelect={onSelect}
+          onExpand={onExpand}
+          treeData={treeData}
+        />
+      ) : <Empty />}
+    </div>
+
   );
 }

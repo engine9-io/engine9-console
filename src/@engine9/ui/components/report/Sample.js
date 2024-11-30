@@ -119,7 +119,7 @@ export default function Sample() {
       },
       a1: {
 
-        component: 'Scorecard',
+        component: 'Statistic',
         properties: {
           table: 'dual',
           metrics: [
@@ -137,7 +137,7 @@ export default function Sample() {
         },
       },
       a2: {
-        component: 'Scorecard',
+        component: 'Statistic',
         properties: {
           table: 'dual',
           metrics: [

@@ -4,6 +4,7 @@ import {
 } from 'react-icons/fi';
 import { TbDatabase, TbDatabaseExport } from 'react-icons/tb';
 import { LuForklift } from 'react-icons/lu';
+import { IoGrid, IoMail } from 'react-icons/io5';
 import { useAccountId } from '@engine9/helpers/AccountHelper';
 
 import {
@@ -27,6 +28,8 @@ export function getIcon(name) {
     case 'messages': return <FaRegEdit />;
     case 'forklift': return <LuForklift />;
     case 'campaign': return <FaMailBulk />;
+    case 'message_set': return <IoGrid />;
+    case 'message': return <IoMail />;
     case 'data': return <TbDatabase />;
     case 'email': return <FaRegPaperPlane />;
     case 'sms': return <FaSms />;
