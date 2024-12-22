@@ -1,0 +1,1924 @@
+{
+    "records": 745909,
+    "types": [
+        {
+            "entry_type": "EMAIL_SEND",
+            "records": 505225,
+            "distinct_people": 505182
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "records": 233714,
+            "distinct_people": 169014
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "records": 2722,
+            "distinct_people": 2084
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "records": 503,
+            "distinct_people": 498
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "records": 3745,
+            "distinct_people": 3745
+        }
+    ],
+    "typesByHour": [
+        {
+            "entry_type": "EMAIL_SEND",
+            "date": "2024-12-11 12:00:00",
+            "records": 505225,
+            "distinct_people": 505182
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 12:00:00",
+            "records": 52498,
+            "distinct_people": 45523
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 12:00:00",
+            "records": 1609,
+            "distinct_people": 1391
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 12:00:00",
+            "records": 178,
+            "distinct_people": 175
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 12:00:00",
+            "records": 3674,
+            "distinct_people": 3674
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 13:00:00",
+            "records": 19448,
+            "distinct_people": 18172
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 13:00:00",
+            "records": 214,
+            "distinct_people": 163
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 13:00:00",
+            "records": 63,
+            "distinct_people": 63
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 13:00:00",
+            "records": 9,
+            "distinct_people": 9
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 14:00:00",
+            "records": 11464,
+            "distinct_people": 10900
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 14:00:00",
+            "records": 119,
+            "distinct_people": 96
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 14:00:00",
+            "records": 38,
+            "distinct_people": 38
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 14:00:00",
+            "records": 12,
+            "distinct_people": 12
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 15:00:00",
+            "records": 9341,
+            "distinct_people": 8978
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 15:00:00",
+            "records": 81,
+            "distinct_people": 68
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 15:00:00",
+            "records": 32,
+            "distinct_people": 32
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 16:00:00",
+            "records": 8216,
+            "distinct_people": 7918
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 16:00:00",
+            "records": 72,
+            "distinct_people": 57
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 16:00:00",
+            "records": 15,
+            "distinct_people": 15
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 16:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 17:00:00",
+            "records": 7805,
+            "distinct_people": 7541
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 17:00:00",
+            "records": 72,
+            "distinct_people": 50
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 17:00:00",
+            "records": 12,
+            "distinct_people": 12
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 18:00:00",
+            "records": 7550,
+            "distinct_people": 7352
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 18:00:00",
+            "records": 43,
+            "distinct_people": 37
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 18:00:00",
+            "records": 12,
+            "distinct_people": 12
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 18:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 19:00:00",
+            "records": 7233,
+            "distinct_people": 7040
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 19:00:00",
+            "records": 39,
+            "distinct_people": 26
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 19:00:00",
+            "records": 11,
+            "distinct_people": 11
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 19:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 20:00:00",
+            "records": 6606,
+            "distinct_people": 6452
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 20:00:00",
+            "records": 36,
+            "distinct_people": 30
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 20:00:00",
+            "records": 11,
+            "distinct_people": 10
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 21:00:00",
+            "records": 6743,
+            "distinct_people": 6583
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 21:00:00",
+            "records": 39,
+            "distinct_people": 25
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 21:00:00",
+            "records": 5,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 21:00:00",
+            "records": 6,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 22:00:00",
+            "records": 7971,
+            "distinct_people": 7786
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 22:00:00",
+            "records": 23,
+            "distinct_people": 19
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 22:00:00",
+            "records": 8,
+            "distinct_people": 8
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 22:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-11 23:00:00",
+            "records": 9876,
+            "distinct_people": 9675
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-11 23:00:00",
+            "records": 24,
+            "distinct_people": 16
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-11 23:00:00",
+            "records": 6,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-11 23:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 00:00:00",
+            "records": 11609,
+            "distinct_people": 11363
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 00:00:00",
+            "records": 16,
+            "distinct_people": 12
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 00:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 01:00:00",
+            "records": 9600,
+            "distinct_people": 9417
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 01:00:00",
+            "records": 12,
+            "distinct_people": 9
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 01:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 02:00:00",
+            "records": 5736,
+            "distinct_people": 5657
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 02:00:00",
+            "records": 11,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 03:00:00",
+            "records": 3057,
+            "distinct_people": 3016
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 03:00:00",
+            "records": 3,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 03:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 04:00:00",
+            "records": 1598,
+            "distinct_people": 1573
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 04:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 05:00:00",
+            "records": 1036,
+            "distinct_people": 1018
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 05:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 05:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 06:00:00",
+            "records": 880,
+            "distinct_people": 856
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 06:00:00",
+            "records": 10,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 06:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 07:00:00",
+            "records": 1089,
+            "distinct_people": 1073
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 07:00:00",
+            "records": 7,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 07:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 08:00:00",
+            "records": 1498,
+            "distinct_people": 1457
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 08:00:00",
+            "records": 8,
+            "distinct_people": 7
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 08:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 09:00:00",
+            "records": 2174,
+            "distinct_people": 2118
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 09:00:00",
+            "records": 12,
+            "distinct_people": 11
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 09:00:00",
+            "records": 6,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 10:00:00",
+            "records": 2207,
+            "distinct_people": 2157
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 10:00:00",
+            "records": 7,
+            "distinct_people": 7
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 10:00:00",
+            "records": 8,
+            "distinct_people": 8
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 11:00:00",
+            "records": 1983,
+            "distinct_people": 1924
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 11:00:00",
+            "records": 17,
+            "distinct_people": 15
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 11:00:00",
+            "records": 5,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 12:00:00",
+            "records": 1624,
+            "distinct_people": 1589
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 12:00:00",
+            "records": 17,
+            "distinct_people": 12
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 12:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-12 12:00:00",
+            "records": 5,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 13:00:00",
+            "records": 1462,
+            "distinct_people": 1409
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 13:00:00",
+            "records": 9,
+            "distinct_people": 7
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 13:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-12 13:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 14:00:00",
+            "records": 1166,
+            "distinct_people": 1138
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 14:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 14:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 15:00:00",
+            "records": 1144,
+            "distinct_people": 1120
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 15:00:00",
+            "records": 8,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-12 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 16:00:00",
+            "records": 1066,
+            "distinct_people": 1043
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 16:00:00",
+            "records": 6,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 16:00:00",
+            "records": 5,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 17:00:00",
+            "records": 998,
+            "distinct_people": 972
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 17:00:00",
+            "records": 13,
+            "distinct_people": 7
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 17:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 18:00:00",
+            "records": 1027,
+            "distinct_people": 1003
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 18:00:00",
+            "records": 11,
+            "distinct_people": 11
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 18:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 19:00:00",
+            "records": 1002,
+            "distinct_people": 978
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 19:00:00",
+            "records": 6,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 20:00:00",
+            "records": 896,
+            "distinct_people": 881
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 20:00:00",
+            "records": 7,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 20:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 21:00:00",
+            "records": 933,
+            "distinct_people": 919
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 21:00:00",
+            "records": 9,
+            "distinct_people": 7
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 21:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 22:00:00",
+            "records": 942,
+            "distinct_people": 930
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 22:00:00",
+            "records": 5,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 22:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-12 23:00:00",
+            "records": 1100,
+            "distinct_people": 1079
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-12 23:00:00",
+            "records": 6,
+            "distinct_people": 5
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-12 23:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 00:00:00",
+            "records": 1075,
+            "distinct_people": 1065
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 00:00:00",
+            "records": 7,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 01:00:00",
+            "records": 1029,
+            "distinct_people": 1013
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 01:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 02:00:00",
+            "records": 687,
+            "distinct_people": 683
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 03:00:00",
+            "records": 405,
+            "distinct_people": 404
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 04:00:00",
+            "records": 280,
+            "distinct_people": 272
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 05:00:00",
+            "records": 204,
+            "distinct_people": 201
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 06:00:00",
+            "records": 207,
+            "distinct_people": 205
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 07:00:00",
+            "records": 247,
+            "distinct_people": 237
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 07:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 07:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 08:00:00",
+            "records": 379,
+            "distinct_people": 369
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 08:00:00",
+            "records": 4,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 08:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 09:00:00",
+            "records": 519,
+            "distinct_people": 510
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 09:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 10:00:00",
+            "records": 693,
+            "distinct_people": 672
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 10:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 11:00:00",
+            "records": 667,
+            "distinct_people": 653
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 11:00:00",
+            "records": 5,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 11:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 12:00:00",
+            "records": 619,
+            "distinct_people": 605
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 13:00:00",
+            "records": 518,
+            "distinct_people": 510
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 13:00:00",
+            "records": 6,
+            "distinct_people": 6
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 14:00:00",
+            "records": 491,
+            "distinct_people": 483
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 14:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-13 14:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 15:00:00",
+            "records": 430,
+            "distinct_people": 425
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 16:00:00",
+            "records": 405,
+            "distinct_people": 397
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 16:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 16:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 17:00:00",
+            "records": 439,
+            "distinct_people": 431
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 17:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 17:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 18:00:00",
+            "records": 445,
+            "distinct_people": 437
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 18:00:00",
+            "records": 10,
+            "distinct_people": 9
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 18:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 19:00:00",
+            "records": 416,
+            "distinct_people": 400
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 19:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 19:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 20:00:00",
+            "records": 375,
+            "distinct_people": 368
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 20:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 21:00:00",
+            "records": 343,
+            "distinct_people": 332
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 21:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 21:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 22:00:00",
+            "records": 370,
+            "distinct_people": 367
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 22:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-13 23:00:00",
+            "records": 374,
+            "distinct_people": 369
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-13 23:00:00",
+            "records": 4,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-13 23:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 00:00:00",
+            "records": 401,
+            "distinct_people": 394
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 00:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 01:00:00",
+            "records": 388,
+            "distinct_people": 382
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 01:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 02:00:00",
+            "records": 306,
+            "distinct_people": 303
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 03:00:00",
+            "records": 212,
+            "distinct_people": 206
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 03:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 04:00:00",
+            "records": 160,
+            "distinct_people": 160
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 04:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 05:00:00",
+            "records": 114,
+            "distinct_people": 113
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 05:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 06:00:00",
+            "records": 106,
+            "distinct_people": 104
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 06:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 06:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 07:00:00",
+            "records": 125,
+            "distinct_people": 124
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 08:00:00",
+            "records": 164,
+            "distinct_people": 163
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 08:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 09:00:00",
+            "records": 225,
+            "distinct_people": 219
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 09:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 09:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 10:00:00",
+            "records": 328,
+            "distinct_people": 316
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 10:00:00",
+            "records": 3,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 10:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 11:00:00",
+            "records": 365,
+            "distinct_people": 354
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 11:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 11:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 12:00:00",
+            "records": 329,
+            "distinct_people": 320
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 12:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 12:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-14 12:00:00",
+            "records": 26,
+            "distinct_people": 26
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 13:00:00",
+            "records": 339,
+            "distinct_people": 333
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 13:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 13:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 14:00:00",
+            "records": 327,
+            "distinct_people": 321
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 14:00:00",
+            "records": 4,
+            "distinct_people": 3
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 14:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 15:00:00",
+            "records": 273,
+            "distinct_people": 269
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 15:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 15:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 16:00:00",
+            "records": 276,
+            "distinct_people": 273
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 16:00:00",
+            "records": 4,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 16:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 17:00:00",
+            "records": 254,
+            "distinct_people": 246
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 17:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 18:00:00",
+            "records": 213,
+            "distinct_people": 209
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 19:00:00",
+            "records": 258,
+            "distinct_people": 252
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 19:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-14 19:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 20:00:00",
+            "records": 209,
+            "distinct_people": 205
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 20:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 21:00:00",
+            "records": 201,
+            "distinct_people": 197
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 22:00:00",
+            "records": 212,
+            "distinct_people": 207
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 22:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-14 23:00:00",
+            "records": 217,
+            "distinct_people": 213
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-14 23:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 00:00:00",
+            "records": 225,
+            "distinct_people": 221
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 00:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 01:00:00",
+            "records": 193,
+            "distinct_people": 191
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 01:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 01:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 02:00:00",
+            "records": 175,
+            "distinct_people": 175
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 02:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 03:00:00",
+            "records": 139,
+            "distinct_people": 139
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 04:00:00",
+            "records": 116,
+            "distinct_people": 115
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 05:00:00",
+            "records": 64,
+            "distinct_people": 62
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 05:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 05:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 06:00:00",
+            "records": 72,
+            "distinct_people": 69
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 06:00:00",
+            "records": 3,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 06:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 07:00:00",
+            "records": 79,
+            "distinct_people": 79
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 08:00:00",
+            "records": 90,
+            "distinct_people": 88
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 09:00:00",
+            "records": 146,
+            "distinct_people": 142
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 10:00:00",
+            "records": 180,
+            "distinct_people": 178
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 10:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 10:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 11:00:00",
+            "records": 171,
+            "distinct_people": 170
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 11:00:00",
+            "records": 2,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 12:00:00",
+            "records": 257,
+            "distinct_people": 251
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_BOUNCE",
+            "date": "2024-12-15 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 13:00:00",
+            "records": 215,
+            "distinct_people": 206
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 13:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 13:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 14:00:00",
+            "records": 219,
+            "distinct_people": 214
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 14:00:00",
+            "records": 7,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 14:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 15:00:00",
+            "records": 199,
+            "distinct_people": 186
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 15:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 16:00:00",
+            "records": 172,
+            "distinct_people": 161
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 16:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 17:00:00",
+            "records": 204,
+            "distinct_people": 196
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 17:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 18:00:00",
+            "records": 154,
+            "distinct_people": 154
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 18:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 19:00:00",
+            "records": 195,
+            "distinct_people": 191
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 19:00:00",
+            "records": 5,
+            "distinct_people": 4
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 20:00:00",
+            "records": 175,
+            "distinct_people": 169
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 20:00:00",
+            "records": 5,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 20:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 21:00:00",
+            "records": 188,
+            "distinct_people": 184
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 21:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 21:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 22:00:00",
+            "records": 187,
+            "distinct_people": 183
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 22:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-15 22:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-15 23:00:00",
+            "records": 213,
+            "distinct_people": 205
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-15 23:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 00:00:00",
+            "records": 181,
+            "distinct_people": 178
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 00:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 01:00:00",
+            "records": 185,
+            "distinct_people": 185
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 01:00:00",
+            "records": 2,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 02:00:00",
+            "records": 149,
+            "distinct_people": 146
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-16 02:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 03:00:00",
+            "records": 107,
+            "distinct_people": 105
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 04:00:00",
+            "records": 81,
+            "distinct_people": 80
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 04:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 05:00:00",
+            "records": 61,
+            "distinct_people": 60
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 06:00:00",
+            "records": 54,
+            "distinct_people": 53
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-16 06:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 07:00:00",
+            "records": 55,
+            "distinct_people": 52
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 08:00:00",
+            "records": 84,
+            "distinct_people": 82
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 09:00:00",
+            "records": 120,
+            "distinct_people": 117
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 10:00:00",
+            "records": 176,
+            "distinct_people": 173
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 10:00:00",
+            "records": 3,
+            "distinct_people": 2
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 11:00:00",
+            "records": 205,
+            "distinct_people": 197
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 11:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_UNSUBSCRIBE",
+            "date": "2024-12-16 11:00:00",
+            "records": 1,
+            "distinct_people": 1
+        },
+        {
+            "entry_type": "EMAIL_OPEN",
+            "date": "2024-12-16 12:00:00",
+            "records": 31,
+            "distinct_people": 31
+        },
+        {
+            "entry_type": "EMAIL_CLICK",
+            "date": "2024-12-16 12:00:00",
+            "records": 1,
+            "distinct_people": 1
+        }
+    ],
+    "domainStats": [
+        {
+            "email_domain": "gmail.com",
+            "records": 403550,
+            "distinct_people": 277662,
+            "sent": 277673,
+            "opened": 122475,
+            "clicked": 806,
+            "distinct_sent": 277662,
+            "distinct_opened": 89297,
+            "distinct_clicked": 517,
+            "distinct_open_or_clicked": 89328
+        },
+        {
+            "email_domain": "yahoo.com",
+            "records": 101924,
+            "distinct_people": 67964,
+            "sent": 67966,
+            "opened": 33575,
+            "clicked": 157,
+            "distinct_sent": 67964,
+            "distinct_opened": 26478,
+            "distinct_clicked": 127,
+            "distinct_open_or_clicked": 26484
+        },
+        {
+            "email_domain": "hotmail.com",
+            "records": 37719,
+            "distinct_people": 30697,
+            "sent": 30697,
+            "opened": 6888,
+            "clicked": 76,
+            "distinct_sent": 30697,
+            "distinct_opened": 5703,
+            "distinct_clicked": 43,
+            "distinct_open_or_clicked": 5705
+        },
+        {
+            "email_domain": "sbcglobal.net",
+            "records": 25098,
+            "distinct_people": 17463,
+            "sent": 17469,
+            "opened": 7569,
+            "clicked": 46,
+            "distinct_sent": 17463,
+            "distinct_opened": 5547,
+            "distinct_clicked": 37,
+            "distinct_open_or_clicked": 5551
+        },
+        {
+            "email_domain": "comcast.net",
+            "records": 21521,
+            "distinct_people": 12962,
+            "sent": 12966,
+            "opened": 8442,
+            "clicked": 68,
+            "distinct_sent": 12962,
+            "distinct_opened": 5888,
+            "distinct_clicked": 55,
+            "distinct_open_or_clicked": 5890
+        }
+    ]
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "DEBUG=;vite",
     "watch_and_build_ui_config": "    fswatch -o ../engine9-interfaces | xargs -n1 -I{} node src/@engine9/ui/dynamic/TestingLocalUIConfig.cjs",
-    "start_prod": "VITE_ENGINE9_DATA_ENDPOINT=https://data.engine9.io vite",
+    "start_prod": "DEBUG=;VITE_ENGINE9_DATA_ENDPOINT=https://data.engine9.io vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",

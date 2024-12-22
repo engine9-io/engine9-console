@@ -12,6 +12,7 @@ import {
 import Tabs from '../Tabs';
 import DynamicForm from '../DynamicForm';
 import EmailContent from './EmailContent';
+import EmailStatistics from './EmailStatistics';
 
 import { useRemoteData } from '../../AuthenticatedDataEndpoint';
 import 'react-json-view-lite/dist/index.css';
@@ -93,6 +94,14 @@ export default function MessageDisplay(props) {
       label: 'Email Content',
       key: 'email-content',
       children: <EmailContent
+        message={message}
+        saveMessage={saveMessage}
+      />,
+    },
+    {
+      label: 'Email Statistics',
+      key: 'email-statistics',
+      children: <EmailStatistics
         message={message}
         saveMessage={saveMessage}
       />,
